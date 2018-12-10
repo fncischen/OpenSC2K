@@ -20,21 +20,3 @@ let largedat = new parseImageDat({
 });
 
 largedat.createTilemap();
-
-// not needed since we don't replace images at
-// distant zoom levels
-// let smallmeddat = new parseImageDat({
-//   palette: palette,
-//   data: files.SMALLMED_DAT
-// });
-
-// let specialdat = new parseImageDat({
-//   palette: palette,
-//   data: files.SPECIAL_DAT
-// });
-
-console.log('called');
-
-setTimeout(function(){
-  return;
-}, 100000);

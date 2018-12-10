@@ -1,16 +1,25 @@
 module.exports = {
-  extends: 'eslint:recommended',
+  extends: [
+    'eslint:recommended'
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": 'module'
+  },
   rules: {
-    "no-console": "off",
-    "no-unused-vars": "off"
+    "no-console": 'off',
+    "indent": ['error', 2],
+    "quotes": ['error', 'single'],
+    "semi": ['error', 'always'],
+    "one-var": ['error', 'never']
   },
-  parser: 'babel-eslint',
-  parserOptions: {
-    sourceType: 'module'
-  },
+  parser: "babel-eslint",
   env: {
     browser: true,
-    node: true
+    node: true,
+    es6: true,
+    commonjs: true,
+    "shared-node-browser": true
   },
   globals: {
     __static: true

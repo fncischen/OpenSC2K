@@ -1,110 +1,61 @@
 import Phaser from 'phaser';
 import city from './city/city';
-import worldCamera from './world/worldCamera';
-import worldEvents from './world/worldEvents';
-import importCity from './import/importCity';
-import saveCity from './city/saveCity';
-import debugInterface from './debug/debugInterface';
+import viewport from './world/viewport';
+import events from './world/events';
+import debug from './debug/debug';
+//import ui from './ui/';
 
 class world extends Phaser.Scene {
   constructor () {
-    super({
-      key: 'world'
-    });
-
-    this.preloadComplete = false;
+    super({ key: 'world' });
     this.initialized = false;
-
-    this.worldPoint = {
-      x: 0,
-      y: 0
-    }
   }
 
   preload () {
+    this.sys.game.world = this;
     this.common = this.sys.game.common;
-    this.backgroundColor = new Phaser.Display.Color(55, 23, 0, 1);
-
-    if (!this.common.data) {
-      let imp = new importCity({ scene: this });
-      imp.loadDefaultCity();
-      this.shutdown();
-      return;
-    }
-
-    this.city = new city({
-      scene: this
-    });
-
-    this.preloadComplete = true;
+    this.city = new city({ scene: this });
   }
 
   create () {
-    if (!this.preloadComplete)
-      return;
+    this.viewport = new viewport({ scene: this });
+    this.worldEvents = new events({ scene: this });
 
-    this.worldCamera = new worldCamera({ scene: this });
-
-    this.input.on('pointermove', (pointer) => {
-      let p = this.worldCamera.camera.getWorldPoint(pointer.x, pointer.y);
-
-      this.worldPoint.x = p.x;
-      this.worldPoint.y = p.y;
-    });
-
-    this.worldEvents = new worldEvents({ scene: this });
-    this.debugInterface = new debugInterface({ scene: this });
-
-    this.city.load();
     this.city.create();
 
-    this.common.world = this;
+    //this.ui = new ui({ scene: this });
+    this.debug = new debug({ scene: this });
+
     this.initialized = true;
+  }
+
+  reload () {
+    this.city.shutdown();
   }
 
   update (time, delta) {
     if (!this.initialized)
       return;
 
-    this.worldCamera.update(delta);
-
+    this.viewport.update(delta);
     this.city.update();
   }
 
+  resize () {
+    this.viewport.resize();
+  }
+
   shutdown () {
-    if (!this.initialized)
-      return;
-
     this.initialized = false;
-    this.preloadComplete = false;
 
-    if (this.debugInterface);
-      this.debugInterface.shutdown();
+    if (this.debug)
+      this.debug.shutdown();
 
     if (this.city)
       this.city.shutdown();
 
-    if (this.worldEvents)
-      this.worldEvents.shutdown();
-
-    this.scene.stop();
+    this.scene.destroy();
   }
-
-  resize () {
-    this.cameras.main.setViewport(0, 0, document.documentElement.clientWidth, document.documentElement.clientHeight);
-  }
-
-  saveCity () {
-    let exp = new saveCity({ scene: this });
-    exp.export();
-  }
-
-  loadCity () {
-    let imp = new importCity({ scene: this });
-    imp.openFile();
-    this.shutdown();
-  }
-
 }
 
 export default world;

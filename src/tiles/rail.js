@@ -18,13 +18,14 @@ class rail extends tile {
     return true;
   }
 
-  getTile () {
-    super.getTile();
+  getTile (tileId) {
+    let tile = super.getTile(tileId);
+    tileId = tile.id;
 
-    if (this.flip())
+    if (this.flip(tile))
       this.flipTile = true;
 
-    return true;
+    return tile;
   }
 
   create () {
@@ -34,7 +35,7 @@ class rail extends tile {
     if (this.cell.z < this.scene.city.waterLevel)
       this.offset = (0 - (this.scene.city.waterLevel - this.cell.z) * this.common.layerOffset);
 
-    if (this.cell.terrain.tileId == 269)
+    if (this.cell.tiles.getId('terrain') == 269)
       this.offset += this.common.layerOffset;
 
     super.create();

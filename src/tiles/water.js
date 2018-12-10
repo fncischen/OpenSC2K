@@ -15,7 +15,7 @@ class water extends tile {
     if (![270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290].includes(this.tileId))
       return false;
 
-    if (this.cell.getProperty('waterLevel') == 'dry')
+    if (this.cell.properties.waterLevel == 'dry')
       return false;
 
     return true;
@@ -25,13 +25,13 @@ class water extends tile {
     if (!this.draw)
       return;
 
-    if (this.cell.hasBuilding())
+    if (this.cell.tiles.has('building'))
       return false;
 
-    if (this.cell.z < this.scene.city.waterLevel)
-      this.offset = (0 - (this.scene.city.waterLevel - this.cell.z) * this.common.layerOffset);
+    if (this.cell.z < this.cell.scene.city.waterLevel)
+      this.offset = (0 - (this.cell.scene.city.waterLevel - this.cell.z) * this.common.layerOffset);
 
-    if (this.cell.getProperty('waterLevel') == 'waterfall')
+    if (this.cell.properties.waterLevel == 'waterfall')
       this.depth++;
 
     super.create();

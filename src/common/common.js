@@ -9,7 +9,7 @@ var common = function () {
     cache: {
       vectorTiles: []
     }
-  }
-}
+  };
+};
 
 export default common;

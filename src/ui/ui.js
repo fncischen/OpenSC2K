@@ -16,7 +16,7 @@ class ui extends Phaser.Scene {
       displayBoundsBuffer: {},
       worldBounds: {},
       worldBoundsBuffer: {}
-    }
+    };
 
     this.preloadComplete = false;
     this.initialized = false;
@@ -45,13 +45,13 @@ class ui extends Phaser.Scene {
     this.viewport.width = document.documentElement.clientWidth;
     this.viewport.height = document.documentElement.clientHeight;
 
-    this.viewport.displayBounds.topLeft     = new Phaser.Geom.Point(0 + this.debugOffset,                     0 + this.debugOffset);
-    this.viewport.displayBounds.bottomLeft  = new Phaser.Geom.Point(0 + this.debugOffset,                     this.viewport.height - this.debugOffset);
-    this.viewport.displayBounds.topRight    = new Phaser.Geom.Point(this.viewport.width - this.debugOffset,   0 + this.debugOffset);
-    this.viewport.displayBounds.bottomRight = new Phaser.Geom.Point(this.viewport.width - this.debugOffset,   this.viewport.height - this.debugOffset);
-    this.viewport.displayBounds.width       = this.viewport.displayBounds.bottomRight.x - this.viewport.displayBounds.topLeft.x;
-    this.viewport.displayBounds.height      = this.viewport.displayBounds.bottomLeft.y - this.viewport.displayBounds.topLeft.y;
-    this.viewport.displayBounds.rect        = new Phaser.Geom.Rectangle(this.viewport.displayBounds.topLeft.x, this.viewport.displayBounds.topLeft.y, this.viewport.displayBounds.width, this.viewport.displayBounds.height);
+    this.viewport.displayBounds.topLeft           = new Phaser.Geom.Point(0 + this.debugOffset,                     0 + this.debugOffset);
+    this.viewport.displayBounds.bottomLeft        = new Phaser.Geom.Point(0 + this.debugOffset,                     this.viewport.height - this.debugOffset);
+    this.viewport.displayBounds.topRight          = new Phaser.Geom.Point(this.viewport.width - this.debugOffset,   0 + this.debugOffset);
+    this.viewport.displayBounds.bottomRight       = new Phaser.Geom.Point(this.viewport.width - this.debugOffset,   this.viewport.height - this.debugOffset);
+    this.viewport.displayBounds.width             = this.viewport.displayBounds.bottomRight.x - this.viewport.displayBounds.topLeft.x;
+    this.viewport.displayBounds.height            = this.viewport.displayBounds.bottomLeft.y - this.viewport.displayBounds.topLeft.y;
+    this.viewport.displayBounds.rect              = new Phaser.Geom.Rectangle(this.viewport.displayBounds.topLeft.x, this.viewport.displayBounds.topLeft.y, this.viewport.displayBounds.width, this.viewport.displayBounds.height);
 
     this.viewport.displayBoundsBuffer.topLeft     = new Phaser.Geom.Point(this.viewport.displayBounds.topLeft.x + this.boundsBuffer,      this.viewport.displayBounds.topLeft.y + this.boundsBuffer);
     this.viewport.displayBoundsBuffer.bottomLeft  = new Phaser.Geom.Point(this.viewport.displayBounds.bottomLeft.x + this.boundsBuffer,   this.viewport.displayBounds.bottomLeft.y - this.boundsBuffer);
@@ -98,9 +98,9 @@ class ui extends Phaser.Scene {
     this.common.viewport = this.viewport;
   }
 
-  update (time, delta) {
-    //this.updateBounds();
-  }
+  // update (time, delta) {
+  //   this.updateBounds();
+  // }
 
   resize () {
     this.cameras.main.setViewport(0, 0, document.documentElement.clientWidth, document.documentElement.clientHeight);

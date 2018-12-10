@@ -19,6 +19,7 @@ class saveCity {
       },
       cells: []
     };
+    
     this.createCellList();
     this.downloadSave();
   }

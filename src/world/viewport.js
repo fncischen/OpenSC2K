@@ -1,11 +1,19 @@
 import Phaser from 'phaser';
 
-class worldCamera {
+class viewport {
   constructor(options) {
     this.scene = options.scene;
     this.common = this.scene.sys.game.common;
+
     this.camera = this.scene.cameras.main;
     this.camera.name = 'worldCamera';
+
+    this.camera.setBackgroundColor(new Phaser.Display.Color(55, 23, 0, 1));
+
+    this.worldPoint = {
+      x: 0,
+      y: 0
+    };
 
     let keys = this.scene.input.keyboard.addKeys({
       'up': Phaser.Input.Keyboard.KeyCodes.W,
@@ -29,20 +37,18 @@ class worldCamera {
       maxSpeed: 1
     };
 
-    this.controls = new Phaser.Cameras.Controls.Smoothed(controlConfig);
+    this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
 
-    this.scene.input.keyboard.on('keydown_Z', (event) => {
-      this.camera.rotation += 0.05;
-    });
-
-    this.scene.input.keyboard.on('keydown_X', (event) => {
-      this.camera.rotation -= 0.05;
-    });
-
-    this.camera.backgroundColor = this.scene.backgroundColor;
-    this.camera.scrollX = -478;
-    this.camera.scrollY = 1200;
+    this.camera.scrollX = -202;
+    this.camera.scrollY = 2686;
     this.camera.zoom = 1;
+  }
+
+  onPointerMove (pointer) {
+    let point = this.camera.getWorldPoint(pointer.x, pointer.y);
+
+    this.worldPoint.x = point.x;
+    this.worldPoint.y = point.y;
   }
 
   update (delta) {
@@ -54,4 +60,4 @@ class worldCamera {
   }
 }
 
-export default worldCamera;
+export default viewport;

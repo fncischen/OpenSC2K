@@ -1,65 +1,22 @@
 import map from './map';
-import util from '../common/utils';
+import save from './save';
+import load from './load';
+//import simulator from '../simulator/simulator';
 
 class city {
   constructor (options) {
     this.scene = options.scene;
-    this.common = this.scene.sys.game.common;
-    this.loaded = false;
-
-    this.name = 'Default City';
-    this.rotation = 0;
-    this.waterLevel = 4;
-    this.width = 128;
-    this.height = 128;
-
-    this.rotationModifier();
-
-    this.map = new map({
-      scene: this.scene,
-      width: this.width,
-      height: this.height,
-      city: this
-    });
-  }
-
-  load () {
-    if (!this.common.data) {
-      this.scene.importCity.loadDefaultCity();
-      return;
-    }
-
-    this.name = this.common.data.info.name;
-    this.rotation = this.common.data.info.rotation;
-    this.waterLevel = this.common.data.info.waterLevel;
-    this.width = this.common.data.info.width;
-    this.height = this.common.data.info.height;
-
-    this.rotationModifier();
-
-    this.map.load();
-    this.loaded = true;
+    this.load = new load({ scene: this.scene });
+    this.save = new save({ scene: this.scene });
   }
 
   create () {
-    if (!this.loaded) {
-      this.scene.importCity.loadDefaultCity();
-      return;
-    }
+    this.name       = this.scene.common.data.info.name       || 'Default City';
+    this.rotation   = this.scene.common.data.info.rotation   || 0;
+    this.waterLevel = this.scene.common.data.info.waterLevel || 4;
+    this.width      = this.scene.common.data.info.width      || 128;
+    this.height     = this.scene.common.data.info.height     || 128;
 
-    this.map.create();
-  }
-
-  update () {
-    this.map.update();
-  }
-
-  shutdown () {
-    this.loaded = false;
-    this.map = undefined;
-  }
-
-  rotationModifier () {
     if (this.rotation == 3)
       this.keyTile = 'bottomRight';
 
@@ -73,6 +30,30 @@ class city {
       this.keyTile = 'bottomLeft';
     
     this.cameraRotation = 0;
+
+    this.map = new map({
+      scene: this.scene,
+      width: this.width,
+      height: this.height
+    });
+
+    this.map.load();
+    this.map.create();
+    //this.simulator = new simulator({ scene: this.scene });
+
+    this._loaded = true;
+  }
+
+  update () {
+    if (!this._loaded)
+      return;
+
+    this.map.update();
+  }
+
+  shutdown () {
+    if (this.map)
+      this.map.shutdown();
   }
 }
 

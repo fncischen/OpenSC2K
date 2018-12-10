@@ -1,11 +1,12 @@
 import PNG from 'pngjs-image';
 import math from 'mathjs';
-import { Parser } from 'binary-parser';
 import tilemap from './tilemap';
+import data from '../tiles/data';
 
 class parseImageDat {
   constructor (options) {
     this.data = Buffer.from(options.data);
+    this.tiles = data;
     this.palette = options.palette;
     this.stack = {};
     this.parse();
@@ -40,6 +41,7 @@ class parseImageDat {
       img.height        = imageData.getUint16(offset + 6);
       img.width         = imageData.getUint16(offset + 8);
 
+      // only store unique images (1204 and 1183 are duplicated)
       images[img.id] = img;
 
       offset += 10;
@@ -48,13 +50,14 @@ class parseImageDat {
     // calculate image offset ends, size
     // get each image from the raw data
     for (let id in images) {
+      images[id].id = id;
+      images[id].tile = this.tiles[images[id].id - 1001];
       images[id].offsetEnd = (images[id + 1] !== undefined ? images[id + 1].offsetBegin - 1 : this.data.byteLength);
       images[id].size = images[id].offsetEnd - images[id].offsetBegin;
       images[id].data = this.data.subarray(images[id].offsetBegin, images[id].offsetEnd);
       images[id].block = this.block(images[id].data);
       images[id].animated = this.isAnimatedImage(images[id].block);
 
-      // only count unique images (1204 and 1183 are duplicated)
       this.addToStack(images[id]);
     }
   }
@@ -67,8 +70,8 @@ class parseImageDat {
     let frames = [];
 
     for (let y = 0; y < image.block.length; y++)
-      for (let x = 0; x < image.block[y].parsed.length; x++)
-        frames.push(this.palette.getFrameCountFromIndex(image.block[y].parsed[x]));
+      for (let x = 0; x < image.block[y].pixels.length; x++)
+        frames.push(this.palette.getFrameCountFromIndex(image.block[y].pixels[x]));
 
     if (frames.length == 0)
       return 1;
@@ -84,30 +87,52 @@ class parseImageDat {
   addToStack (image) {
     let frameCount = this.getFrameCount(image);
 
+    if (image.tile.importOptions && image.tile.importOptions.dropColor) {
+      image.tile.importOptions.dropColor.forEach((data, i) => {
+        image.tile.importOptions.dropColor[i] = this.palette.getColorString(data, 0);
+      });
+    }
+
     // loop on each frame
     for (let frame = 0; frame < frameCount; frame++) {
       let png = PNG.createImage(image.width, image.height);
 
       // get palette index for imageblock x/y coordinate and draw to canvas
-      for (let y = 0; y < image.block.length; y++)
-        for (let x = 0; x < image.block[y].parsed.length; x++)
-          png.setAt(x, y, this.palette.getColor(image.block[y].parsed[x], frame));
+      for (let y = 0; y < image.block.length; y++) {
+        for (let x = 0; x < image.block[y].pixels.length; x++) {
+          let index = image.block[y].pixels[x];
+
+          // drop out specific colors
+          if (index !== null &&
+              image.tile.importOptions &&
+              image.tile.importOptions.dropColor &&
+              image.tile.importOptions.dropColor.includes(this.palette.getColorString(index, frame))
+          ) {
+            index = null;
+          }
+
+          png.setAt(x, y, this.palette.getColor(index, frame));
+        }
+      }
 
       // save to the image stack
       this.stack[image.id + '_' + frame] = {
         id: image.id,
         frame: frame,
+        frameCount: frameCount,
+        tile: image.tile,
         data: png.toBlobSync(),
         width: image.width,
         height: image.height
       };
 
       // write out all frames
-      //png.writeImageSync(__dirname+'/../../test/'+image.id+'_'+frame+'.png');
+      //if (image.tile.id == )
+      //  png.writeImageSync(__dirname+'/../../tiles/'+image.id+'_'+frame+'.png');
 
       // write out first frame only
-      //if (frame == 0)
-      //  png.writeImageSync(__dirname+'/../../test/'+image.id+'.png');
+      if (frame == 0)
+        png.writeImageSync(__dirname+'/../../tiles/'+image.id+'.png');
     }
   }
 
@@ -117,8 +142,8 @@ class parseImageDat {
   //
   isAnimatedImage (image) {
     for (var y = 0; y < image.length; y++)
-      for (var x = 0; x < image[y].parsed.length; x++)
-        if (this.palette.animatedIndexes.includes(image[y].parsed[x]))
+      for (var x = 0; x < image[y].pixels.length; x++)
+        if (this.palette.animatedIndexes.includes(image[y].pixels[x]))
           return true;
 
     return false;
@@ -140,7 +165,7 @@ class parseImageDat {
 
       offset += 2;
       row.data = bytes.subarray(offset, offset + row.length);
-      row.parsed = this.row(row.data);
+      row.pixels = this.row(row.data);
 
       img.push(row);
 

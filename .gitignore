@@ -1,9 +1,9 @@
+assets/images/*
+assets/tiles/*
 node_modules/
-dist/
+dist/*
 .DS_Store
 .gitignore
-assets/images/.DS_Store
-assets/tiles/.DS_Store
 */.DS_Store
 .DS_Store?
 ._*
@@ -12,5 +12,6 @@ assets/tiles/.DS_Store
 Icon?
 ehthumbs.db
 Thumbs.db
-OpenSC2K.sublime-project
-OpenSC2K.sublime-workspace
+*.sublime-project
+*.sublime-workspace
+*.log

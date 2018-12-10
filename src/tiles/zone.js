@@ -12,14 +12,11 @@ class zone extends tile {
     if (!super.checkTile())
       return false;
 
-    if (![291,292,293,294,295,296,297,298,299].includes(this.tileId))
-      return false;
-
     return true;
   }
 
   create () {
-    if (this.cell.hasBuilding())
+    if (this.cell.tiles.has('building'))
       return false;
       
     super.create();

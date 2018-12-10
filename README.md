@@ -8,7 +8,7 @@ Along with implementing the original functionality and features, I plan to add a
 
 I've only tested using Chrome 64 on macOS, but it should run fairly well on any modern browser/platform that supports WebGL. Performance should be acceptable but there is still a LOT of room for optimizations and improvements.
 
-Update: Due to a takedown request from Electronic Arts, I've had to remove the game assets (tilesets primarily) included with this repository. I've got a mostly working asset extraction process, but it's been a few months since I last worked on it. It's only been tested with SimCity 2000 Special Edition for Windows.
+**Update:** Due to a takedown request from Electronic Arts, I've had to remove the game assets (tilesets primarily) included with this repository. I've got a mostly working asset extraction process, but it's been a few months since I last worked on it. It's only been tested with SimCity 2000 Special Edition for Windows.
 
 ![Screenshot](/screenshots/1.png)
 

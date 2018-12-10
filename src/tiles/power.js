@@ -18,18 +18,19 @@ class power extends tile {
     return true;
   }
 
-  getTile () {
-    super.getTile();
+  getTile (tileId) {
+    let tile = super.getTile(tileId);
+    tileId = tile.id;
 
-    if (this.flip())
+    if (this.flip(tile))
       this.flipTile = true;
 
-    if (this.flipTile && this.tile.flipMode == 'alternateTile') {
-      this.tileId = this.common.tiles[this.tileId].rotate[this.scene.city.cameraRotation];
-      this.tile = this.common.tiles[this.tileId];
+    if (this.flipTile && tile.flipMode && tile.flipMode == 'alternateTile') {
+      tileId = this.common.tiles[tileId].rotate[this.scene.city.cameraRotation];
+      tile = this.common.tiles[tileId];
     }
 
-    return true;
+    return tile;
   }
 
   create () {
@@ -39,7 +40,7 @@ class power extends tile {
     if (this.cell.z < this.scene.city.waterLevel)
       this.offset = (0 - (this.scene.city.waterLevel - this.cell.z) * this.common.layerOffset);
 
-    if (this.cell.terrain.tileId == 269)
+    if (this.cell.tiles.getId('terrain') == 269)
       this.offset += this.common.layerOffset;
 
     super.create();

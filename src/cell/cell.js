@@ -1,97 +1,119 @@
-import Phaser from 'phaser';
-import building from '../tiles/building'
-import terrain from '../tiles/terrain'
-import water from '../tiles/water'
-import zone from '../tiles/zone'
-import road from '../tiles/road'
-import rail from '../tiles/rail'
-import highway from '../tiles/highway'
-import power from '../tiles/power'
-import pipe from '../tiles/pipe'
-import subway from '../tiles/subway'
-import heightmap from '../tiles/heightmap'
+import tiles from './tiles';
+import events from './events';
+import microSims from './microSims';
+//import trains from '../simulator/actors/trains';
 
 class cell {
   constructor (options) {
-    this.scene = options.scene;
-    this.common = this.scene.sys.game.common;
+    this.scene  = options.scene;
+    this.data   = options.data;
 
-    this.x = options.x || 0;
-    this.y = options.y || 0;
-    this.z = options.z || 0;
+    this.tileWidth   = this.scene.common.tileWidth;
+    this.tileHeight  = this.scene.common.tileHeight;
+    this.layerOffset = this.scene.common.layerOffset;
     
-    this.map = options.map;
-    this.city = options.city;
+    this.x = this.data.x || 0;
+    this.y = this.data.y || 0;
+    this.z = this.data.z || 0;
 
+    this.edge = false;
     this.calculatePosition();
 
-    this.depth = options.depth || ((options.x + options.y) * 64);
-
+    this.depth       = (this.data.x + this.data.y) * 64;
     this.initialized = false;
-    this.interaction = null;
+    this.hitbox      = null;
     this.sleeping    = false;
 
-    this.building   = null;
-    this.zone       = null;
-    this.water      = null;
-    this.road       = null;
-    this.rail       = null;
-    this.power      = null;
-    this.highway    = null;
-    this.terrain    = null;
-    this.heightmap  = null;
-    this.subway     = null;
-    this.pipe       = null;
-
-    this.tiles = [];
-    this.sprites = [];
-
     this.properties = {
-      special:             {},
-      network:             false,
-      conductive:          options.conductive          || false,
-      powered:             options.powered             || false,
-      piped:               options.piped               || false,
-      watered:             options.watered             || false,
-      rotate:              options.rotate              || false,
-      landValueMask:       options.landValueMask       || false,
-      saltWater:           options.saltWater           || false,
-      waterCovered:        options.waterCovered        || false,
-      missileSilo:         options.missileSilo         || false,
-      cornersTopLeft:      options.cornersTopLeft      || false,
-      cornersTopRight:     options.cornersTopRight     || false,
-      cornersBottomLeft:   options.cornersBottomLeft   || false,
-      cornersBottomRight:  options.cornersBottomRight  || false,
-      waterLevel:          options.waterLevel          || 'dry',
-      altWaterCovered:     options.altWaterCovered     || false,
-      terrainWaterLevel:   options.terrainWaterLevel   || null,
-    }
+      conductive:          this.data.conductive          || false,
+      powered:             this.data.powered             || false,
+      piped:               this.data.piped               || false,
+      watered:             this.data.watered             || false,
+      rotate:              this.data.rotate              || false,
+      landValueMask:       this.data.landValueMask       || false,
+      saltWater:           this.data.saltWater           || false,
+      waterCovered:        this.data.waterCovered        || false,
+      missileSilo:         this.data.missileSilo         || false,
+      cornersTopLeft:      this.data.cornersTopLeft      || false,
+      cornersTopRight:     this.data.cornersTopRight     || false,
+      cornersBottomLeft:   this.data.cornersBottomLeft   || false,
+      cornersBottomRight:  this.data.cornersBottomRight  || false,
+      waterLevel:          this.data.waterLevel          || 'dry',
+      altWaterCovered:     this.data.altWaterCovered     || false,
+      terrainWaterLevel:   this.data.terrainWaterLevel   || null,
+    };
 
+    this.tiles = new tiles({ cell: this });
+    this.events = new events({ cell: this });
+    this.microSims = new microSims({ cell: this });
+    
     return this;
   }
 
-  getProperty (property) {
-    if (this.properties[property] === undefined) throw 'Invalid cell property';
-    
-    return this.properties[property];
+  create () {
+    //this.microSims.create();
+    this.tiles.create();
+    this.events.create();
+    this.initialized = true;
+
+    //if (this.x == 71 && this.y == 26) {
+    //  this.actor = new trains({ scene: this.scene });
+    //  this.actor.spawn(this);
+    //}
+
   }
 
-  setProperty (property, value) {
-    if (this.properties[property] === undefined) throw 'Invalid cell property';
-    
-    this.properties[property] = value;
+  get sprites () {
+    return this.tiles.sprites;
+  }
+
+  get surrounding () {
+    let cells = {};
+    let cellX = 0;
+    let cellY = 0;
+
+    for (let x = -1; x < 2; x++) {
+      for (let y = -1; y < 2; y++) {
+        cellX = this.x + x;
+        cellY = this.y + y;
+
+        if (x == -1 && y == -1 && this.scene.city.map.cells[cellX] && this.scene.city.map.cells[cellX][cellY]) cells.nw = this.scene.city.map.cells[cellX][cellY];
+        if (x == -1 && y ==  0 && this.scene.city.map.cells[cellX] && this.scene.city.map.cells[cellX][cellY]) cells.w  = this.scene.city.map.cells[cellX][cellY];
+        if (x == -1 && y ==  1 && this.scene.city.map.cells[cellX] && this.scene.city.map.cells[cellX][cellY]) cells.sw = this.scene.city.map.cells[cellX][cellY];
+
+        if (x ==  0 && y == -1 && this.scene.city.map.cells[cellX] && this.scene.city.map.cells[cellX][cellY]) cells.n  = this.scene.city.map.cells[cellX][cellY];
+        if (x ==  0 && y ==  0 && this.scene.city.map.cells[cellX] && this.scene.city.map.cells[cellX][cellY]) cells.c  = this.scene.city.map.cells[cellX][cellY];
+        if (x ==  0 && y ==  1 && this.scene.city.map.cells[cellX] && this.scene.city.map.cells[cellX][cellY]) cells.s  = this.scene.city.map.cells[cellX][cellY];
+
+        if (x ==  1 && y == -1 && this.scene.city.map.cells[cellX] && this.scene.city.map.cells[cellX][cellY]) cells.ne = this.scene.city.map.cells[cellX][cellY];
+        if (x ==  1 && y ==  0 && this.scene.city.map.cells[cellX] && this.scene.city.map.cells[cellX][cellY]) cells.e  = this.scene.city.map.cells[cellX][cellY];
+        if (x ==  1 && y ==  1 && this.scene.city.map.cells[cellX] && this.scene.city.map.cells[cellX][cellY]) cells.se = this.scene.city.map.cells[cellX][cellY];
+      }
+    }
+
+    return cells;
   }
 
   updatePosition () {
     this.calculatePosition();
+    //this.tiles.updatePosition();
 
-    // todo: code to look at each tile sprite and move it
+    if (this.hitbox) {
+      this.hitbox.destroy();
+      this.setInteractive();
+    }
   }
 
   calculatePosition () {
-    let offsetX = (this.x - this.y) * (this.common.tileWidth / 2);
-    let offsetY = (this.y + this.x) * (this.common.tileHeight / 2);
-    let offsetZ = (this.z > 1 ? (this.common.layerOffset * this.z) + this.common.layerOffset : 0);
+    let offsetX = (this.x - this.y) * (this.tileWidth / 2);
+    let offsetY = (this.y + this.x) * (this.tileHeight / 2);
+    let offsetZ = (this.z > 1 ? (this.layerOffset * this.z) + this.layerOffset : 0);
+
+    // edge tile?
+    if (this.x == 0 || this.x == 127 || this.y == 0 || this.y == 127)
+      this.edge = true;
+    else
+      this.edge = false;
 
     this.position = {
       offsets: {
@@ -100,45 +122,26 @@ class cell {
         z: offsetZ,
       },
       top: {
-        x: offsetX + (this.common.tileWidth / 2),
+        x: offsetX + (this.tileWidth / 2),
         y: offsetY - offsetZ
       },
       right: {
-        x: offsetX + this.common.tileWidth,
-        y: (offsetY - offsetZ) + this.common.tileHeight - (this.common.tileHeight / 2)
+        x: offsetX + this.tileWidth,
+        y: (offsetY - offsetZ) + this.tileHeight - (this.tileHeight / 2)
       },
       bottom: {
-        x: offsetX + (this.common.tileWidth / 2),
-        y: (offsetY - offsetZ) + this.common.tileHeight
+        x: offsetX + (this.tileWidth / 2),
+        y: (offsetY - offsetZ) + this.tileHeight
       },
       left: {
         x: offsetX,
-        y: (offsetY - offsetZ) + this.common.tileHeight - (this.common.tileHeight / 2)
+        y: (offsetY - offsetZ) + this.tileHeight - (this.tileHeight / 2)
       },
       center: {
-        x: offsetX + (this.common.tileWidth / 2),
-        y: (offsetY - offsetZ) - (this.common.tileHeight / 2)
+        x: offsetX + (this.tileWidth / 2),
+        y: (offsetY - offsetZ) - (this.tileHeight / 2)
       }
-    }
-  }
-
-
-  create () {
-    if (this.heightmap) this.heightmap.create();
-    if (this.water) this.water.create();
-    if (this.terrain) this.terrain.create();
-    if (this.road) this.road.create();
-    if (this.power) this.power.create();
-    if (this.rail) this.rail.create();
-    if (this.zone) this.zone.create();
-    if (this.building) this.building.create();
-    if (this.highway) this.highway.create();
-    //if (this.subway) this.subway.create();
-    //if (this.pipe) this.pipe.create();
-
-    this.setInteraction();
-
-    this.initialized = true;
+    };
   }
 
   setDepth (depth) {
@@ -167,495 +170,19 @@ class cell {
     this.hitbox.setActive(true);
   }
 
+  shutdown () {
+    if (this.hitbox)
+      this.hitbox.destroy();
+
+    if (this.sprites.length > 0)
+      this.sprites.forEach((sprite) => {
+        sprite.destroy();
+      });
+  }
+
   addSprite (sprite, type) {
     this.sprites.push(sprite);
-    this.map.sprites[type].push(sprite);
-  }
-
-  getSprites () {
-    return this.sprites;
-  }
-
-  getTopSprite () {
-    return this.sprites[0];
-  }
-
-  clearSprites () {
-    this.sprites = [];
-  }
-
-  addTile (tile) {
-    this.tiles.push(tile);
-  }
-
-  getTiles () {
-    return this.tiles;
-  }
-
-  getTopTile () {
-    return this.tiles[0];
-  }
-
-  clearTiles () {
-    this.tiles = [];
-  }
-
-  setInteraction () {
-    let debugOutline = false;
-    let debugHitbox = false;
-
-    let x = 0;
-    let y = 0;
-    let offset = 0;
-    let sprites;
-    let hitbox;
-    let tile;
-
-    if
-      (this.water && this.properties.waterLevel != 'dry') tile = this.water;
-    else if
-      (this.terrain && this.properties.waterLevel == 'dry') tile = this.terrain;
-    else if
-      (!this.water && !this.terrain && this.road) tile = this.road;
-    else
-      return;
-
-    if (!tile.tile)
-      return;
-
-    if ((this.properties.waterLevel == 'submerged' || this.properties.waterLevel == 'shore') && this.z < this.scene.city.waterLevel)
-      offset = ((this.scene.city.waterLevel - this.z) * this.common.layerOffset);
-
-    if (tile.tileId != 256 && tile.type == 'terrain')
-      offset += this.common.layerOffset;
-
-    x = this.position.right.x - (this.common.tileWidth / 2) << 0;
-    y = this.position.bottom.y - (this.common.tileHeight) - offset << 0;
-
-    if (debugHitbox || debugOutline)
-      hitbox = this.scene.add.graphics({ x: x, y: y });
-    else
-      hitbox = this.scene.add.zone(x, y, this.common.tileWidth, this.common.tileHeight);
-
-    hitbox.on('pointerover', function (event, pointX, pointY) {
-      sprites = this.cell.getSprites();
-
-      sprites.forEach((sprite) => {
-         if (sprite.visible)
-           sprite.setTint(0xaa0000);
-      });
-    });
-
-    hitbox.on('pointerout', function (event) {
-      sprites = this.cell.getSprites();
-
-      sprites.forEach((sprite) => {
-        if (sprite.visible)
-          sprite.clearTint();
-      });
-    });
-
-    hitbox.on('pointermove', (event, pointX, pointY) => {
-      this.map.selectedCell.x = this.x;
-      this.map.selectedCell.y = this.y;
-    });
-
-    hitbox.on('pointerdown', function (event, pointX, pointY, camera) {
-      // sprites = this.cell.getSprites();
-      // console.log(sprites);
-
-      let cells = this.cell.map.getSurroundingCells(this.cell);
-      console.log(cells.c);
-
-      //console.log('cornersBottomRight: '+cells.c.properties.cornersBottomRight);
-      //console.log('cornersBottomLeft: '+cells.c.properties.cornersBottomLeft);
-      //console.log('cornersTopRight: '+cells.c.properties.cornersTopRight);
-      //console.log('cornersTopLeft: '+cells.c.properties.cornersTopLeft);
-    });
-
-    hitbox.setInteractive(tile.tile.hitbox, Phaser.Geom.Polygon.Contains);
-    hitbox.setDepth(this.depth + 1);
-    hitbox.cell = this;
-    
-    if (debugOutline)
-      tile.drawOutline(hitbox);
-
-    if (debugHitbox)
-      tile.drawOutline(hitbox, 'hitbox');
-
-    //this.addSprite(hitbox, 'hitbox');
-    this.hitbox = hitbox;
-  }
-
-
-  getTerrainTileId () {
-    if (!this.terrain)
-      return 0;
-
-    return this.terrain.tileId;
-  }
-
-  getTerrain () {
-    if (!this.terrain)
-      return;
-
-    return this.terrain;
-  }
-
-  hasTerrain () {
-    if (this.terrain && this.terrain.draw)
-      return true;
-
-    return false;
-  }
-
-  setTerrain (tileId) {
-    this.terrain = new terrain({
-      scene: this.scene,
-      city: this.city,
-      map: this.map,
-      tileId: tileId,
-      cell: this
-    });
-  }
-
-
-  getWaterTileId () {
-    if (!this.water)
-      return 0;
-
-    return this.water.tileId;
-  }
-
-  getWater () {
-    if (!this.water)
-      return;
-
-    return this.water;
-  }
-
-  hasWater () {
-    if (this.water && this.water.draw)
-      return true;
-
-    return false;
-  }
-
-  setWater (tileId) {
-    this.properties.waterCovered = true;
-
-    this.water = new water({
-      scene: this.scene,
-      city: this.city,
-      map: this.map,
-      tileId: tileId,
-      cell: this
-    });
-  }
-
-
-  getZoneTileId () {
-    if (!this.zone)
-      return 0;
-
-    return this.zone.tileId;
-  }
-
-  getZone () {
-    if (!this.zone)
-      return;
-
-    return this.zone;
-  }
-
-  hasZone () {
-    if (this.zone && this.zone.draw)
-      return true;
-
-    return false;
-  }
-
-  setZone (tileId) {
-    this.zone = new zone({
-      scene: this.scene,
-      city: this.city,
-      map: this.map,
-      tileId: tileId,
-      cell: this
-    });
-  }
-
-
-  getRoadTileId () {
-    if (!this.road)
-      return 0;
-
-    return this.road.tileId;
-  }
-
-  getRoad () {
-    if (!this.road)
-      return;
-
-    return this.road;
-  }
-
-  hasRoad () {
-    if (this.road && this.road.draw)
-      return true;
-
-    return false;
-  }
-
-  setRoad (tileId) {
-    this.properties.network = true;
-
-    this.road = new road({
-      scene: this.scene,
-      city: this.city,
-      map: this.map,
-      tileId: tileId,
-      cell: this
-    });
-  }
-
-
-  getRailTileId () {
-    if (!this.rail)
-      return 0;
-
-    return this.rail.tileId;
-  }
-
-  getRail () {
-    if (!this.rail)
-      return;
-
-    return this.rail;
-  }
-
-  hasRail () {
-    if (this.rail && this.rail.draw)
-      return true;
-
-    return false;
-  }
-
-  setRail (tileId) {
-    this.properties.network = true;
-
-    this.rail = new rail({
-      scene: this.scene,
-      city: this.city,
-      map: this.map,
-      tileId: tileId,
-      cell: this
-    });
-  }
-
-
-  getPowerTileId () {
-    if (!this.power)
-      return 0;
-
-    return this.power.tileId;
-  }
-
-  getPower () {
-    if (!this.power)
-      return;
-
-    return this.power;
-  }
-
-  hasPower () {
-    if (this.power && this.power.draw)
-      return true;
-
-    return false;
-  }
-
-  setPower (tileId) {
-    // mark cell as power conductive
-    this.properties.conductive = true;
-
-    this.power = new power({
-      scene: this.scene,
-      city: this.city,
-      map: this.map,
-      tileId: tileId,
-      cell: this
-    });
-
-  }
-
-
-  getHighwayTileId () {
-    if (!this.highway)
-      return 0;
-
-    return this.highway.tileId;
-  }
-
-  getHighway () {
-    if (!this.highway)
-      return;
-
-    return this.highway;
-  }
-
-  hasHighway () {
-    if (this.highway && this.highway.draw)
-      return true;
-
-    return false;
-  }
-
-  setHighway (tileId) {
-    this.properties.network = true;
-
-    this.highway = new highway({
-      scene: this.scene,
-      city: this.city,
-      map: this.map,
-      tileId: tileId,
-      cell: this
-    });
-  }
-
-
-  getHeightmapTileId () {
-    if (!this.heightmap)
-      return 0;
-
-    return this.heightmap.tileId;
-  }
-
-  getHeightmap () {
-    if (!this.heightmap)
-      return;
-
-    return this.heightmap;
-  }
-
-  hasHeightmap () {
-    if (this.heightmap && this.heightmap.draw)
-      return true;
-
-    return false;
-  }
-
-  setHeightmap (tileId) {
-    this.heightmap = new heightmap({
-      scene: this.scene,
-      city: this.city,
-      map: this.map,
-      tileId: tileId,
-      cell: this
-    });
-  }
-
-
-  getSubwayTileId () {
-    if (!this.subway)
-      return 0;
-
-    return this.subway.tileId;
-  }
-
-  getSubway () {
-    if (!this.subway)
-      return;
-
-    return this.subway;
-  }
-
-  hasSubway () {
-    if (this.subway && this.subway.draw)
-      return true;
-
-    return false;
-  }
-
-  setSubway (tileId) {
-    this.properties.subway = true;
-
-    if ([108,109,110,111].includes(tileId))
-      this.properties.subwayStation = true;
-
-    this.subway = new subway({
-      scene: this.scene,
-      city: this.city,
-      map: this.map,
-      tileId: tileId,
-      cell: this
-    });
-  }
-
-
-  getPipeTileId () {
-    if (!this.pipe)
-      return 0;
-
-    return this.pipe.tileId;
-  }
-
-  getPipe () {
-    if (!this.pipe)
-      return;
-
-    return this.pipe;
-  }
-
-  hasPipe () {
-    if (this.pipe && this.pipe.draw)
-      return true;
-
-    return false;
-  }
-
-  setPipe (tileId) {
-    this.properties.piped = true;
-
-    this.pipe = new pipe({
-      scene: this.scene,
-      city: this.city,
-      map: this.map,
-      tileId: tileId,
-      cell: this
-    });
-  }
-
-
-  getBuildingTileId () {
-    if (!this.building)
-      return 0;
-
-    return this.building.tileId;
-  }
-
-  getBuilding () {
-    if (!this.building)
-      return;
-
-    return this.building;
-  }
-
-  hasBuilding () {
-    if (this.building)
-      return true;
-
-    return false;
-  }
-
-  setBuilding (tileId) {
-    this.building = new building({
-      scene: this.scene,
-      city: this.city,
-      map: this.map,
-      tileId: tileId,
-      cell: this
-    });
+    this.scene.city.map.addSprite(sprite, type);
   }
 
 }

@@ -1,26 +1,25 @@
 import Phaser from 'phaser';
 import load from './load';
-import title from './title';
 import world from './world';
-import ui from './ui/ui';
-import styles from './styles/global.css';
+import './styles/global.css';
 
 var config = {
+  gameTitle: 'OpenSC2K',
+  gameURL: 'https://github.com/rage8885/OpenSC2K',
   type: Phaser.WEBGL,
   parent: 'content',
   width: window.innerWidth,
   height: window.innerHeight,
-  scaleMode: 0,
-  pixelArt: true,
-  backgroundColor: new Phaser.Display.Color(0, 0, 0, 1),
+  disableContextMenu: false,
+  render: {
+    autoResize: true,
+    antialias: false,
+    pixelArt: true,
+  },
   scene: [
     load,
-    title,
-    world,
-    ui
+    world
   ]
 };
 
-var game = new Phaser.Game(config);
-
-window.game = game;
+window.game = new Phaser.Game(config);

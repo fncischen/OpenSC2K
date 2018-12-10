@@ -1,120 +1,102 @@
 import Phaser from 'phaser';
-import tileData from './tiles/data';
-import utils from './common/utils';
+import tiles from './tiles/data';
 import common from './common/common';
-import saveCity from './city/saveCity';
-import importCity from './import/importCity';
+import city from './city/city';
 
 class load extends Phaser.Scene {
   constructor () {
     super({ key: 'load' });
-
     this.initialized = false;
   }
-
 
   preload () {
     if (!this.sys.game.common)
       this.sys.game.common = common();
 
     this.common = this.sys.game.common;
+    this.common.game = this.sys.game;
 
-    this.load.atlas(this.sys.game.common.tilemap, 'assets/tiles/tilemap_0.png', 'assets/tiles/tilemap_0.json');
+    this.load.atlas(this.common.tilemap, 'assets/tiles/tilemap_0.png', 'assets/tiles/tilemap_0.json');
+    this.load.image('title', 'assets/images/title.png');
   }
-
 
   create () {
-    if (this.initialized) {
-      this.reload();
-      return;
-    }
-
-    this.loadTiles();
-    this.initialized = true;
+    this.city = new city({ scene: this });
+    this.city.load.loadDefaultCity();
     this.common.load = this;
-
-    this.scene.switch('title');
   }
 
+  start () {
+    if (this.common.game.world)
+      this.common.game.world.shutdown();
 
-  reload () {
+    this.initialized = true;
+    this.loadTiles();
+    this.title = this.add.sprite(0, 0, 'title').setOrigin(0, 0);
+    this.startKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     this.scene.start('world');
   }
 
+  update () {
+    if (!this.initialized)
+      return;
 
-  saveCity () {
-    let exp = new saveCity({ scene: this });
-    exp.export();
+    if(this.startKey.isDown){
+      this.sys.sleep();
+
+      this.scene.start('world');
+    }
   }
-
-
-  loadCity () {
-    let imp = new importCity({ scene: this });
-    imp.openFile();
-  }
-  
 
   loadTiles () {
-    for (let i = 0; i < tileData.length; i++) {
-      let firstTexture;
-      let textures = [];
-      let tile = {};
-      let data = tileData[i];
+    if (!this.initialized || this.common.tiles.length > 0)
+      return;
 
-      if (!['terrain', 'water', 'road', 'power', 'rail', 'zone', 'building', 'highway'].includes(data.type))
+    for (let i = 0; i < tiles.length; i++) {
+      let tile = tiles[i];
+
+      if (tile.importOptions && tile.importOptions.skip)
         continue;
 
-      if (data.frames === 0)
-        textures[0] = data.image + '_0';
-      else
-        for (let f = 0; f < data.frames; f++)
-          textures[f] = data.image + '_' + f;
+      tile.textures = {};
 
-      // grab the first frame to get width/height
-      firstTexture = this.textures.getFrame(this.sys.game.common.tilemap, textures[0]);
+      for (let f = 0; f < tile.frames; f++)
+        tile.textures[f] = tile.image + '_' + f;
 
-      tile = {
-        id:                     data.id,
-        animated:               (data.frames > 0 ? true : false),
-        animationDelay:         data.animationDelay || 0,
-        bridge:                 data.bridge,
-        canRotate:              data.canRotate || false,
-        depthModifier:          data.depthModifier || 0,
-        description:            data.description,
-        flip:                   data.flip,
-        flipMode:               data.flipMode,
-        frames:                 data.frames,
-        height:                 (firstTexture.height * this.sys.game.common.scale),
-        imageName:              data.image,
-        lines:                  data.lines,
-        logic:                  data.logic || false,
-        name:                   data.name,
-        hitbox:                 this.shape(data.hitbox),
-        outline:                this.shape(data.outline),
-        requiresTerrainLayer:   data.requiresTerrainLayer,
-        rotate:                 data.rotate,
-        size:                   data.size,
-        subtype:                data.subtype,
-        textures:               textures,
-        tunnel:                 data.tunnel,
-        type:                   data.type,
-        width:                  (firstTexture.width * this.sys.game.common.scale),
-      }
+      tile.height = (this.textures.getFrame(this.common.tilemap, tile.textures[0]).height * this.common.scale);
+      tile.width = (this.textures.getFrame(this.common.tilemap, tile.textures[0]).width * this.common.scale);
 
-      if (tile.animated) {
-        // delay water tiles so they're not in perfect sync
-        // with all other animations
-        // todo: might make this a per-tile setting instead
+      tile.hitbox = this.shape(tile.hitbox);
+      tile.outline = this.shape(tile.outline);
+      tile.rotate = tile.rotate || [tile.id, tile.id, tile.id, tile.id];
+
+      if (tile.frames > 1) {
         this.anims.create({
-          key: data.image,
-          frames: this.anims.generateFrameNames(this.sys.game.common.tilemap, { prefix: data.image+'_', end: data.frames }),
+          key: tile.image,
+          frames: this.anims.generateFrameNames(this.common.tilemap, {
+            prefix: tile.image + '_',
+            start: (tile.reverseAnimation ? tile.frames : 0),
+            end: (tile.reverseAnimation ? 0 : tile.frames)
+          }),
           repeat: -1,
-          frameRate: 2,
-          delay: tile.animationDelay
+          frameRate: tile.frameRate || 2,
+          delay: tile.animationDelay || 0
+        });
+
+        this.anims.create({
+          key: tile.image+'_R',
+          frames: this.anims.generateFrameNames(this.common.tilemap, {
+            prefix: tile.image + '_',
+            start: (tile.reverseAnimation ? 0 : tile.frames),
+            end: (tile.reverseAnimation ? tile.frames : 0)
+          }),
+          repeat: -1,
+          frameRate: tile.frameRate || 2,
+          delay: tile.animationDelay || 0
         });
       }
 
-      this.sys.game.common.tiles[data.id] = tile;
+      this.common.tiles[tile.id] = tile;
     }
   }
 

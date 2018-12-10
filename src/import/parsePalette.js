@@ -21,6 +21,17 @@ class parsePalette {
     return this.cycles[idx][frame];
   }
 
+  //
+  // translate palette index into rgb color
+  //
+  getColorString (idx = null, frame = null) {
+    if (idx === null || frame === null)
+      return 0+','+0+','+0+','+0;
+
+    let color = this.cycles[idx][frame];
+    return color.red+','+color.green+','+color.blue+','+color.alpha;
+  }
+
 
   //
   // returns the number of frames in the animation sequence for a given palette index
@@ -28,13 +39,13 @@ class parsePalette {
   //
   getFrameCountFromIndex (color) {
     if ([200,201,202,203,204,205,206,207,208,209,210,211].includes(color))
-      return 12
+      return 12;
 
     if ([171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,212,213,214,215,216,217,218,219].includes(color))
-      return 8
+      return 8;
 
     if ([195,196,197,198,220,221,222,223,224,225,226,227,228,229,230,231].includes(color))
-      return 4
+      return 4;
     
     return 1;
   }
