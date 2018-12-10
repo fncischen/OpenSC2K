@@ -8,6 +8,8 @@ Along with implementing the original functionality and features, I plan to add a
 
 I've only tested using Chrome 64 on macOS, but it should run fairly well on any modern browser/platform that supports WebGL. Performance should be acceptable but there is still a LOT of room for optimizations and improvements.
 
+Update: Due to a takedown request from Electronic Arts, I've had to remove the game assets (tilesets primarily) included with this repository. I've got a mostly working asset extraction process, but it's been a few months since I last worked on it. It's only been tested with SimCity 2000 Special Edition for Windows.
+
 ![Screenshot](/screenshots/1.png)
 
 ## Installation
@@ -69,4 +71,4 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Includes assets and graphics extracted from the original SimCity 2000 Special Edition CD. These assets are NOT covered by the GNU General Public License used by this project and are copyright EA / Maxis. I'm including these assets in the hope that because the game has been made freely available at various points in time by EA, and because it's 24 years old as of publishing this project that no action will be taken. Long story short, please don't sue me! Long term, I plan to add functionality to extract assets from the original game files within this project.
+SimCity 2000 is copyright Electronic Arts / Maxis. No assets, artwork or other media from the original game is included in this remake. The OpenSC2K engine is being rebuilt as a new implementation and does not use any code from the original game reproduced in any form.
