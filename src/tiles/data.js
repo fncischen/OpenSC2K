@@ -1810,6 +1810,9 @@ var data = [
     size: 3,
     image: '1178',
     frames: 7,
+    importOptions: {
+      frameCount: 1
+    }
   },
   {
     id: 179,
@@ -1826,6 +1829,9 @@ var data = [
     size: 3,
     image: '1180',
     frames: 7,
+    importOptions: {
+      frameCount: 1
+    }
   },
   {
     id: 181,
@@ -2202,6 +2208,9 @@ var data = [
       data3: { description: 'Acres', type: 'parkAcres' },
       data4: { description: 'Employees', type: 'parkWorkers' },
       // unknowns: Capacity is reported as 1500
+    },
+    importOptions: {
+      frameCount: 1
     }
   },
   {
@@ -2280,6 +2289,9 @@ var data = [
       data3: { description: 'Andean Llamas', type: 'zooLlamasA' },
       data4: { description: 'Alpacas', type: 'zooAlpacas' },
       // unknowns: Capacity is reported as 1500
+    },
+    importOptions: {
+      frameCount: 1
     }
   },
   {
@@ -2614,6 +2626,9 @@ var data = [
       data2: { description: 'Salt / tons Removed', type: 'desalinationSaltRemoved' },
       data3: { description: 'Employees', type: 'workers' },
       data4: { description: null, type: null },
+    },
+    importOptions: {
+      frameCount: 1
     }
   },
   {
@@ -2628,6 +2643,9 @@ var data = [
       data2: { description: 'Design Capacity', type: 'arcoCapacity', unit: 'thousands' },
       data3: { description: 'Residents', type: 'arcoPopulation' },
       data4: { description: 'Year Built', type: 'constructionYear' },
+    },
+    importOptions: {
+      frameCount: 1
     }
   },
   {
@@ -2642,6 +2660,9 @@ var data = [
       data2: { description: 'Design Capacity', type: 'arcoCapacity', unit: 'thousands' },
       data3: { description: 'Residents', type: 'arcoPopulation' },
       data4: { description: 'Year Built', type: 'constructionYear' },
+    },
+    importOptions: {
+      frameCount: 1
     }
   },
   {
@@ -2656,6 +2677,9 @@ var data = [
       data2: { description: 'Design Capacity', type: 'arcoCapacity', unit: 'thousands' },
       data3: { description: 'Residents', type: 'arcoPopulation' },
       data4: { description: 'Year Built', type: 'constructionYear' },
+    },
+    importOptions: {
+      frameCount: 1
     }
   },
   {
@@ -2670,6 +2694,9 @@ var data = [
       data2: { description: 'Design Capacity', type: 'arcoCapacity', unit: 'thousands' },
       data3: { description: 'Residents', type: 'arcoPopulation' },
       data4: { description: 'Year Built', type: 'constructionYear' },
+    },
+    importOptions: {
+      frameCount: 1
     }
   },
   {
@@ -2883,8 +2910,10 @@ var data = [
       { x: 32, y: 8 },
       { x: 16, y: 28 },
       { x: 0, y: 8 },
-      { x: 16, y: 0 },
-      //{ line: true, x1: 0, y1: 8, x2: 32, y2: 8 },
+      { x: 16, y: 0 }
+    ],
+    shapeLines: [
+      { x1: 0, y1: 8, x2: 32, y2: 8 }
     ],
     hitbox: [
       { x: 0, y: 0 },
@@ -2925,7 +2954,9 @@ var data = [
       { x: 16, y: 16 },
       { x: 0,  y: 20 },
       { x: 16, y: 0 },
-      //{ line: true, x1: 16, y1: 0, x2: 16, y2: 16 },
+    ],
+    shapeLines: [
+      { x1: 16, y1: 0, x2: 16, y2: 16 }
     ],
     hitbox: [
       { x: 0, y: 0 },
@@ -3010,7 +3041,9 @@ var data = [
       { x: 16, y: 16 },
       { x: 0, y: 8 },
       { x: 16, y: 0 },
-      //{ line: true, x1: 16, y1: 0, x2: 16, y2: 16 },
+    ],
+    shapeLines: [
+      { x1: 16, y1: 0, x2: 16, y2: 16 }
     ],
     hitbox: [
       { x: 0, y: 0 },
@@ -3054,7 +3087,9 @@ var data = [
       { x: 16, y: 28 },
       { x: 0, y: 20 },
       { x: 16, y: 0 },
-      //{ line: true, x1: 0, y1: 20, x2: 32, y2: 20 },
+    ],
+    shapeLines: [
+      { x1: 0, y1: 20, x2: 32, y2: 20 }
     ],
     hitbox: [
       { x: 0, y: 0 },
@@ -3089,7 +3124,9 @@ var data = [
       { x: 16, y: 20 },
       { x: 0, y: 12 },
       { x: 16, y: 4 },
-      //{ line: true, x1: 16, y1: 4, x2: 16, y2: 20 },
+    ],
+    shapeLines: [
+      { x1: 16, y1: 4, x2: 16, y2: 20 }
     ],
     hitbox: [
       { x: 0, y: 24 },
@@ -3128,7 +3165,9 @@ var data = [
       { x: 16, y: 4 },
       { x: 0,  y: 8 },
       { x: 16, y: 0 },
-      //{ line: true, x1: 16, y1: 0, x2: 16, y2: 4 },
+    ],
+    shapeLines: [
+      { x1: 16, y1: 0, x2: 16, y2: 4 }
     ],
     hitbox: [
       { x: 0, y: 24 },
@@ -3167,7 +3206,9 @@ var data = [
       { x: 16, y: 20 },
       { x: 0, y: 0 },
       { x: 16, y: 4 },
-      //{ line: true, x1: 16, y1: 4, x2: 16, y2: 20 },
+    ],
+    shapeLines: [
+      { x1: 16, y1: 4, x2: 16, y2: 20 }
     ],
     hitbox: [
       { x: 0, y: 24 },
@@ -3208,9 +3249,11 @@ var data = [
       { x: 0,  y: 20 },
       { x: 0,  y: 8 },
       { x: 16, y: 0 },
-      //{ line: true, x1: 0, y1: 8, x2: 16, y2: 16 },
-      //{ line: true, x1: 16, y1: 28, x2: 16, y2: 16 },
-      //{ line: true, x1: 32, y1: 8, x2: 16, y2: 16 },
+    ],
+    shapeLines: [
+      { x1: 0, y1: 8, x2: 16, y2: 16 },
+      { x1: 16, y1: 28, x2: 16, y2: 16 },
+      { x1: 32, y1: 8, x2: 16, y2: 16 },
     ],
     hitbox: [
       { x: 0, y: 0 },

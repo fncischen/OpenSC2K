@@ -1,6 +1,7 @@
 import fs from 'fs';
-import parsePalette from './parsePalette';
-import parseImageDat from './parseImageDat';
+import palette from './palette';
+import dat from './dat';
+import tilemap from './tilemap';
 
 let files = {
   LARGE_DAT: fs.readFileSync(__dirname + '/../../assets/import/LARGE.DAT'),
@@ -10,13 +11,24 @@ let files = {
   TITLESCR_BMP: fs.readFileSync(__dirname + '/../../assets/import/TITLESCR.BMP'),
 };
 
-let palette = new parsePalette({
+let pal = new palette({
   data: files.PAL_MSTR_BMP
 });
 
-let largedat = new parseImageDat({
-  palette: palette,
+let large_dat = new dat({
+  palette: pal,
   data: files.LARGE_DAT
 });
 
-largedat.createTilemap();
+let tm = new tilemap({
+  name: 'LARGE.DAT',
+  dat: large_dat
+});
+
+tm.createTilemap();
+
+console.log('Script Completed');
+
+setTimeout(function(){
+  console.log('Exiting');
+}, 120000);
