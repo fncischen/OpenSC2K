@@ -1,6 +1,6 @@
-import simulator from './simulator';
+import simulation from './simulation';
 
-class traffic extends simulator {
+export default class traffic extends simulation {
   constructor (options) {
     super(options);
 
@@ -30,5 +30,3 @@ class traffic extends simulator {
       return 'heavy';
   }
 }
-
-export default traffic;

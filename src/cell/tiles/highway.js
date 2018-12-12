@@ -1,6 +1,6 @@
-import tile from './tiles';
+import tile from './tile';
 
-class highway extends tile {
+export default class highway extends tile {
   constructor (options) {
     super(options);
 
@@ -100,12 +100,7 @@ class highway extends tile {
     if (this.flipTile)
       this.highwayTraffic.setFlipX(true);
 
-    //this.scene.add.graphics().lineStyle(1, 0xff0000).strokeRectShape(this.highwayTraffic.getBounds()).setDepth(99999999);
-    //this.scene.add.graphics().lineStyle(1, 0x00ff00).strokeRectShape(this.sprite.getBounds()).setDepth(99999999);
-
     this.cell.addSprite(this.highwayTraffic, 'highwayTraffic');
     this.cell.microSims.simulators.highwayTraffic.addSprite(this.highwayTraffic);
   }
 }
-
-export default highway;

@@ -1,6 +1,6 @@
-import tile from './tiles';
+import tile from './tile';
 
-class power extends tile {
+export default class power extends tile {
   constructor (options) {
     super(options);
 
@@ -49,5 +49,3 @@ class power extends tile {
       this.sprite.setFlipX(true);
   }
 }
-
-export default power;

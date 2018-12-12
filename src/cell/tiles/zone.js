@@ -1,6 +1,6 @@
-import tile from './tiles';
+import tile from './tile';
 
-class zone extends tile {
+export default class zone extends tile {
   constructor (options) {
     super(options);
 
@@ -22,5 +22,3 @@ class zone extends tile {
     super.create();
   }
 }
-
-export default zone;

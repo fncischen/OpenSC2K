@@ -1,5 +1,5 @@
 import PNGImage from 'pngjs-image';
-import tileData from '../tiles/data';
+import tileData from './tiles';
 import fs from 'fs';
 
 class tilemap {
@@ -73,7 +73,6 @@ class tilemap {
     // looping 128 times here to sort tiles by size
     // this shuffles the smaller tiles to the front of the tilemap
     for (let loop = 0; loop < 128; loop++) {
-
       // loop for each tile
       for (let i = 0; i < this.tiles.length; i++) {
         let tile = this.tiles[i];

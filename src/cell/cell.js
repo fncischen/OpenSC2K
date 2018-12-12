@@ -1,6 +1,6 @@
 import tiles from './tiles';
 import events from './events';
-import microSims from './microSims';
+//import microSims from './microSims';
 //import trains from '../simulator/actors/trains';
 
 class cell {
@@ -45,7 +45,7 @@ class cell {
 
     this.tiles = new tiles({ cell: this });
     this.events = new events({ cell: this });
-    this.microSims = new microSims({ cell: this });
+    //this.microSims = new microSims({ cell: this });
     
     return this;
   }
@@ -112,8 +112,6 @@ class cell {
     // edge tile?
     if (this.x == 0 || this.x == 127 || this.y == 0 || this.y == 127)
       this.edge = true;
-    else
-      this.edge = false;
 
     this.position = {
       offsets: {

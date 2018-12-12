@@ -1,18 +1,18 @@
-import tile from './tiles';
+import tile from './tile';
 
-class underground extends tile {
+export default class subway extends tile {
   constructor (options) {
     super(options);
 
-    this.type = 'underground';
-    this.depth = -38;
+    this.type = 'subway';
+    this.depth = -40;
   }
 
   checkTile () {
     if (!super.checkTile())
       return false;
 
-    if (![305,306,307,308,309,310,311,312,313,314,315,316,317,318].includes(this.tileId))
+    if (![319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,349,350,352,353].includes(this.tileId))
       return false;
 
     return true;
@@ -34,5 +34,3 @@ class underground extends tile {
       this.sprite.setVisible(false); // hidden by default
   }
 }
-
-export default underground;

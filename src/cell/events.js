@@ -16,17 +16,10 @@ class events {
 
     let { x, y } = this.calculatePosition(tile);
 
-    if (this.debug) {
-      this.zone = this.cell.scene.add.graphics({ x: x, y: y });
-      tile.drawOutline(this.zone, 'hitbox');
-    } else {
-      this.zone = this.cell.scene.add.zone(x, y, this.cell.scene.common.tileWidth, this.cell.scene.common.tileHeight);
-    }
-
+    this.zone = this.cell.scene.add.zone(x, y, this.cell.scene.common.tileWidth, this.cell.scene.common.tileHeight);
     this.zone.setDepth(this.cell.depth + 1);
     this.zone.cell = this.cell;
     this.zone.setInteractive(tile.tile.hitbox, Phaser.Geom.Polygon.Contains);
-
     this.zone.on('pointerover', this.onPointerOver);
     this.zone.on('pointerout', this.onPointerOut);
     this.zone.on('pointermove', this.onPointerMove);

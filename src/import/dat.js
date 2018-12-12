@@ -1,6 +1,6 @@
 import PNG from 'pngjs-image';
 import math from 'mathjs';
-import data from '../tiles/data';
+import data from './tiles';
 
 class dat {
   constructor (options) {
@@ -147,7 +147,7 @@ class dat {
       //png.writeImageSync(__dirname+'/../../assets/tiles/'+image.id+'_'+frame+'.png');
 
       // write first frame to disk
-      //if (frame == 0)
+      //if (image.id >= 1256 && image.id <= 1269)
       //  png.writeImageSync(__dirname+'/../../assets/tiles/'+image.id+'.png');
     }
   }

@@ -94,10 +94,10 @@ class debug {
   }
 
   sleepWakeWorld () {
-    if (this.common.world.scene.isSleeping())
-      this.common.world.scene.wake();
+    if (this.scene.isSleeping)
+      this.scene.wake();
     else
-      this.common.world.scene.sleep();
+      this.scene.sleep();
   }
 }
 

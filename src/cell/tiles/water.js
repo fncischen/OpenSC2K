@@ -1,6 +1,6 @@
-import tile from './tiles';
+import tile from './tile';
 
-class water extends tile {
+export default class water extends tile {
   constructor (options) {
     super(options);
 
@@ -37,5 +37,3 @@ class water extends tile {
     super.create();
   }
 }
-
-export default water;

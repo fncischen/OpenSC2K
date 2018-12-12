@@ -1,4 +1,4 @@
-import * as tile from '../tiles/';
+import * as tile from './tiles/';
 
 class tiles {
   constructor (options) {

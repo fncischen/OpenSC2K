@@ -1,4 +1,4 @@
-class tile {
+export default class tile {
   constructor (options) {
     this.cell           = options.cell;
     this.draw           = false;
@@ -9,7 +9,6 @@ class tile {
     this.offset         = options.offset || 0;
     this.type           = options.type;
     this.sprite         = null;
-    this.debugOutline   = false;
     this.tile           = this.getTile(options.tileId);
     this.tileId         = this.tile.id;
     this.originalTileId = options.tileId;
@@ -120,51 +119,9 @@ class tile {
 
     //if (this.tile.simulation)
     //  this.simulation();
-
-    if (this.debugOutline)
-      this.outline();
   }
 
   simulation () {
     return;
   }
-
-  outline () {
-    let offset = 0;
-
-    if ((this.cell.properties.waterLevel == 'submerged' || this.cell.properties.waterLevel == 'shore') && this.cell.z < this.cell.map.city.waterLevel)
-      offset = ((this.cell.scene.city.waterLevel - this.cell.z) * this.cell.scene.common.layerOffset);
-
-    if (this.tileId != 256 && this.type == 'terrain')
-      offset += this.cell.scene.common.layerOffset;
-
-    let x = this.cell.position.right.x - (this.cell.scene.common.tileWidth / 2) << 0;
-    let y = this.cell.position.bottom.y - (this.cell.scene.common.tileHeight) - offset << 0;
-
-    this.outline = this.cell.scene.add.graphics({ x: x, y: y });
-    this.outline.setDepth(this.depth + 1);
-
-    this.drawOutline(this.outline);
-  }
-
-  drawOutline (gfx, type = 'outline') {
-    let polygon;
-
-    if (type == 'hitbox')
-      polygon = this.tile.hitbox;
-    else
-      polygon = this.tile.outline;
-
-    gfx.lineStyle(2, 0x00AA00);
-    gfx.beginPath();
-    gfx.moveTo(polygon.points[0].x, polygon.points[0].y);
-    
-    for (let i = 1; i < polygon.points.length; i++)
-      gfx.lineTo(polygon.points[i].x, polygon.points[i].y);
-
-    gfx.closePath();
-    gfx.strokePath();
-  }
 }
-
-export default tile;

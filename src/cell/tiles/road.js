@@ -1,6 +1,6 @@
-import tile from './tiles';
+import tile from './tile';
 
-class road extends tile {
+export default class road extends tile {
   constructor (options) {
     super(options);
 
@@ -85,5 +85,3 @@ class road extends tile {
     this.cell.microSims.simulators.traffic.addSprite(this.traffic);
   }
 }
-
-export default road;

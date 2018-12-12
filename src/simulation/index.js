@@ -1,4 +1,4 @@
-export default class simulator {
+export default class simulation {
   constructor (options) {
     this.scene = options.scene;
     this.common = this.scene.sys.game.common;

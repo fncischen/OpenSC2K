@@ -1,6 +1,6 @@
-import tile from './tiles';
+import tile from './tile';
 
-class terrain extends tile {
+export default class terrain extends tile {
   constructor (options) {
     super(options);
 
@@ -11,6 +11,8 @@ class terrain extends tile {
   checkTile () {
     if (!super.checkTile())
       return false;
+
+    return false;
 
     if (![256,257,258,259,260,261,262,263,264,265,266,267,268,269].includes(this.tileId))
       return false;
@@ -26,6 +28,7 @@ class terrain extends tile {
     //  return false;
       
     super.create();
+
 
     if (this.cell.edge && (this.cell.x == 127 || this.cell.y == 127))
       this.edge();
@@ -71,7 +74,4 @@ class terrain extends tile {
   //       this.graphics.drawTile(tile, cell, topOffset);
   //   }
   // }
-
 }
-
-export default terrain;

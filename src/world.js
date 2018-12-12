@@ -7,7 +7,21 @@ import debug from './debug/debug';
 
 class world extends Phaser.Scene {
   constructor () {
-    super({ key: 'world' });
+    super({
+      key: 'world',
+      map: {
+        cameras3d: 'cameras3d',
+        //data: 'data',
+        impact: 'impact',
+        //input: 'input',
+        lights: 'lights',
+        //load: 'load',
+        matter: 'matter',
+        physics: 'physics',
+        //time: 'time',
+        tweens: 'tweens',
+      }
+    });
     this.initialized = false;
   }
 

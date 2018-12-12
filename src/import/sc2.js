@@ -1,4 +1,3 @@
-import { alreadyDecompressedSegments } from './constants';
 import * as segmentHandlers from './segmentHandlers/';
 
 class sc2 {
@@ -48,7 +47,7 @@ class sc2 {
       let segmentLength = new DataView(lengthBytes.buffer).getUint32(lengthBytes.byteOffset);
       let segmentContent = data.subarray(8, 8 + segmentLength);
 
-      if (!alreadyDecompressedSegments[segmentTitle])
+      if (segmentTitle != 'ALTM' && segmentTitle != 'CNAM')
         segmentContent = this.decompressSegment(segmentContent);
 
       segments[segmentTitle] = segmentContent;
@@ -116,7 +115,6 @@ class sc2 {
 
     for (let i = 0; i < this.data.tiles.length; i++) {
       let tile = this.data.tiles[i];
-
       let cell = {
         x:                     tile.x,
         y:                     tile.y,
@@ -125,7 +123,7 @@ class sc2 {
         data:                  tile,
 
         tiles: {
-          //terrain:             tile.XTER.terrain  || null,
+          terrain:             tile.XTER.terrain  || null,
           heightmap:           tile.XTER.terrain  || null,
           //water:               tile.XTER.water    || null,
           //zone:                tile.XZON.zone     || null,

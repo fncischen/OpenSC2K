@@ -1,6 +1,6 @@
-import tile from './tiles';
+import tile from './tile';
 
-class pipe extends tile {
+export default class pipe extends tile {
   constructor (options) {
     super(options);
 
@@ -27,5 +27,3 @@ class pipe extends tile {
       this.sprite.setVisible(false); // hidden by default
   }
 }
-
-export default pipe;

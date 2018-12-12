@@ -1,6 +1,6 @@
-import tile from './tiles';
+import tile from './tile';
 
-class rail extends tile {
+export default class rail extends tile {
   constructor (options) {
     super(options);
 
@@ -44,5 +44,3 @@ class rail extends tile {
       this.sprite.setFlipX(true);
   }
 }
-
-export default rail;

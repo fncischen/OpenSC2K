@@ -1,6 +1,6 @@
-import tile from './tiles';
+import tile from './tile';
 
-class building extends tile {
+export default class building extends tile {
   constructor (options) {
     super(options);
 
@@ -124,5 +124,3 @@ class building extends tile {
       this.flipTile = true;
   }
 }
-
-export default building;

@@ -10,6 +10,7 @@ var config = {
   parent: 'content',
   width: window.innerWidth,
   height: window.innerHeight,
+  resolution: window.devicePixelRatio,
   disableContextMenu: false,
   render: {
     autoResize: true,

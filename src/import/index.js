@@ -26,9 +26,3 @@ let tm = new tilemap({
 });
 
 tm.createTilemap();
-
-console.log('Script Completed');
-
-setTimeout(function(){
-  console.log('Exiting');
-}, 120000);

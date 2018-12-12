@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import tiles from './tiles/data';
+import tiles from './import/tiles';
 import common from './common/common';
 import city from './city/city';
 
@@ -67,7 +67,6 @@ class load extends Phaser.Scene {
       tile.width = (this.textures.getFrame(this.common.tilemap, tile.textures[0]).width * this.common.scale);
 
       tile.hitbox = this.shape(tile.hitbox);
-      tile.outline = this.shape(tile.outline);
       tile.rotate = tile.rotate || [tile.id, tile.id, tile.id, tile.id];
 
       if (tile.frames > 1) {
