@@ -1,6 +1,6 @@
 import traffic from './traffic';
 
-class highwayTraffic extends traffic {
+export default class highwayTraffic extends traffic {
   constructor (options) {
     super(options);
 
@@ -55,5 +55,3 @@ class highwayTraffic extends traffic {
     return this.cell.highway.reverseAnimation;
   }
 }
-
-export default highwayTraffic;

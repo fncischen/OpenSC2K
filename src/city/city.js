@@ -3,7 +3,7 @@ import save from './save';
 import load from './load';
 //import simulator from '../simulator/simulator';
 
-class city {
+export default class city {
   constructor (options) {
     this.scene = options.scene;
     this.load = new load({ scene: this.scene });
@@ -11,11 +11,11 @@ class city {
   }
 
   create () {
-    this.name       = this.scene.common.data.info.name       || 'Default City';
-    this.rotation   = this.scene.common.data.info.rotation   || 0;
-    this.waterLevel = this.scene.common.data.info.waterLevel || 4;
-    this.width      = this.scene.common.data.info.width      || 128;
-    this.height     = this.scene.common.data.info.height     || 128;
+    this.name       = this.scene.globals.data.info.name       || 'Default City';
+    this.rotation   = this.scene.globals.data.info.rotation   || 0;
+    this.waterLevel = this.scene.globals.data.info.waterLevel || 4;
+    this.width      = this.scene.globals.data.info.width      || 128;
+    this.height     = this.scene.globals.data.info.height     || 128;
 
     if (this.rotation == 3)
       this.keyTile = 'bottomRight';
@@ -41,20 +41,20 @@ class city {
     this.map.create();
     //this.simulator = new simulator({ scene: this.scene });
 
-    this._loaded = true;
+    this.initialized = true;
   }
 
   update () {
-    if (!this._loaded)
+    if (!this.initialized)
       return;
 
     this.map.update();
   }
 
   shutdown () {
+    this.initialized = false;
+
     if (this.map)
       this.map.shutdown();
   }
 }
-
-export default city;

@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-class ui extends Phaser.Scene {
+export default class ui extends Phaser.Scene {
   constructor () {
     super({
       key: 'ui',
@@ -125,5 +125,3 @@ class ui extends Phaser.Scene {
   }
 
 }
-
-export default ui;

@@ -1,6 +1,6 @@
 import { resize } from './common';
 
-export default (data, struct) => {
+export default (data, map) => {
   let view = new Uint8Array(data);
   let xfir = [];
 
@@ -12,6 +12,6 @@ export default (data, struct) => {
   xfir = resize(xfir, 32, 128);
 
   xfir.forEach((data, i) => {
-    struct.tiles[i].XFIR = xfir[i];
+    map.cells[i]._segmentData.XFIR = xfir[i];
   });
 };

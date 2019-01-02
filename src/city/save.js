@@ -1,10 +1,10 @@
 import jszip from 'jszip';
 import fileSaver from 'file-saver';
 
-class saveCity {
+export default class save {
   constructor (options) {
     this.scene = options.scene;
-    this.common = this.scene.sys.game.common;
+    this.globals = this.scene.sys.game.globals;
     this.city = this.scene.city;
   }
 
@@ -87,5 +87,3 @@ class saveCity {
     });
   }
 }
-
-export default saveCity;

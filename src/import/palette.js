@@ -1,11 +1,13 @@
 import bmp from 'bmp-js';
 
-class palette {
+export default class palette {
   constructor (options) {
+    this.scene           = options.scene;
     this.palettes        = [];
     this.primaryPalette  = [];
     this.animatedIndexes = [];
-    this.buffer          = Buffer.from(options.data);
+    this.buffer          = Buffer.from(this.scene.cache.binary.get('PAL_MSTR_BMP'));
+
     this.parse();
     this.createPalettes();
   }
@@ -397,5 +399,3 @@ class palette {
     this.palettes[255] = [p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255], p[255]];
   }
 }
-
-export default palette;

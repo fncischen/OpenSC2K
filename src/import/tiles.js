@@ -1,83 +1,90 @@
 var data = [
   {
+    id: 0,
+    type: null,
+    description: null,
+    size: 0,
+    image: null
+  },
+  {
     id: 1,
     type: 'building',
+    subtype: 'landscape',
     description: 'Rubble',
     size: 1,
     image: '1001',
-    frames: 1,
     requiresTerrain: true,
   },
   {
     id: 2,
     type: 'building',
+    subtype: 'landscape',
     description: 'Rubble',
     size: 1,
     image: '1002',
-    frames: 1,
     requiresTerrain: true,
   },
   {
     id: 3,
     type: 'building',
+    subtype: 'landscape',
     description: 'Rubble',
     size: 1,
     image: '1003',
-    frames: 1,
     requiresTerrain: true,
   },
   {
     id: 4,
     type: 'building',
+    subtype: 'landscape',
     description: 'Rubble',
     size: 1,
     image: '1004',
-    frames: 1,
     requiresTerrain: true,
   },
   {
     id: 5,
     type: 'building',
+    subtype: 'landscape',
     description: 'Radioactive waste',
     size: 1,
     image: '1005',
-    frames: 24,
     requiresTerrain: true,
   },
   {
     id: 6,
     type: 'building',
+    subtype: 'landscape',
     description: 'Trees',
     size: 1,
     image: '1006',
-    frames: 1,
     requiresTerrain: true,
   },
   {
     id: 7,
     type: 'building',
+    subtype: 'landscape',
     description: 'Trees',
     size: 1,
     image: '1007',
-    frames: 1,
     requiresTerrain: true,
   },
   {
     id: 8,
     type: 'building',
+    subtype: 'landscape',
     description: 'Trees',
     size: 1,
     image: '1008',
-    frames: 1,
     requiresTerrain: true,
   },
   {
     id: 9,
     type: 'building',
+    subtype: 'landscape',
     description: 'Trees',
     size: 1,
     image: '1009',
-    frames: 1,
     requiresTerrain: true,
   },
   {
@@ -86,25 +93,24 @@ var data = [
     description: 'Trees',
     size: 1,
     image: '1010',
-    frames: 1,
     requiresTerrain: true,
   },
   {
     id: 11,
     type: 'building',
+    subtype: 'landscape',
     description: 'Trees',
     size: 1,
     image: '1011',
-    frames: 1,
     requiresTerrain: true,
   },
   {
     id: 12,
     type: 'building',
+    subtype: 'landscape',
     description: 'Trees',
     size: 1,
     image: '1012',
-    frames: 1,
     requiresTerrain: true,
   },
   {
@@ -113,7 +119,6 @@ var data = [
     description: 'Small park',
     size: 1,
     image: '1013',
-    frames: 1,
   },
   {
     id: 14,
@@ -121,7 +126,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1014',
-    frames: 1,
     rotate: [14, 15, 14, 15],
   },
   {
@@ -130,7 +134,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1015',
-    frames: 1,
     rotate: [15, 14, 15, 14],
   },
   {
@@ -139,7 +142,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1016',
-    frames: 1,
     rotate: [16, 17, 18, 19],
   },
   {
@@ -148,7 +150,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1017',
-    frames: 1,
     rotate: [17, 18, 19, 16],
   },
   {
@@ -157,7 +158,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1018',
-    frames: 1,
     rotate: [18, 19, 16, 17],
   },
   {
@@ -166,7 +166,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1019',
-    frames: 1,
     rotate: [19, 16, 17, 18],
   },
   {
@@ -175,7 +174,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1020',
-    frames: 1,
     rotate: [20, 21, 22, 23],
   },
   {
@@ -184,7 +182,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1021',
-    frames: 1,
     rotate: [21, 22, 23, 20],
   },
   {
@@ -193,7 +190,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1022',
-    frames: 1,
     rotate: [22, 23, 20, 21],
   },
   {
@@ -202,7 +198,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1023',
-    frames: 1,
     rotate: [23, 20, 21, 22],
   },
   {
@@ -211,7 +206,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1024',
-    frames: 1,
     rotate: [24, 25, 26, 27],
   },
   {
@@ -220,7 +214,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1025',
-    frames: 1,
     rotate: [25, 26, 27, 24],
   },
   {
@@ -229,7 +222,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1026',
-    frames: 1,
     rotate: [26, 27, 24, 25],
   },
   {
@@ -238,7 +230,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1027',
-    frames: 1,
     rotate: [27, 24, 25, 26],
   },
   {
@@ -247,7 +238,6 @@ var data = [
     description: 'Power lines',
     size: 1,
     image: '1028',
-    frames: 1,
   },
   {
     id: 29,
@@ -255,7 +245,6 @@ var data = [
     description: 'Road (straight)',
     size: 1,
     image: '1029',
-    frames: 1,
     rotate: [29, 30, 29, 30],
     simulation: 'traffic',
     traffic: {
@@ -269,7 +258,6 @@ var data = [
     description: 'Road (straight)',
     size: 1,
     image: '1030',
-    frames: 1,
     rotate: [30, 29, 30, 29],
     simulation: 'traffic',
     traffic: {
@@ -283,7 +271,6 @@ var data = [
     description: 'Road (sloped)',
     size: 1,
     image: '1031',
-    frames: 1,
     rotate: [31, 32, 33, 34],
     simulation: 'traffic',
     traffic: {
@@ -297,7 +284,6 @@ var data = [
     description: 'Road (sloped)',
     size: 1,
     image: '1032',
-    frames: 1,
     rotate: [32, 33, 34, 31],
     simulation: 'traffic',
     traffic: {
@@ -311,7 +297,6 @@ var data = [
     description: 'Road (sloped)',
     size: 1,
     image: '1033',
-    frames: 1,
     rotate: [33, 34, 31, 32],
     simulation: 'traffic',
     traffic: {
@@ -325,7 +310,6 @@ var data = [
     description: 'Road (sloped)',
     size: 1,
     image: '1034',
-    frames: 1,
     rotate: [34, 31, 32, 33],
     simulation: 'traffic',
     traffic: {
@@ -339,7 +323,6 @@ var data = [
     description: 'Road (curve)',
     size: 1,
     image: '1035',
-    frames: 1,
     rotate: [35, 36, 37, 38],
     simulation: 'traffic',
     traffic: {
@@ -353,7 +336,6 @@ var data = [
     description: 'Road (curve)',
     size: 1,
     image: '1036',
-    frames: 1,
     rotate: [36, 37, 38, 35],
     simulation: 'traffic',
     traffic: {
@@ -367,7 +349,6 @@ var data = [
     description: 'Road (curve)',
     size: 1,
     image: '1037',
-    frames: 1,
     rotate: [37, 38, 35, 36],
     simulation: 'traffic',
     traffic: {
@@ -381,7 +362,6 @@ var data = [
     description: 'Road (curve)',
     size: 1,
     image: '1038',
-    frames: 1,
     rotate: [38, 35, 36, 37],
     simulation: 'traffic',
     traffic: {
@@ -395,7 +375,6 @@ var data = [
     description: 'Road (3 way intersection)',
     size: 1,
     image: '1039',
-    frames: 1,
     rotate: [39, 40, 41, 42],
     simulation: 'traffic',
     traffic: {
@@ -409,7 +388,6 @@ var data = [
     description: 'Road (3 way intersection)',
     size: 1,
     image: '1040',
-    frames: 1,
     rotate: [40, 41, 42, 39],
     simulation: 'traffic',
     traffic: {
@@ -423,7 +401,6 @@ var data = [
     description: 'Road (3 way intersection)',
     size: 1,
     image: '1041',
-    frames: 1,
     rotate: [41, 42, 39, 40],
     simulation: 'traffic',
     traffic: {
@@ -437,7 +414,6 @@ var data = [
     description: 'Road (3 way intersection)',
     size: 1,
     image: '1042',
-    frames: 1,
     rotate: [42, 39, 40, 41],
     simulation: 'traffic',
     traffic: {
@@ -451,7 +427,6 @@ var data = [
     description: 'Road (4 way intersection)',
     size: 1,
     image: '1043',
-    frames: 24,
     simulation: 'traffic',
     traffic: {
       light: 401,
@@ -464,7 +439,6 @@ var data = [
     description: 'Rails (straight)',
     size: 1,
     image: '1044',
-    frames: 1,
     rotate: [44, 45, 44, 45],
   },
   {
@@ -473,7 +447,6 @@ var data = [
     description: 'Rails (straight)',
     size: 1,
     image: '1045',
-    frames: 1,
     rotate: [45, 44, 45, 44],
   },
   {
@@ -482,7 +455,6 @@ var data = [
     description: 'Rails (slope)',
     size: 1,
     image: '1046',
-    frames: 1,
     rotate: [46, 47, 48, 49],
   },
   {
@@ -491,7 +463,6 @@ var data = [
     description: 'Rails (slope)',
     size: 1,
     image: '1047',
-    frames: 1,
     rotate: [47, 48, 49, 46],
   },
   {
@@ -500,7 +471,6 @@ var data = [
     description: 'Rails (slope)',
     size: 1,
     image: '1048',
-    frames: 1,
     rotate: [48, 49, 46, 47],
   },
   {
@@ -509,7 +479,6 @@ var data = [
     description: 'Rails (slope)',
     size: 1,
     image: '1049',
-    frames: 1,
     rotate: [49, 46, 47, 48],
   },
   {
@@ -518,7 +487,6 @@ var data = [
     description: 'Rails (curve)',
     size: 1,
     image: '1050',
-    frames: 1,
     rotate: [50, 51, 52, 53],
   },
   {
@@ -527,7 +495,6 @@ var data = [
     description: 'Rails (curve)',
     size: 1,
     image: '1051',
-    frames: 1,
     rotate: [51, 52, 53, 50],
   },
   {
@@ -536,7 +503,6 @@ var data = [
     description: 'Rails (curve)',
     size: 1,
     image: '1052',
-    frames: 1,
     rotate: [52, 53, 50, 51],
   },
   {
@@ -545,7 +511,6 @@ var data = [
     description: 'Rails (curve)',
     size: 1,
     image: '1053',
-    frames: 1,
     rotate: [53, 50, 51, 52],
   },
   {
@@ -554,7 +519,6 @@ var data = [
     description: 'Rails (junction)',
     size: 1,
     image: '1054',
-    frames: 1,
     rotate: [54, 55, 56, 57],
   },
   {
@@ -563,7 +527,6 @@ var data = [
     description: 'Rails (junction)',
     size: 1,
     image: '1055',
-    frames: 1,
     rotate: [55, 56, 57, 54],
   },
   {
@@ -572,7 +535,6 @@ var data = [
     description: 'Rails (junction)',
     size: 1,
     image: '1056',
-    frames: 1,
     rotate: [56, 57, 54, 55],
   },
   {
@@ -581,7 +543,6 @@ var data = [
     description: 'Rails (junction)',
     size: 1,
     image: '1057',
-    frames: 1,
     rotate: [57, 54, 55, 56],
   },
   {
@@ -590,7 +551,6 @@ var data = [
     description: 'Rails (X junction)',
     size: 1,
     image: '1058',
-    frames: 1,
   },
   {
     id: 59,
@@ -598,7 +558,6 @@ var data = [
     description: 'Rails (slope)',
     size: 1,
     image: '1059',
-    frames: 1,
     rotate: [59, 60, 61, 62],
   },
   {
@@ -607,7 +566,6 @@ var data = [
     description: 'Rails (slope)',
     size: 1,
     image: '1060',
-    frames: 1,
     rotate: [60, 61, 62, 59],
   },
   {
@@ -616,7 +574,6 @@ var data = [
     description: 'Rails (slope)',
     size: 1,
     image: '1061',
-    frames: 1,
     rotate: [61, 62, 59, 60],
   },
   {
@@ -625,16 +582,14 @@ var data = [
     description: 'Rails (slope)',
     size: 1,
     image: '1062',
-    frames: 1,
     rotate: [62, 59, 60, 61],
   },
   {
     id: 63,
     type: 'road',
-    description: 'Tunnel entrance',
+    description: 'Tunnel entrance (south)',
     size: 1,
     image: '1063',
-    frames: 1,
     rotate: [63, 64, 65, 66],
     depthAdjustment: -10,
   },
@@ -644,17 +599,15 @@ var data = [
     description: 'Tunnel entrance',
     size: 1,
     image: '1064',
-    frames: 1,
     rotate: [64, 65, 66, 63],
     depthAdjustment: -10,
   },
   {
     id: 65,
     type: 'road',
-    description: 'Tunnel entrance',
+    description: 'Tunnel entrance (north)',
     size: 1,
     image: '1065',
-    frames: 1,
     rotate: [65, 66, 63, 64],
     depthAdjustment: -10,
   },
@@ -664,7 +617,6 @@ var data = [
     description: 'Tunnel entrance',
     size: 1,
     image: '1066',
-    frames: 1,
     rotate: [66, 63, 64, 65],
     depthAdjustment: -10,
   },
@@ -675,7 +627,6 @@ var data = [
     description: 'Road / power lines',
     size: 1,
     image: '1067',
-    frames: 1,
     rotate: [67, 68, 67, 68],
     simulation: 'traffic',
     traffic: {
@@ -697,7 +648,6 @@ var data = [
     description: 'Road / power lines',
     size: 1,
     image: '1068',
-    frames: 1,
     rotate: [68, 67, 68, 67],
     simulation: 'traffic',
     traffic: {
@@ -719,7 +669,6 @@ var data = [
     description: 'Road / rails',
     size: 1,
     image: '1069',
-    frames: 1,
     rotate: [69, 70, 69, 70],
   },
   {
@@ -729,7 +678,6 @@ var data = [
     description: 'Road / rails',
     size: 1,
     image: '1070',
-    frames: 1,
     rotate: [70, 69, 70, 69],
   },
   {
@@ -739,7 +687,6 @@ var data = [
     description: 'Rails / power lines',
     size: 1,
     image: '1071',
-    frames: 1,
     rotate: [71, 72, 71, 72],
   },
   {
@@ -749,7 +696,6 @@ var data = [
     description: 'Rails / power lines',
     size: 1,
     image: '1072',
-    frames: 1,
     rotate: [72, 71, 72, 71],
   },
   {
@@ -759,7 +705,6 @@ var data = [
     direction: 'ns',
     size: 1,
     image: '1073',
-    frames: 1,
     rotate: [73, 74, 73, 74],
     simulation: 'traffic',
     traffic: {
@@ -774,7 +719,6 @@ var data = [
     direction: 'ew',
     size: 1,
     image: '1074',
-    frames: 1,
     rotate: [74, 73, 74, 73],
     simulation: 'traffic',
     traffic: {
@@ -791,7 +735,6 @@ var data = [
     direction: 'ns',
     size: 1,
     image: '1075',
-    frames: 1,
     rotate: [75, 76, 75, 76],
     simulation: 'traffic',
     traffic: {
@@ -807,7 +750,6 @@ var data = [
     direction: 'ew',
     size: 1,
     image: '1076',
-    frames: 1,
     rotate: [76, 75, 76, 75],
     simulation: 'traffic',
     traffic: {
@@ -824,7 +766,6 @@ var data = [
     direction: 'ns',
     size: 1,
     image: '1077',
-    frames: 1,
     rotate: [77, 78, 77, 78],
     simulation: 'traffic',
     traffic: {
@@ -840,7 +781,6 @@ var data = [
     direction: 'ew',
     size: 1,
     image: '1078',
-    frames: 1,
     rotate: [78, 77, 78, 77],
     simulation: 'traffic',
     traffic: {
@@ -857,7 +797,6 @@ var data = [
     direction: 'ns',
     size: 1,
     image: '1079',
-    frames: 1,
     rotate: [79, 80, 79, 80],
     simulation: 'traffic',
     traffic: {
@@ -873,7 +812,6 @@ var data = [
     direction: 'ew',
     size: 1,
     image: '1080',
-    frames: 1,
     rotate: [80, 79, 80, 79],
     simulation: 'traffic',
     traffic: {
@@ -888,7 +826,6 @@ var data = [
     description: 'Suspension bridge',
     size: 1,
     image: '1081',
-    frames: 1,
     rotate: [81, 85, 81, 85],
     flip: true,
     flipMode: 'alternateTile',
@@ -900,7 +837,6 @@ var data = [
     description: 'Suspension bridge',
     size: 1,
     image: '1082',
-    frames: 1,
     rotate: [82, 84, 82, 84],
     flip: true,
     flipMode: 'alternateTile',
@@ -912,7 +848,6 @@ var data = [
     description: 'Suspension bridge',
     size: 1,
     image: '1083',
-    frames: 24,
     rotate: [83, 83, 83, 83],
     flip: true,
     flipMode: 'alternateTile',
@@ -924,7 +859,6 @@ var data = [
     description: 'Suspension bridge',
     size: 1,
     image: '1084',
-    frames: 1,
     rotate: [84, 82, 84, 82],
     flip: true,
     flipMode: 'alternateTile',
@@ -936,7 +870,6 @@ var data = [
     description: 'Suspension bridge',
     size: 1,
     image: '1085',
-    frames: 1,
     rotate: [85, 81, 85, 81],
     flip: true,
     flipMode: 'alternateTile',
@@ -948,7 +881,6 @@ var data = [
     description: 'Road (Bridge Lift)',
     size: 1,
     image: '1086',
-    frames: 1,
     flip: true,
     bridge: true,
   },
@@ -958,7 +890,6 @@ var data = [
     description: 'Road (Causeway)',
     size: 1,
     image: '1087',
-    frames: 24,
     flip: true,
     bridge: true,
     simulation: 'traffic',
@@ -973,7 +904,6 @@ var data = [
     description: 'Road (Bridge Down)',
     size: 1,
     image: '1088',
-    frames: 1,
     flip: true,
     bridge: true,
     simulation: 'traffic',
@@ -988,7 +918,6 @@ var data = [
     description: 'Road (Bridge Up)',
     size: 1,
     image: '1089',
-    frames: 1,
     flip: true,
     bridge: true,
   },
@@ -998,7 +927,6 @@ var data = [
     description: 'Rail bridge',
     size: 1,
     image: '1090',
-    frames: 24,
     flip: true,
     bridge: true,
   },
@@ -1008,7 +936,6 @@ var data = [
     description: 'Rail bridge',
     size: 1,
     image: '1091',
-    frames: 1,
     flip: true,
     bridge: true,
   },
@@ -1018,7 +945,6 @@ var data = [
     description: 'Elevated power lines',
     size: 1,
     image: '1092',
-    frames: 7,
     flip: true,
     bridge: true,
   },
@@ -1028,7 +954,6 @@ var data = [
     description: 'Highway Onramp',
     size: 1,
     image: '1093',
-    frames: 1,
     rotate: [93, 96, 93, 96],
     flip: true,
     flipMode: 'alternateTile',
@@ -1045,7 +970,6 @@ var data = [
     description: 'Highway Onramp',
     size: 1,
     image: '1094',
-    frames: 1,
     rotate: [94, 95, 94, 95],
     flip: true,
     flipMode: 'alternateTile',
@@ -1062,7 +986,6 @@ var data = [
     description: 'Highway Onramp',
     size: 1,
     image: '1095',
-    frames: 1,
     rotate: [95, 94, 95, 94],
     flip: true,
     flipMode: 'alternateTile',
@@ -1079,7 +1002,6 @@ var data = [
     description: 'Highway Onramp',
     size: 1,
     image: '1096',
-    frames: 1,
     rotate: [96, 93, 96, 93],
     flip: true,
     flipMode: 'alternateTile',
@@ -1096,7 +1018,6 @@ var data = [
     description: 'Highway (Slope)',
     size: 2,
     image: '1097',
-    frames: 1,
     rotate: [97, 98, 99, 100],
     simulation: 'highwayTraffic',
     traffic: {
@@ -1110,7 +1031,6 @@ var data = [
     description: 'Highway (Slope)',
     size: 2,
     image: '1098',
-    frames: 1,
     rotate: [98, 99, 100, 97],
     simulation: 'highwayTraffic',
     traffic: {
@@ -1124,7 +1044,6 @@ var data = [
     description: 'Highway (Slope)',
     size: 2,
     image: '1099',
-    frames: 1,
     rotate: [99, 100, 97, 98],
     simulation: 'highwayTraffic',
     traffic: {
@@ -1138,7 +1057,6 @@ var data = [
     description: 'Highway (Slope)',
     size: 2,
     image: '1100',
-    frames: 1,
     rotate: [100, 97, 98, 99],
     simulation: 'highwayTraffic',
     traffic: {
@@ -1152,7 +1070,6 @@ var data = [
     description: 'Highway (Curve)',
     size: 2,
     image: '1101',
-    frames: 1,
     rotate: [101, 102, 103, 104],
     simulation: 'highwayTraffic',
     traffic: {
@@ -1166,7 +1083,6 @@ var data = [
     description: 'Highway (Curve)',
     size: 2,
     image: '1102',
-    frames: 1,
     rotate: [102, 103, 104, 101],
     simulation: 'highwayTraffic',
     traffic: {
@@ -1180,7 +1096,6 @@ var data = [
     description: 'Highway (Curve)',
     size: 2,
     image: '1103',
-    frames: 1,
     rotate: [103, 104, 101, 102],
     simulation: 'highwayTraffic',
     traffic: {
@@ -1194,7 +1109,6 @@ var data = [
     description: 'Highway (Curve)',
     size: 2,
     image: '1104',
-    frames: 1,
     rotate: [104, 101, 102, 103],
     simulation: 'highwayTraffic',
     traffic: {
@@ -1208,7 +1122,6 @@ var data = [
     description: 'Highway (Cloverleaf)',
     size: 2,
     image: '1105',
-    frames: 1,
     simulation: 'highwayTraffic',
     traffic: {
       light: 426,
@@ -1221,7 +1134,6 @@ var data = [
     description: 'Highway (Reinforced Bridge w/ Support)',
     size: 2,
     image: '1106',
-    frames: 1,
     flip: true,
     bridge: true,
   },
@@ -1231,7 +1143,6 @@ var data = [
     description: 'Highway (Reinforced Bridge)',
     size: 2,
     image: '1107',
-    frames: 1,
     flip: true,
     bridge: true,
   },
@@ -1242,7 +1153,6 @@ var data = [
     description: 'Subway <-> Rails Transition',
     size: 1,
     image: '1108',
-    frames: 13,
     rotate: [108, 109, 110, 111],
   },
   {
@@ -1252,7 +1162,6 @@ var data = [
     description: 'Subway <-> Rails Transition',
     size: 1,
     image: '1109',
-    frames: 13,
     rotate: [109, 110, 111, 108],
   },
   {
@@ -1262,7 +1171,6 @@ var data = [
     description: 'Subway <-> Rails Transition',
     size: 1,
     image: '1110',
-    frames: 1,
     rotate: [110, 111, 108, 109],
   },
   {
@@ -1272,7 +1180,6 @@ var data = [
     description: 'Subway <-> Rails Transition',
     size: 1,
     image: '1111',
-    frames: 1,
     rotate: [111, 108, 109, 110],
   },
   {
@@ -1281,7 +1188,6 @@ var data = [
     description: 'Lower-class homes',
     size: 1,
     image: '1112',
-    frames: 1,
   },
   {
     id: 113,
@@ -1289,7 +1195,6 @@ var data = [
     description: 'Lower-class homes',
     size: 1,
     image: '1113',
-    frames: 1,
   },
   {
     id: 114,
@@ -1297,7 +1202,6 @@ var data = [
     description: 'Lower-class homes',
     size: 1,
     image: '1114',
-    frames: 1,
   },
   {
     id: 115,
@@ -1305,7 +1209,6 @@ var data = [
     description: 'Lower-class homes',
     size: 1,
     image: '1115',
-    frames: 1,
   },
   {
     id: 116,
@@ -1313,7 +1216,6 @@ var data = [
     description: 'Middle-class homes',
     size: 1,
     image: '1116',
-    frames: 1,
   },
   {
     id: 117,
@@ -1321,7 +1223,6 @@ var data = [
     description: 'Middle-class homes',
     size: 1,
     image: '1117',
-    frames: 1,
   },
   {
     id: 118,
@@ -1329,7 +1230,6 @@ var data = [
     description: 'Middle-class homes',
     size: 1,
     image: '1118',
-    frames: 1,
   },
   {
     id: 119,
@@ -1337,7 +1237,6 @@ var data = [
     description: 'Middle-class homes',
     size: 1,
     image: '1119',
-    frames: 1,
   },
   {
     id: 120,
@@ -1345,7 +1244,6 @@ var data = [
     description: 'Luxury homes',
     size: 1,
     image: '1120',
-    frames: 1,
   },
   {
     id: 121,
@@ -1353,7 +1251,6 @@ var data = [
     description: 'Luxury homes',
     size: 1,
     image: '1121',
-    frames: 1,
   },
   {
     id: 122,
@@ -1361,7 +1258,6 @@ var data = [
     description: 'Luxury homes',
     size: 1,
     image: '1122',
-    frames: 1,
   },
   {
     id: 123,
@@ -1369,7 +1265,6 @@ var data = [
     description: 'Luxury homes',
     size: 1,
     image: '1123',
-    frames: 1,
   },
   {
     id: 124,
@@ -1377,7 +1272,6 @@ var data = [
     description: 'Gas station',
     size: 1,
     image: '1124',
-    frames: 1,
   },
   {
     id: 125,
@@ -1385,7 +1279,6 @@ var data = [
     description: 'Bed & breakfast inn',
     size: 1,
     image: '1125',
-    frames: 1,
   },
   {
     id: 126,
@@ -1393,7 +1286,6 @@ var data = [
     description: 'Convenience store',
     size: 1,
     image: '1126',
-    frames: 1,
   },
   {
     id: 127,
@@ -1401,7 +1293,6 @@ var data = [
     description: 'Gas station',
     size: 1,
     image: '1127',
-    frames: 1,
   },
   {
     id: 128,
@@ -1409,7 +1300,6 @@ var data = [
     description: 'Small office building',
     size: 1,
     image: '1128',
-    frames: 1,
   },
   {
     id: 129,
@@ -1417,7 +1307,6 @@ var data = [
     description: 'Office building',
     size: 1,
     image: '1129',
-    frames: 1,
   },
   {
     id: 130,
@@ -1425,7 +1314,6 @@ var data = [
     description: 'Warehouse',
     size: 1,
     image: '1130',
-    frames: 1,
   },
   {
     id: 131,
@@ -1433,7 +1321,6 @@ var data = [
     description: 'Cassidy\'s Toy Store',
     size: 1,
     image: '1131',
-    frames: 1,
   },
   {
     id: 132,
@@ -1441,7 +1328,6 @@ var data = [
     description: 'Warehouse',
     size: 1,
     image: '1132',
-    frames: 1,
   },
   {
     id: 133,
@@ -1449,7 +1335,6 @@ var data = [
     description: 'Chemical storage',
     size: 1,
     image: '1133',
-    frames: 1,
   },
   {
     id: 134,
@@ -1457,7 +1342,6 @@ var data = [
     description: 'Warehouse',
     size: 1,
     image: '1134',
-    frames: 1,
   },
   {
     id: 135,
@@ -1465,7 +1349,6 @@ var data = [
     description: 'Industrial substation',
     size: 1,
     image: '1135',
-    frames: 1,
   },
   {
     id: 136,
@@ -1473,7 +1356,6 @@ var data = [
     description: 'Construction',
     size: 1,
     image: '1136',
-    frames: 1,
   },
   {
     id: 137,
@@ -1481,7 +1363,6 @@ var data = [
     description: 'Construction',
     size: 1,
     image: '1137',
-    frames: 1,
   },
   {
     id: 138,
@@ -1489,7 +1370,6 @@ var data = [
     description: 'Abandoned building',
     size: 1,
     image: '1138',
-    frames: 1,
   },
   {
     id: 139,
@@ -1497,7 +1377,6 @@ var data = [
     description: 'Abandoned building',
     size: 1,
     image: '1139',
-    frames: 1,
   },
   {
     id: 140,
@@ -1505,7 +1384,6 @@ var data = [
     description: 'Cheap apartments',
     size: 2,
     image: '1140',
-    frames: 1,
   },
   {
     id: 141,
@@ -1513,7 +1391,6 @@ var data = [
     description: 'Apartments',
     size: 2,
     image: '1141',
-    frames: 1,
   },
   {
     id: 142,
@@ -1521,7 +1398,6 @@ var data = [
     description: 'Apartments',
     size: 2,
     image: '1142',
-    frames: 1,
   },
   {
     id: 143,
@@ -1529,7 +1405,6 @@ var data = [
     description: 'Nice apartments',
     size: 2,
     image: '1143',
-    frames: 1,
   },
   {
     id: 144,
@@ -1537,7 +1412,6 @@ var data = [
     description: 'Nice apartments',
     size: 2,
     image: '1144',
-    frames: 1,
   },
   {
     id: 145,
@@ -1545,7 +1419,6 @@ var data = [
     description: 'Condominium',
     size: 2,
     image: '1145',
-    frames: 1,
   },
   {
     id: 146,
@@ -1553,7 +1426,6 @@ var data = [
     description: 'Condominium',
     size: 2,
     image: '1146',
-    frames: 1,
   },
   {
     id: 147,
@@ -1561,7 +1433,6 @@ var data = [
     description: 'Condominium',
     size: 2,
     image: '1147',
-    frames: 1,
   },
   {
     id: 148,
@@ -1569,7 +1440,6 @@ var data = [
     description: 'Shopping center',
     size: 2,
     image: '1148',
-    frames: 1,
   },
   {
     id: 149,
@@ -1577,7 +1447,6 @@ var data = [
     description: 'Grocery store',
     size: 2,
     image: '1149',
-    frames: 1,
   },
   {
     id: 150,
@@ -1585,7 +1454,6 @@ var data = [
     description: 'Office building',
     size: 2,
     image: '1150',
-    frames: 1,
   },
   {
     id: 151,
@@ -1593,7 +1461,6 @@ var data = [
     description: 'Resort hotel',
     size: 2,
     image: '1151',
-    frames: 1,
   },
   {
     id: 152,
@@ -1601,7 +1468,6 @@ var data = [
     description: 'Office building',
     size: 2,
     image: '1152',
-    frames: 1,
   },
   {
     id: 153,
@@ -1609,7 +1475,6 @@ var data = [
     description: 'Office / Retail',
     size: 2,
     image: '1153',
-    frames: 1,
   },
   {
     id: 154,
@@ -1617,7 +1482,6 @@ var data = [
     description: 'Office building',
     size: 2,
     image: '1154',
-    frames: 1,
   },
   {
     id: 155,
@@ -1625,7 +1489,6 @@ var data = [
     description: 'Office building',
     size: 2,
     image: '1155',
-    frames: 1,
   },
   {
     id: 156,
@@ -1633,7 +1496,6 @@ var data = [
     description: 'Office building',
     size: 2,
     image: '1156',
-    frames: 1,
   },
   {
     id: 157,
@@ -1641,7 +1503,6 @@ var data = [
     description: 'Office building',
     size: 2,
     image: '1157',
-    frames: 1,
   },
   {
     id: 158,
@@ -1649,7 +1510,6 @@ var data = [
     description: 'Warehouse',
     size: 2,
     image: '1158',
-    frames: 1,
   },
   {
     id: 159,
@@ -1657,7 +1517,6 @@ var data = [
     description: 'Chemical processing',
     size: 2,
     image: '1159',
-    frames: 1,
   },
   {
     id: 160,
@@ -1665,7 +1524,6 @@ var data = [
     description: 'Factory',
     size: 2,
     image: '1160',
-    frames: 24,
   },
   {
     id: 161,
@@ -1673,7 +1531,6 @@ var data = [
     description: 'Factory',
     size: 2,
     image: '1161',
-    frames: 1,
   },
   {
     id: 162,
@@ -1681,7 +1538,6 @@ var data = [
     description: 'Factory',
     size: 2,
     image: '1162',
-    frames: 24,
   },
   {
     id: 163,
@@ -1689,7 +1545,6 @@ var data = [
     description: 'Factory',
     size: 2,
     image: '1163',
-    frames: 24,
   },
   {
     id: 164,
@@ -1697,7 +1552,6 @@ var data = [
     description: 'Factory',
     size: 2,
     image: '1164',
-    frames: 24,
   },
   {
     id: 165,
@@ -1705,7 +1559,6 @@ var data = [
     description: 'Factory',
     size: 2,
     image: '1165',
-    frames: 24,
   },
   {
     id: 166,
@@ -1713,7 +1566,6 @@ var data = [
     description: 'Construction',
     size: 2,
     image: '1166',
-    frames: 1,
   },
   {
     id: 167,
@@ -1721,7 +1573,6 @@ var data = [
     description: 'Construction',
     size: 2,
     image: '1167',
-    frames: 1,
   },
   {
     id: 168,
@@ -1729,7 +1580,6 @@ var data = [
     description: 'Construction',
     size: 2,
     image: '1168',
-    frames: 1,
   },
   {
     id: 169,
@@ -1737,7 +1587,6 @@ var data = [
     description: 'Construction',
     size: 2,
     image: '1169',
-    frames: 1,
   },
   {
     id: 170,
@@ -1745,7 +1594,6 @@ var data = [
     description: 'Abandoned building',
     size: 2,
     image: '1170',
-    frames: 1,
   },
   {
     id: 171,
@@ -1753,7 +1601,6 @@ var data = [
     description: 'Abandoned building',
     size: 2,
     image: '1171',
-    frames: 1,
   },
   {
     id: 172,
@@ -1761,7 +1608,6 @@ var data = [
     description: 'Abandoned building',
     size: 2,
     image: '1172',
-    frames: 1,
   },
   {
     id: 173,
@@ -1769,7 +1615,6 @@ var data = [
     description: 'Abandoned building',
     size: 2,
     image: '1173',
-    frames: 1,
   },
   {
     id: 174,
@@ -1777,7 +1622,6 @@ var data = [
     description: 'Large apartment building',
     size: 3,
     image: '1174',
-    frames: 1,
   },
   {
     id: 175,
@@ -1785,7 +1629,6 @@ var data = [
     description: 'Large apartment building',
     size: 3,
     image: '1175',
-    frames: 1,
   },
   {
     id: 176,
@@ -1793,7 +1636,6 @@ var data = [
     description: 'Condominium',
     size: 3,
     image: '1176',
-    frames: 1,
   },
   {
     id: 177,
@@ -1801,7 +1643,6 @@ var data = [
     description: 'Condominium',
     size: 3,
     image: '1177',
-    frames: 1,
   },
   {
     id: 178,
@@ -1809,7 +1650,6 @@ var data = [
     description: 'Office park',
     size: 3,
     image: '1178',
-    frames: 7,
     importOptions: {
       frameCount: 1
     }
@@ -1820,7 +1660,6 @@ var data = [
     description: 'Office tower',
     size: 3,
     image: '1179',
-    frames: 1,
   },
   {
     id: 180,
@@ -1828,7 +1667,6 @@ var data = [
     description: 'Mini-mall',
     size: 3,
     image: '1180',
-    frames: 7,
     importOptions: {
       frameCount: 1
     }
@@ -1839,7 +1677,6 @@ var data = [
     description: 'Theater square',
     size: 3,
     image: '1181',
-    frames: 24,
   },
   {
     id: 182,
@@ -1847,7 +1684,6 @@ var data = [
     description: 'Drive-in theater',
     size: 3,
     image: '1182',
-    frames: 12,
   },
   {
     id: 183,
@@ -1855,7 +1691,6 @@ var data = [
     description: 'Office tower',
     size: 3,
     image: '1183',
-    frames: 1,
   },
   {
     id: 184,
@@ -1863,7 +1698,6 @@ var data = [
     description: 'Office tower',
     size: 3,
     image: '1184',
-    frames: 1,
   },
   {
     id: 185,
@@ -1871,7 +1705,6 @@ var data = [
     description: 'Parking lot',
     size: 3,
     image: '1185',
-    frames: 1,
   },
   {
     id: 186,
@@ -1879,7 +1712,6 @@ var data = [
     description: 'Historic office building',
     size: 3,
     image: '1186',
-    frames: 1,
   },
   {
     id: 187,
@@ -1887,7 +1719,6 @@ var data = [
     description: 'Corporate headquarters',
     size: 3,
     image: '1187',
-    frames: 1,
   },
   {
     id: 188,
@@ -1895,7 +1726,6 @@ var data = [
     description: 'Chemical processing',
     size: 3,
     image: '1188',
-    frames: 1,
   },
   {
     id: 189,
@@ -1903,7 +1733,6 @@ var data = [
     description: 'Large factory',
     size: 3,
     image: '1189',
-    frames: 24,
   },
   {
     id: 190,
@@ -1911,7 +1740,6 @@ var data = [
     description: 'Industrial thingamajig',
     size: 3,
     image: '1190',
-    frames: 1,
   },
   {
     id: 191,
@@ -1919,7 +1747,6 @@ var data = [
     description: 'Factory',
     size: 3,
     image: '1191',
-    frames: 24,
   },
   {
     id: 192,
@@ -1927,7 +1754,6 @@ var data = [
     description: 'Large warehouse',
     size: 3,
     image: '1192',
-    frames: 1,
   },
   {
     id: 193,
@@ -1935,7 +1761,6 @@ var data = [
     description: 'Warehouse',
     size: 3,
     image: '1193',
-    frames: 1,
   },
   {
     id: 194,
@@ -1943,7 +1768,6 @@ var data = [
     description: 'Construction',
     size: 3,
     image: '1194',
-    frames: 1,
   },
   {
     id: 195,
@@ -1951,7 +1775,6 @@ var data = [
     description: 'Construction',
     size: 3,
     image: '1195',
-    frames: 1,
   },
   {
     id: 196,
@@ -1959,7 +1782,6 @@ var data = [
     description: 'Abandoned building',
     size: 3,
     image: '1196',
-    frames: 1,
   },
   {
     id: 197,
@@ -1967,7 +1789,6 @@ var data = [
     description: 'Abandoned building',
     size: 3,
     image: '1197',
-    frames: 1,
   },
   {
     id: 198,
@@ -1976,7 +1797,6 @@ var data = [
     description: 'Hydroelectric power',
     size: 1,
     image: '1198',
-    frames: 1,
     rotate: [198, 199, 198, 199],
     flip: true,
     flipMode: 'alternateTile',
@@ -1995,7 +1815,6 @@ var data = [
     description: 'Hydroelectric power',
     size: 1,
     image: '1199',
-    frames: 1,
     rotate: [199, 198, 199, 198],
     flip: true,
     flipMode: 'alternateTile',
@@ -2013,7 +1832,6 @@ var data = [
     description: 'Wind power',
     size: 1,
     image: '1200',
-    frames: 24,
     microsimulator: {
       type: 'cityWide',
       data1: { description: null, type: null },
@@ -2028,7 +1846,6 @@ var data = [
     description: 'Natural gas power plant',
     size: 4,
     image: '1201',
-    frames: 24,
     microsimulator: {
       data1: { description: 'Age', type: 'years', max: 50 },
       data2: { description: 'Max Output', type: 'megawatts' },
@@ -2042,7 +1859,6 @@ var data = [
     description: 'Oil power plant',
     size: 4,
     image: '1202',
-    frames: 24,
     microsimulator: {
       data1: { description: 'Age', type: 'years', max: 50 },
       data2: { description: 'Max Output', type: 'megawatts' },
@@ -2056,7 +1872,6 @@ var data = [
     description: 'Nuclear power plant',
     size: 4,
     image: '1203',
-    frames: 1,
     microsimulator: {
       data1: { description: 'Age', type: 'years', max: 50 },
       data2: { description: 'Max Output', type: 'megawatts' },
@@ -2070,7 +1885,6 @@ var data = [
     description: 'Solar power plant',
     size: 4,
     image: '1204',
-    frames: 1,
     microsimulator: {
       data1: { description: 'Age', type: 'years', max: 50 },
       data2: { description: 'Max Output', type: 'megawatts' },
@@ -2084,7 +1898,6 @@ var data = [
     description: 'Microwave power receiver',
     size: 4,
     image: '1205',
-    frames: 1,
     microsimulator: {
       data1: { description: 'Age', type: 'years', max: 50 },
       data2: { description: 'Max Output', type: 'megawatts' },
@@ -2098,7 +1911,6 @@ var data = [
     description: 'Fusion power plant',
     size: 4,
     image: '1206',
-    frames: 1,
     microsimulator: {
       data1: { description: 'Age', type: 'years', max: 50 },
       data2: { description: 'Max Output', type: 'megawatts' },
@@ -2112,7 +1924,6 @@ var data = [
     description: 'Coal power plant',
     size: 4,
     image: '1207',
-    frames: 24,
     frameRate: 4,
     microsimulator: {
       data1: { description: 'Age', type: 'years', max: 50 },
@@ -2127,7 +1938,6 @@ var data = [
     description: 'City hall',
     size: 3,
     image: '1208',
-    frames: 1,
     microsimulator: {
       data1: { description: null, type: null },
       data2: { description: 'Employees', type: 'workers' },
@@ -2142,7 +1952,6 @@ var data = [
     description: 'Hospital',
     size: 3,
     image: '1209',
-    frames: 1,
     microsimulator: {
       data1: { description: 'Grade', type: 'grade' }, // A+ = 12?
       data2: { description: 'Patients', type: 'hospitalPatients', max: 1000 },
@@ -2157,7 +1966,6 @@ var data = [
     description: 'Police station',
     size: 3,
     image: '1210',
-    frames: 1,
     microsimulator: {
       data1: { description: 'Annual Cost', type: 'funds' },
       data2: { description: 'Officers', type: 'workers' },
@@ -2171,7 +1979,6 @@ var data = [
     description: 'Fire station',
     size: 3,
     image: '1211',
-    frames: 1,
     microsimulator: {
       data1: { description: 'Annual Cost', type: 'funds' },
       data2: { description: 'Firefighers', type: 'workers' },
@@ -2185,7 +1992,6 @@ var data = [
     description: 'Museum',
     size: 3,
     image: '1212',
-    frames: 1,
     microsimulator: {
       type: 'cityWide',
       data1: { description: null, type: null },
@@ -2200,7 +2006,6 @@ var data = [
     description: 'Park (big)',
     size: 3,
     image: '1213',
-    frames: 13,
     microsimulator: {
       type: 'cityWide',
       data1: { description: null, type: null },
@@ -2219,7 +2024,6 @@ var data = [
     description: 'School',
     size: 3,
     image: '1214',
-    frames: 1,
     microsimulator: {
       data1: { description: 'Grade', type: 'grade' }, // A+ = 12?
       data2: { description: 'Students', type: 'students', max: 1500 },
@@ -2234,7 +2038,6 @@ var data = [
     description: 'Stadium',
     size: 4,
     image: '1215',
-    frames: 1,
     microsimulator: {
       data1: { description: 'Wins', type: 'stadiumWins' },
       data2: { description: 'Attendance', type: 'stadiumAttendance', max: 25000 },
@@ -2252,7 +2055,6 @@ var data = [
     description: 'Prison',
     size: 4,
     image: '1216',
-    frames: 1,
     microsimulator: {
       data1: { description: 'Escapes', type: 'prisonEscapes' },
       data2: { description: 'Inmates', type: 'prisonInmates', max: 10000 },
@@ -2267,7 +2069,6 @@ var data = [
     description: 'College',
     size: 4,
     image: '1217',
-    frames: 1,
     microsimulator: {
       data1: { description: 'Grade', type: 'grade' }, // 6 = C+ ?, 10 = A-
       data2: { description: 'Attendance', type: 'students', max: 5000 },
@@ -2282,7 +2083,6 @@ var data = [
     description: 'Zoo',
     size: 4,
     image: '1218',
-    frames: 7,
     microsimulator: {
       data1: { description: 'Other Dromedaries', type: 'zooOther' },
       data2: { description: 'Peruvian Llamas', type: 'zooLlamasP' },
@@ -2300,7 +2100,6 @@ var data = [
     description: 'Statue',
     size: 1,
     image: '1219',
-    frames: 1,
     microsimulator: {
       data1: { description: null, type: null },
       data2: { description: 'Year Built', type: 'constructionYear' },
@@ -2316,7 +2115,6 @@ var data = [
     description: 'Water pump',
     size: 1,
     image: '1220',
-    frames: 24,
   },
   {
     id: 221,
@@ -2324,7 +2122,6 @@ var data = [
     description: 'Runway (straight)',
     size: 1,
     image: '1221',
-    frames: 24,
     flip: true,
   },
   {
@@ -2333,7 +2130,6 @@ var data = [
     description: 'Runway (intersection)',
     size: 1,
     image: '1222',
-    frames: 18,
   },
   {
     id: 223,
@@ -2341,7 +2137,6 @@ var data = [
     description: 'Pier',
     size: 1,
     image: '1223',
-    frames: 1,
     logic: {
       create: 'pier'
     }
@@ -2352,7 +2147,6 @@ var data = [
     description: 'Crane',
     size: 1,
     image: '1224',
-    frames: 1,
     logic: {
       create: 'pier'
     }
@@ -2363,7 +2157,6 @@ var data = [
     description: 'Control tower',
     size: 1,
     image: '1225',
-    frames: 13,
   },
   {
     id: 226,
@@ -2371,7 +2164,6 @@ var data = [
     description: 'Control tower',
     size: 1,
     image: '1226',
-    frames: 13,
   },
   {
     id: 227,
@@ -2379,7 +2171,6 @@ var data = [
     description: 'Seaport warehouse',
     size: 1,
     image: '1227',
-    frames: 1,
   },
   {
     id: 228,
@@ -2387,7 +2178,6 @@ var data = [
     description: 'Airport building',
     size: 1,
     image: '1228',
-    frames: 1,
   },
   {
     id: 229,
@@ -2395,7 +2185,6 @@ var data = [
     description: 'Airport building',
     size: 1,
     image: '1229',
-    frames: 1,
   },
   {
     id: 230,
@@ -2403,7 +2192,6 @@ var data = [
     description: 'Tarmac',
     size: 1,
     image: '1230',
-    frames: 1,
   },
   {
     id: 231,
@@ -2411,7 +2199,6 @@ var data = [
     description: 'F-15b',
     size: 1,
     image: '1231',
-    frames: 1,
   },
   {
     id: 232,
@@ -2419,7 +2206,6 @@ var data = [
     description: 'Hangar',
     size: 1,
     image: '1232',
-    frames: 1,
   },
   {
     id: 233,
@@ -2428,7 +2214,6 @@ var data = [
     description: 'Subway station',
     size: 1,
     image: '1233',
-    frames: 1,
     microsimulator: {
       type: 'cityWide',
       data1: { description: null, type: null },
@@ -2445,7 +2230,6 @@ var data = [
     description: 'Radar',
     size: 1,
     image: '1234',
-    frames: 13,
   },
   {
     id: 235,
@@ -2453,7 +2237,6 @@ var data = [
     description: 'Water tower',
     size: 2,
     image: '1235',
-    frames: 1,
   },
   {
     id: 236,
@@ -2461,7 +2244,6 @@ var data = [
     description: 'Bus station',
     size: 2,
     image: '1236',
-    frames: 1,
     microsimulator: {
       type: 'cityWide',
       data1: { description: null, type: null },
@@ -2478,7 +2260,6 @@ var data = [
     description: 'Rail station',
     size: 2,
     image: '1237',
-    frames: 1,
     microsimulator: {
       type: 'cityWide',
       data1: { description: null, type: null },
@@ -2495,7 +2276,6 @@ var data = [
     description: 'Parking lot',
     size: 2,
     image: '1238',
-    frames: 1,
   },
   {
     id: 239,
@@ -2503,7 +2283,6 @@ var data = [
     description: 'Parking lot',
     size: 2,
     image: '1239',
-    frames: 1,
   },
   {
     id: 240,
@@ -2511,7 +2290,6 @@ var data = [
     description: 'Loading bay',
     size: 2,
     image: '1240',
-    frames: 1,
   },
   {
     id: 241,
@@ -2519,7 +2297,6 @@ var data = [
     description: 'Top secret',
     size: 2,
     image: '1241',
-    frames: 1,
   },
   {
     id: 242,
@@ -2527,7 +2304,6 @@ var data = [
     description: 'Cargo yard',
     size: 2,
     image: '1242',
-    frames: 1,
   },
   {
     id: 243,
@@ -2535,7 +2311,6 @@ var data = [
     description: 'Mayor\'s house',
     size: 2,
     image: '1243',
-    frames: 1,
     microsimulator: {
       data1: { description: 'Door Steps', type: 'mayorDoorSteps' },
       data2: { description: 'Year Built', type: 'constructionYear' },
@@ -2549,7 +2324,6 @@ var data = [
     description: 'Water treatment plant',
     size: 2,
     image: '1244',
-    frames: 1,
     microsimulator: {
       data1: { description: null, type: null },
       data2: { description: 'Untreated Water', type: 'waterCubicFeet', unit: 'thousands' },
@@ -2566,7 +2340,6 @@ var data = [
     description: 'Library',
     size: 2,
     image: '1245',
-    frames: 1,
     microsimulator: {
       type: 'cityWide',
       data1: { description: 'Grade', type: 'grade' }, // 7 = B-
@@ -2581,7 +2354,6 @@ var data = [
     description: 'Hangar',
     size: 2,
     image: '1246',
-    frames: 1,
   },
   {
     id: 247,
@@ -2589,7 +2361,6 @@ var data = [
     description: 'Church',
     size: 2,
     image: '1247',
-    frames: 1,
   },
   {
     id: 248,
@@ -2597,7 +2368,6 @@ var data = [
     description: 'Marina',
     size: 3,
     image: '1248',
-    frames: 1,
     microsimulator: {
       type: 'cityWide',
       data1: { description: null, type: null },
@@ -2612,7 +2382,6 @@ var data = [
     description: 'Missile silo',
     size: 3,
     image: '1249',
-    frames: 1,
   },
   {
     id: 250,
@@ -2620,7 +2389,6 @@ var data = [
     description: 'Desalination plant',
     size: 3,
     image: '1250',
-    frames: 24,
     microsimulator: {
       data1: { description: 'Current Load', type: 'capacity', max: 100 },
       data2: { description: 'Salt / tons Removed', type: 'desalinationSaltRemoved' },
@@ -2637,7 +2405,6 @@ var data = [
     description: 'Plymouth arcology',
     size: 4,
     image: '1251',
-    frames: 24,
     microsimulator: {
       data1: { description: 'Condition', type: 'grade' }, //5 = C
       data2: { description: 'Design Capacity', type: 'arcoCapacity', unit: 'thousands' },
@@ -2654,7 +2421,6 @@ var data = [
     description: 'Forest arcology',
     size: 4,
     image: '1252',
-    frames: 24,
     microsimulator: {
       data1: { description: 'Condition', type: 'grade' }, //5 = C
       data2: { description: 'Design Capacity', type: 'arcoCapacity', unit: 'thousands' },
@@ -2671,7 +2437,6 @@ var data = [
     description: 'Darco arcology',
     size: 4,
     image: '1253',
-    frames: 24,
     microsimulator: {
       data1: { description: 'Condition', type: 'grade' }, //5 = C
       data2: { description: 'Design Capacity', type: 'arcoCapacity', unit: 'thousands' },
@@ -2688,7 +2453,6 @@ var data = [
     description: 'Launch arcology',
     size: 4,
     image: '1254',
-    frames: 24,
     microsimulator: {
       data1: { description: 'Condition', type: 'grade' }, //5 = C
       data2: { description: 'Design Capacity', type: 'arcoCapacity', unit: 'thousands' },
@@ -2705,7 +2469,6 @@ var data = [
     description: 'Braun Llama-dome',
     size: 4,
     image: '1255',
-    frames: 24,
     microsimulator: {
       data1: { description: 'Weddings', type: 'domeWeddings' },
       data2: { description: 'Visitors', type: 'domeVisitors' },
@@ -2721,32 +2484,12 @@ var data = [
     description: 'land',
     size: 1,
     image: '1256',
-    frames: 1,
-    hitbox: [
-      { x: 0,   y: 0  },
-      { x: 32,  y: 16 },
-      { x: 0,   y: 32 },
-      { x: -32, y: 16 },
-      { x: 0,   y: 0  },
-    ],
     heightmap: {
-      top: [
-        { x: 32,  y: 0 }, // top
-        { x: 64,  y: 16 }, // right
-        { x: 32,  y: 32 }, // bottom
-        { x: 0,   y: 16 }, // left
-      ],
-      qright: [
-        { x: 64,  y: 16 },
-        { x: 64,  y: 40 },
-        { x: 32,  y: 56 },
-        { x: 32,  y: 32 },
-      ],
-      qleft: [
-        { x: 0,   y: 16 },
-        { x: 32,  y: 32 },
-        { x: 32,  y: 56 },
-        { x: 0,   y: 40 },
+      lower: [
+        { x: 16,  y: 0  },
+        { x: 32,  y: 8  },
+        { x: 16,  y: 16 },
+        { x: 0,   y: 8  },
       ],
     }
   },
@@ -2756,26 +2499,17 @@ var data = [
     description: 'land',
     size: 1,
     image: '1257',
-    frames: 1,
-    hitbox: [
-      { x: 0,    y: 0  },
-      { x: 32,   y: 40 },
-      { x: 0,    y: 56 },
-      { x: -32,  y: 40 },
-      { x: -32,  y: 16 },
-      { x: 0,    y: 0  },
-    ],
     heightmap: {
-      slope: [
-        { x: 32,   y: 0  }, // top
-        { x: 64,   y: 40 }, // right
-        { x: 32,   y: 56 }, // bottom
-        { x: 0,    y: 16 }, // left
+      southEast: [
+        { x: 16,   y: 0  },
+        { x: 32,   y: 20 },
+        { x: 16,   y: 28 },
+        { x: 0,    y: 8  },
       ],
-      left: [
-        { x: 32,   y: 56 },
-        { x: 0,    y: 16 },
-        { x: 0,    y: 40 },
+      rockSouthWest: [
+        { x: 16,   y: 28 },
+        { x: 0,    y: 8 },
+        { x: 0,    y: 20 },
       ],
     },
     rotate: [257, 258, 259, 260],
@@ -2786,26 +2520,17 @@ var data = [
     description: 'land',
     size: 1,
     image: '1258',
-    frames: 1,
-    hitbox: [
-      { x: 0,    y: 0  },
-      { x: 32,   y: 16 },
-      { x: 32,   y: 40 },
-      { x: 0,    y: 56 },
-      { x: -32,  y: 40 },
-      { x: 0,    y: 0  },
-    ],
     heightmap: {
-      slope: [
-        { x: 32,   y: 0  }, // top
-        { x: 0,    y: 40 }, // right
-        { x: 32,   y: 56 }, // bottom
-        { x: 64,   y: 16 }, // left
+      southWest: [
+        { x: 16,   y: 0  },
+        { x: 0,    y: 20 },
+        { x: 16,   y: 28 },
+        { x: 32,   y: 8  },
       ],
-      left: [
-        { x: 32,   y: 56 },
-        { x: 64,   y: 16 },
-        { x: 64,   y: 40 },
+      rockSouthEast: [
+        { x: 16,   y: 28 },
+        { x: 32,   y: 8  },
+        { x: 32,   y: 20 },
       ],
     },
     rotate: [258, 259, 260, 257],
@@ -2816,32 +2541,23 @@ var data = [
     description: 'land',
     size: 1,
     image: '1259',
-    frames: 1,
-    hitbox: [
-      { x: 0,   y: 24 },
-      { x: 32,  y: 16 },
-      { x: 32,  y: 40 },
-      { x: 0,   y: 56 },
-      { x: -32, y: 40 },
-      { x: 0,   y: 24 },
-    ],
     heightmap: {
-      slope: [
-        { x: 32,  y: 8  }, // top
-        { x: 64,  y: 0  }, // right
-        { x: 32,  y: 16 }, // bottom
-        { x: 0,   y: 24 }, // left
+      northEast: [
+        { x: 16,  y: 4  },
+        { x: 32,  y: 0  },
+        { x: 16,  y: 8  },
+        { x: 0,   y: 12 },
       ],
-      left: [
-        { x: 32,  y: 16 },
-        { x: 32,  y: 40 },
-        { x: 0,   y: 24 },
+      rockSouthWest: [
+        { x: 16,  y: 8  },
+        { x: 16,  y: 20 },
+        { x: 0,   y: 12 },
       ],
-      right: [
-        { x: 32,  y: 16 },
-        { x: 64,  y: 0  },
-        { x: 64,  y: 24 },
-        { x: 32,  y: 40 },
+      rockSouthEast: [
+        { x: 16,  y: 8  },
+        { x: 32,  y: 0  },
+        { x: 32,  y: 12 },
+        { x: 16,  y: 20 },
       ],
     },
     rotate: [259, 260, 257, 258],
@@ -2852,32 +2568,23 @@ var data = [
     description: 'land',
     size: 1,
     image: '1260',
-    frames: 1,
-    hitbox: [
-      { x: 0,   y: 24 },
-      { x: 32,  y: 40 },
-      { x: 0,   y: 56 },
-      { x: -32, y: 40 },
-      { x: -32, y: 16 },
-      { x: 0,   y: 24 },
-    ],
     heightmap: {
-      slope: [
-        { x: 32,  y: 8 },
-        { x: 64,  y: 24 },
-        { x: 32,  y: 16 },
-        { x: 0,   y: 0 },
+      northEast: [
+        { x: 16,  y: 4  },
+        { x: 32,  y: 12 },
+        { x: 16,  y: 8  },
+        { x: 0,   y: 0  },
       ],
-      left: [
-        { x: 0,   y: 0 },
-        { x: 32,  y: 16 },
-        { x: 32,  y: 40 },
-        { x: 0,   y: 24 },
+      rockSouthWest: [
+        { x: 0,   y: 0  },
+        { x: 16,  y: 8  },
+        { x: 16,  y: 20 },
+        { x: 0,   y: 12 },
       ],
-      right: [
-        { x: 32,  y: 16 },
-        { x: 64,  y: 24 },
-        { x: 32,  y: 40 },
+      rockSouthEast: [
+        { x: 16,  y: 8  },
+        { x: 32,  y: 12 },
+        { x: 16,  y: 20 },
       ],
     },
     rotate: [260, 257, 258, 259],
@@ -2888,36 +2595,26 @@ var data = [
     description: 'land',
     size: 1,
     image: '1261',
-    frames: 1,
-    hitbox: [
-      { x: 0,   y: 0  },
-      { x: 32,  y: 16 },
-      { x: 32,  y: 40 },
-      { x: 0,   y: 56 },
-      { x: -32, y: 40 },
-      { x: -32, y: 16 },
-      { x: 0,   y: 0  },
-    ],
     heightmap: {
-      top: [
-        { x: 0,   y: 16 },
-        { x: 32,  y: 0  },
-        { x: 64,  y: 16 },
+      upper: [
+        { x: 0,   y: 8  },
+        { x: 16,  y: 0  },
+        { x: 32,  y: 8  },
       ],
-      slope: [
-        { x: 0,   y: 16 },
-        { x: 32,  y: 56 },
-        { x: 64,  y: 16 },
+      south: [
+        { x: 0,   y: 8  },
+        { x: 16,  y: 28 },
+        { x: 32,  y: 8  },
       ],
-      left: [
-        { x: 0,   y: 16 },
-        { x: 32,  y: 56 },
-        { x: 0,   y: 40 },
+      rockSouthWest: [
+        { x: 0,   y: 8  },
+        { x: 16,  y: 28 },
+        { x: 0,   y: 20 },
       ],
-      right: [
-        { x: 64,  y: 16 },
-        { x: 32,  y: 56 },
-        { x: 64,  y: 40 },
+      rockSouthEast: [
+        { x: 32,  y: 8  },
+        { x: 16,  y: 28 },
+        { x: 32,  y: 20 },
       ],
     },
     rotate: [261, 262, 263, 264],
@@ -2928,36 +2625,27 @@ var data = [
     description: 'land',
     size: 1,
     image: '1262',
-    frames: 1,
-    hitbox: [
-      { x: 0,   y: 0  },
-      { x: 32,  y: 16 },
-      { x: 32,  y: 40 },
-      { x: 0,   y: 56 },
-      { x: -32, y: 40 },
-      { x: 0,   y: 0  },
-    ],
     heightmap: {
-      top: [
-        { x: 32,  y: 0  },
-        { x: 64,  y: 16 },
-        { x: 32,  y: 32 },
+      upper: [
+        { x: 16,  y: 0  },
+        { x: 32,  y: 8  },
+        { x: 16,  y: 16 },
       ],
-      slope: [
-        { x: 32,  y: 0  },
-        { x: 32,  y: 32 },
-        { x: 0,   y: 40 },
+      west: [
+        { x: 16,  y: 0  },
+        { x: 16,  y: 16 },
+        { x: 0,   y: 20 },
       ],
-      left: [
-        { x: 32,  y: 56 },
-        { x: 32,  y: 32 },
-        { x: 0,   y: 40  },
+      rockSouthWest: [
+        { x: 16,  y: 28 },
+        { x: 16,  y: 16 },
+        { x: 0,   y: 20 },
       ],
-      right: [
-        { x: 64,  y: 16 },
-        { x: 64,  y: 40 },
-        { x: 32,  y: 56 },
-        { x: 32,  y: 32 },
+      rockSouthEast: [
+        { x: 32,  y: 8  },
+        { x: 32,  y: 20 },
+        { x: 16,  y: 28 },
+        { x: 16,  y: 16 },
       ],
     },
     rotate: [262, 263, 264, 261],
@@ -2968,33 +2656,23 @@ var data = [
     description: 'land',
     size: 1,
     image: '1263',
-    frames: 1,
-    hitbox: [
-      { x: 0,   y: 16 },
-      { x: 32,  y: 16 },
-      { x: 32,  y: 40 },
-      { x: 0,   y: 56 },
-      { x: -32, y: 40 },
-      { x: -32, y: 16 },
-      { x: 0,   y: 16 },
-    ],
     heightmap: {
-      top: [
+      upper: [
         { x: 0,    y: 0  },
-        { x: 64,   y: 0  },
-        { x: 32,   y: 16 },
+        { x: 32,   y: 0  },
+        { x: 16,   y: 8  },
       ],
-      left: [
+      rockSouthWest: [
         { x: 0,    y: 0  },
-        { x: 32,   y: 16 },
-        { x: 32,   y: 40 },
-        { x: 0,    y: 24 },
+        { x: 16,   y: 8  },
+        { x: 16,   y: 20 },
+        { x: 0,    y: 12 },
       ],
-      right: [
-        { x: 64,   y: 0  },
-        { x: 32,   y: 16 },
-        { x: 32,   y: 40 },
-        { x: 64,   y: 24 },
+      rockSouthEast: [
+        { x: 32,   y: 0  },
+        { x: 16,   y: 8  },
+        { x: 16,   y: 20 },
+        { x: 32,   y: 12 },
       ],
     },
     rotate: [263, 264, 261, 262],
@@ -3005,36 +2683,27 @@ var data = [
     description: 'land',
     size: 1,
     image: '1264',
-    frames: 1,
-    hitbox: [
-      { x: 0,   y: 0  },
-      { x: 32,  y: 40 },
-      { x: 0,   y: 56 },
-      { x: -32, y: 40 },
-      { x: -32, y: 16 },
-      { x: 0,   y: 0  },
-    ],
     heightmap: {
-      top: [
-        { x: 0,    y: 16 },
-        { x: 32,   y: 0  },
-        { x: 32,   y: 32 },
+      upper: [
+        { x: 0,    y: 8  },
+        { x: 16,   y: 0  },
+        { x: 16,   y: 16 },
       ],
-      slope: [
-        { x: 32,   y: 0  },
-        { x: 64,   y: 40 },
-        { x: 32,   y: 32 },
+      east: [
+        { x: 16,   y: 0  },
+        { x: 32,   y: 20 },
+        { x: 16,   y: 16 },
       ],
-      left: [
-        { x: 32,   y: 32 },
-        { x: 0,    y: 16 },
-        { x: 0,    y: 40 },
-        { x: 32,   y: 56 },
+      rockSouthWest: [
+        { x: 16,   y: 16 },
+        { x: 0,    y: 8  },
+        { x: 0,    y: 20 },
+        { x: 16,   y: 28 },
       ],
-      right: [
-        { x: 32,   y: 32 },
-        { x: 64,   y: 40 },
-        { x: 32,   y: 56 },
+      rockSouthEast: [
+        { x: 16,   y: 16 },
+        { x: 32,   y: 20 },
+        { x: 16,   y: 28 },
       ],
     },
     rotate: [264, 261, 262, 263],
@@ -3045,24 +2714,16 @@ var data = [
     description: 'land',
     size: 1,
     image: '1265',
-    frames: 1,
-    hitbox: [
-      { x: 0,   y: 0  },
-      { x: 32,  y: 40 },
-      { x: 0,   y: 56 },
-      { x: -32, y: 40 },
-      { x: 0,   y: 0   }
-    ],
     heightmap: {
-      top: [
-        { x: 0,    y: 40 },
-        { x: 64,   y: 40 },
-        { x: 32,   y: 56 },
+      lower: [
+        { x: 0,    y: 20 },
+        { x: 32,   y: 20 },
+        { x: 16,   y: 28 },
       ],
-      slope: [
-        { x: 0,    y: 40 },
-        { x: 64,   y: 40 },
-        { x: 32,   y: 0 },
+      south: [
+        { x: 0,    y: 20 },
+        { x: 32,   y: 20 },
+        { x: 16,   y: 0 },
       ],
     },
     rotate: [265, 266, 267, 268],
@@ -3073,30 +2734,21 @@ var data = [
     description: 'land',
     size: 1,
     image: '1266',
-    frames: 1,
-    hitbox: [
-      { x: 0,   y: 24 },
-      { x: 32,  y: 16 },
-      { x: 32,  y: 40 },
-      { x: 0,   y: 56 },
-      { x: -32, y: 40 },
-      { x: 0,   y: 24 },
-    ],
     heightmap: {
-      top: [
-        { x: 0,    y: 24 },
-        { x: 32,   y: 8  },
-        { x: 32,   y: 40 },
+      lower: [
+        { x: 0,    y: 12 },
+        { x: 16,   y: 4  },
+        { x: 16,   y: 20 },
       ],
-      slope: [
-        { x: 32,   y: 8  },
-        { x: 64,   y: 0  },
-        { x: 32,   y: 40 },
+      west: [
+        { x: 16,   y: 4  },
+        { x: 32,   y: 0  },
+        { x: 16,   y: 20 },
       ],
-      right: [
-        { x: 64,   y: 0  },
-        { x: 32,   y: 40 },
-        { x: 64,   y: 24 },
+      rockSouthEast: [
+        { x: 32,   y: 0  },
+        { x: 16,   y: 20 },
+        { x: 32,   y: 12 },
       ],
     },
     rotate: [266, 267, 268, 265],
@@ -3107,30 +2759,22 @@ var data = [
     description: 'land',
     size: 1,
     image: '1267',
-    frames: 1,
-    hitbox: [
-      { x: 0,   y: 24 },
-      { x: 32,  y: 40 },
-      { x: 0,   y: 56 },
-      { x: -32, y: 40 },
-      { x: 0,   y: 24 },
-    ],
     heightmap: {
-      top: [
-        { x: 0,    y: 16 },
-        { x: 32,   y: 0  },
-        { x: 64,   y: 16 },
+      lower: [
+        { x: 0,    y: 8  },
+        { x: 16,   y: 0  },
         { x: 32,   y: 8  },
+        { x: 16,   y: 4  },
       ],
-      right: [
+      rockSouthWest: [
+        { x: 16,   y: 4  },
         { x: 32,   y: 8  },
-        { x: 64,   y: 16 },
-        { x: 32,   y: 32 },
+        { x: 16,   y: 16 },
       ],
-      left: [
-        { x: 32,   y: 8  },
-        { x: 0,    y: 16 },
-        { x: 32,   y: 32 },
+      rockSouthEast: [
+        { x: 16,   y: 4  },
+        { x: 0,    y: 8  },
+        { x: 16,   y: 16 },
       ],
     },
     rotate: [267, 268, 265, 266],
@@ -3141,30 +2785,21 @@ var data = [
     description: 'land',
     size: 1,
     image: '1268',
-    frames: 1,
-    hitbox: [
-      { x: 0,   y: 24 },
-      { x: 32,  y: 40 },
-      { x: 0,   y: 56 },
-      { x: -32, y: 40 },
-      { x: -32, y: 16 },
-      { x: 0,   y: 24 },
-    ],
     heightmap: {
-      top: [
-        { x: 64,   y: 24 },
-        { x: 32,   y: 8  },
-        { x: 32,   y: 40 },
+      lower: [
+        { x: 32,   y: 12 },
+        { x: 16,   y: 4  },
+        { x: 16,   y: 20 },
       ],
-      slope: [
-        { x: 32,   y: 8  },
+      east: [
+        { x: 16,   y: 4  },
         { x: 0,    y: 0  },
-        { x: 32,   y: 40 },
+        { x: 16,   y: 20 },
       ],
-      left: [
+      rockSouthWest: [
         { x: 0,    y: 0  },
-        { x: 32,   y: 40 },
-        { x: 0,    y: 24 },
+        { x: 16,   y: 20 },
+        { x: 0,    y: 12 },
       ],
     },
     rotate: [268, 265, 266, 267],
@@ -3175,34 +2810,24 @@ var data = [
     description: 'rock',
     size: 1,
     image: '1269',
-    frames: 1,
-    hitbox: [
-      { x: 0,   y: 0  },
-      { x: 32,  y: 16 },
-      { x: 32,  y: 40 },
-      { x: 0,   y: 56 },
-      { x: -32, y: 40 },
-      { x: -32, y: 16 },
-      { x: 0,   y: 0  },
-    ],
     heightmap: {
-      top: [
-        { x: 32,  y: 0 }, // top
-        { x: 64,  y: 16 }, // right
-        { x: 32,  y: 32 }, // bottom
-        { x: 0,   y: 16 }, // left
+      upper: [
+        { x: 16,  y: 0 },
+        { x: 32,  y: 8  },
+        { x: 16,  y: 16 },
+        { x: 0,   y: 8  },
       ],
-      right: [
-        { x: 64,  y: 16 },
-        { x: 64,  y: 40 },
-        { x: 32,  y: 56 },
-        { x: 32,  y: 32 },
+      rockSouthWest: [
+        { x: 32,  y: 8  },
+        { x: 32,  y: 20 },
+        { x: 16,  y: 28 },
+        { x: 16,  y: 16 },
       ],
-      left: [
-        { x: 0,   y: 16 },
-        { x: 32,  y: 32 },
-        { x: 32,  y: 56 },
-        { x: 0,   y: 40 },
+      rockSouthEast: [
+        { x: 0,   y: 8  },
+        { x: 16,  y: 16 },
+        { x: 16,  y: 28 },
+        { x: 0,   y: 20 },
       ],
     },
   },
@@ -3212,14 +2837,9 @@ var data = [
     description: 'water_tile_1',
     size: 1,
     image: '1270',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 256
     },
@@ -3231,14 +2851,9 @@ var data = [
     description: 'water_tile_2',
     size: 1,
     image: '1271',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 257
     },
@@ -3251,14 +2866,9 @@ var data = [
     description: 'water_tile_3',
     size: 1,
     image: '1272',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 258
     },
@@ -3271,14 +2881,9 @@ var data = [
     description: 'water_tile_4',
     size: 1,
     image: '1273',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 259
     },
@@ -3291,14 +2896,9 @@ var data = [
     description: 'water_tile_5',
     size: 1,
     image: '1274',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 260
     },
@@ -3311,14 +2911,9 @@ var data = [
     description: 'water_tile_6',
     size: 1,
     image: '1275',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 261
     },
@@ -3331,14 +2926,9 @@ var data = [
     description: 'water_tile_7',
     size: 1,
     image: '1276',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 262
     },
@@ -3351,14 +2941,9 @@ var data = [
     description: 'water_tile_8',
     size: 1,
     image: '1277',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 263
     },
@@ -3371,14 +2956,9 @@ var data = [
     description: 'water_tile_9',
     size: 1,
     image: '1278',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 264
     },
@@ -3391,14 +2971,9 @@ var data = [
     description: 'water_tile_10',
     size: 1,
     image: '1279',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 265
     },
@@ -3411,14 +2986,9 @@ var data = [
     description: 'water_tile_11',
     size: 1,
     image: '1280',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 266
     },
@@ -3431,14 +3001,9 @@ var data = [
     description: 'water_tile_12',
     size: 1,
     image: '1281',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 267
     },
@@ -3451,14 +3016,9 @@ var data = [
     description: 'water_tile_13',
     size: 1,
     image: '1282',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 268
     },
@@ -3471,14 +3031,9 @@ var data = [
     description: 'water_tile_14',
     size: 1,
     image: '1283',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
       reference: 269
     },
@@ -3490,16 +3045,9 @@ var data = [
     description: 'waterfall',
     size: 1,
     image: '1284',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: -24 },
-      { x: 32, y: -8 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: -32, y: -8 },
-      { x: 0, y: -24 },
-    ],
+    hitbox: {
+      reference: 269
+    },
     heightmap: {
       reference: 269
     },
@@ -3511,23 +3059,11 @@ var data = [
     description: 'water_tile_15',
     size: 1,
     image: '1285',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
-      lines: [],
-      polygon: [
-        { x: 0, y: 0 },
-        { x: 32, y: 16 },
-        { x: 0, y: 32 },
-        { x: -32, y: 16 },
-        { x: 0, y: 0 },
-      ],
+      reference: 256
     },
     rotate: [285, 286, 285, 286],
     animationDelay: .25,
@@ -3538,23 +3074,11 @@ var data = [
     description: 'water_tile_16',
     size: 1,
     image: '1286',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
-      lines: [],
-      polygon: [
-        { x: 0, y: 0 },
-        { x: 32, y: 16 },
-        { x: 0, y: 32 },
-        { x: -32, y: 16 },
-        { x: 0, y: 0 },
-      ],
+      reference: 256
     },
     rotate: [286, 285, 286, 285],
     animationDelay: .25,
@@ -3565,23 +3089,11 @@ var data = [
     description: 'water_tile_17',
     size: 1,
     image: '1287',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
-      lines: [],
-      polygon: [
-        { x: 0, y: 0 },
-        { x: 32, y: 16 },
-        { x: 0, y: 32 },
-        { x: -32, y: 16 },
-        { x: 0, y: 0 },
-      ],
+      reference: 256
     },
     rotate: [287, 288, 289, 290],
     animationDelay: .25,
@@ -3592,23 +3104,11 @@ var data = [
     description: 'water_tile_18',
     size: 1,
     image: '1288',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
-      lines: [],
-      polygon: [
-        { x: 0, y: 0 },
-        { x: 32, y: 16 },
-        { x: 0, y: 32 },
-        { x: -32, y: 16 },
-        { x: 0, y: 0 },
-      ],
+      reference: 256
     },
     rotate: [288, 289, 290, 287],
     animationDelay: .25,
@@ -3619,23 +3119,11 @@ var data = [
     description: 'water_tile_19',
     size: 1,
     image: '1289',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
-      lines: [],
-      polygon: [
-        { x: 0, y: 0 },
-        { x: 32, y: 16 },
-        { x: 0, y: 32 },
-        { x: -32, y: 16 },
-        { x: 0, y: 0 },
-      ],
+      reference: 256
     },
     rotate: [289, 290, 287, 288],
     animationDelay: .25,
@@ -3646,23 +3134,11 @@ var data = [
     description: 'water_tile_20',
     size: 1,
     image: '1290',
-    frames: 2,
-    hitbox: [
-      { x: 0, y: 0 },
-      { x: 32, y: 16 },
-      { x: 0, y: 32 },
-      { x: -32, y: 16 },
-      { x: 0, y: 0 },
-    ],
+    hitbox: {
+      reference: 256
+    },
     heightmap: {
-      lines: [],
-      polygon: [
-        { x: 0, y: 0 },
-        { x: 32, y: 16 },
-        { x: 0, y: 32 },
-        { x: -32, y: 16 },
-        { x: 0, y: 0 },
-      ],
+      reference: 256
     },
     rotate: [290, 287, 288, 289],
     animationDelay: .25,
@@ -3673,7 +3149,6 @@ var data = [
     description: 'Low Density Residential Zone',
     size: 1,
     image: '1291',
-    frames: 1,
   },
   {
     id: 292,
@@ -3681,7 +3156,6 @@ var data = [
     description: 'High Density Residential Zone',
     size: 1,
     image: '1292',
-    frames: 1,
   },
   {
     id: 293,
@@ -3689,7 +3163,6 @@ var data = [
     description: 'Low Density Commercial Zone',
     size: 1,
     image: '1293',
-    frames: 1,
   },
   {
     id: 294,
@@ -3697,7 +3170,6 @@ var data = [
     description: 'High Density Commercial Zone',
     size: 1,
     image: '1294',
-    frames: 1,
   },
   {
     id: 295,
@@ -3705,7 +3177,6 @@ var data = [
     description: 'Low Density Industrial Zone',
     size: 1,
     image: '1295',
-    frames: 1,
   },
   {
     id: 296,
@@ -3713,7 +3184,6 @@ var data = [
     description: 'High Density Industrial Zone',
     size: 1,
     image: '1296',
-    frames: 1,
   },
   {
     id: 297,
@@ -3721,7 +3191,6 @@ var data = [
     description: 'Military Zone',
     size: 1,
     image: '1297',
-    frames: 1,
   },
   {
     id: 298,
@@ -3729,7 +3198,6 @@ var data = [
     description: 'Airport Zone',
     size: 1,
     image: '1298',
-    frames: 1,
   },
   {
     id: 299,
@@ -3737,7 +3205,6 @@ var data = [
     description: 'Seaport Zone',
     size: 1,
     image: '1299',
-    frames: 1,
   },
   {
     id: 300,
@@ -3745,7 +3212,6 @@ var data = [
     description: 'green_tile',
     size: 1,
     image: '1300',
-    frames: 1,
   },
   {
     id: 301,
@@ -3753,7 +3219,6 @@ var data = [
     description: 'blue_tile',
     size: 1,
     image: '1301',
-    frames: 1,
   },
   {
     id: 302,
@@ -3761,7 +3226,6 @@ var data = [
     description: 'yellow_tile',
     size: 1,
     image: '1302',
-    frames: 1,
   },
   {
     id: 303,
@@ -3769,7 +3233,6 @@ var data = [
     description: 'red_tile',
     size: 1,
     image: '1303',
-    frames: 1,
   },
   {
     id: 304,
@@ -3777,7 +3240,6 @@ var data = [
     description: 'grey_tile',
     size: 1,
     image: '1304',
-    frames: 1,
   },
   {
     id: 305,
@@ -3785,7 +3247,6 @@ var data = [
     description: 'underground_land_1',
     size: 1,
     image: '1305',
-    frames: 1,
   },
   {
     id: 306,
@@ -3793,7 +3254,6 @@ var data = [
     description: 'underground_land_2',
     size: 1,
     image: '1306',
-    frames: 1,
   },
   {
     id: 307,
@@ -3801,7 +3261,6 @@ var data = [
     description: 'underground_land_3',
     size: 1,
     image: '1307',
-    frames: 1,
   },
   {
     id: 308,
@@ -3809,7 +3268,6 @@ var data = [
     description: 'underground_land_4',
     size: 1,
     image: '1308',
-    frames: 1,
   },
   {
     id: 309,
@@ -3817,7 +3275,6 @@ var data = [
     description: 'underground_land_5',
     size: 1,
     image: '1309',
-    frames: 1,
   },
   {
     id: 310,
@@ -3825,7 +3282,6 @@ var data = [
     description: 'underground_land_6',
     size: 1,
     image: '1310',
-    frames: 1,
   },
   {
     id: 311,
@@ -3833,7 +3289,6 @@ var data = [
     description: 'underground_land_7',
     size: 1,
     image: '1311',
-    frames: 1,
   },
   {
     id: 312,
@@ -3841,7 +3296,6 @@ var data = [
     description: 'underground_land_8',
     size: 1,
     image: '1312',
-    frames: 1,
   },
   {
     id: 313,
@@ -3849,7 +3303,6 @@ var data = [
     description: 'underground_land_9',
     size: 1,
     image: '1313',
-    frames: 1,
   },
   {
     id: 314,
@@ -3857,7 +3310,6 @@ var data = [
     description: 'underground_land_10',
     size: 1,
     image: '1314',
-    frames: 1,
   },
   {
     id: 315,
@@ -3865,7 +3317,6 @@ var data = [
     description: 'underground_land_11',
     size: 1,
     image: '1315',
-    frames: 1,
   },
   {
     id: 316,
@@ -3873,7 +3324,6 @@ var data = [
     description: 'underground_land_12',
     size: 1,
     image: '1316',
-    frames: 1,
   },
   {
     id: 317,
@@ -3881,7 +3331,6 @@ var data = [
     description: 'underground_land_13',
     size: 1,
     image: '1317',
-    frames: 1,
   },
   {
     id: 318,
@@ -3889,7 +3338,6 @@ var data = [
     description: 'underground_land_14',
     size: 1,
     image: '1318',
-    frames: 1,
   },
   {
     id: 319,
@@ -3897,7 +3345,6 @@ var data = [
     description: 'Subway (straight)',
     size: 1,
     image: '1319',
-    frames: 1,
   },
   {
     id: 320,
@@ -3905,7 +3352,6 @@ var data = [
     description: 'Subway (straight)',
     size: 1,
     image: '1320',
-    frames: 1,
   },
   {
     id: 321,
@@ -3913,7 +3359,6 @@ var data = [
     description: 'Subway (slope)',
     size: 1,
     image: '1321',
-    frames: 1,
     rotate: [321, 322, 323, 324],
   },
   {
@@ -3922,7 +3367,6 @@ var data = [
     description: 'Subway (slope)',
     size: 1,
     image: '1322',
-    frames: 1,
     rotate: [322, 323, 324, 321],
   },
   {
@@ -3931,7 +3375,6 @@ var data = [
     description: 'Subway (slope)',
     size: 1,
     image: '1323',
-    frames: 1,
     rotate: [327, 328, 325, 326],
   },
   {
@@ -3940,7 +3383,6 @@ var data = [
     description: 'Subway (slope)',
     size: 1,
     image: '1324',
-    frames: 1,
     rotate: [328, 325, 326, 327],
   },
   {
@@ -3949,7 +3391,6 @@ var data = [
     description: 'Subway (corner)',
     size: 1,
     image: '1325',
-    frames: 1,
     rotate: [325, 326, 327, 328],
   },
   {
@@ -3958,7 +3399,6 @@ var data = [
     description: 'Subway (corner)',
     size: 1,
     image: '1326',
-    frames: 1,
     rotate: [326, 327, 328, 325],
   },
   {
@@ -3967,7 +3407,6 @@ var data = [
     description: 'Subway (corner)',
     size: 1,
     image: '1327',
-    frames: 1,
     rotate: [327, 328, 325, 326],
   },
   {
@@ -3976,7 +3415,6 @@ var data = [
     description: 'Subway (corner)',
     size: 1,
     image: '1328',
-    frames: 1,
     rotate: [328, 325, 326, 327],
   },
   {
@@ -3985,7 +3423,6 @@ var data = [
     description: 'Subway (intersection)',
     size: 1,
     image: '1329',
-    frames: 1,
   },
   {
     id: 330,
@@ -3993,7 +3430,6 @@ var data = [
     description: 'Subway (intersection)',
     size: 1,
     image: '1330',
-    frames: 1,
   },
   {
     id: 331,
@@ -4001,7 +3437,6 @@ var data = [
     description: 'Subway (intersection)',
     size: 1,
     image: '1331',
-    frames: 1,
   },
   {
     id: 332,
@@ -4009,7 +3444,6 @@ var data = [
     description: 'Subway (intersection)',
     size: 1,
     image: '1332',
-    frames: 1,
   },
   {
     id: 333,
@@ -4017,7 +3451,6 @@ var data = [
     description: 'Subway (intersection)',
     size: 1,
     image: '1333',
-    frames: 1,
   },
   {
     id: 334,
@@ -4025,7 +3458,6 @@ var data = [
     description: 'water_pipe_1',
     size: 1,
     image: '1334',
-    frames: 1,
   },
   {
     id: 335,
@@ -4033,7 +3465,6 @@ var data = [
     description: 'water_pipe_2',
     size: 1,
     image: '1335',
-    frames: 1,
   },
   {
     id: 336,
@@ -4041,7 +3472,6 @@ var data = [
     description: 'water_pipe_3',
     size: 1,
     image: '1336',
-    frames: 1,
   },
   {
     id: 337,
@@ -4049,7 +3479,6 @@ var data = [
     description: 'water_pipe_4',
     size: 1,
     image: '1337',
-    frames: 1,
   },
   {
     id: 338,
@@ -4057,7 +3486,6 @@ var data = [
     description: 'water_pipe_5',
     size: 1,
     image: '1338',
-    frames: 1,
   },
   {
     id: 339,
@@ -4065,7 +3493,6 @@ var data = [
     description: 'water_pipe_6',
     size: 1,
     image: '1339',
-    frames: 1,
   },
   {
     id: 340,
@@ -4073,7 +3500,6 @@ var data = [
     description: 'water_pipe_7',
     size: 1,
     image: '1340',
-    frames: 1,
   },
   {
     id: 341,
@@ -4081,7 +3507,6 @@ var data = [
     description: 'water_pipe_8',
     size: 1,
     image: '1341',
-    frames: 1,
   },
   {
     id: 342,
@@ -4089,7 +3514,6 @@ var data = [
     description: 'water_pipe_9',
     size: 1,
     image: '1342',
-    frames: 1,
   },
   {
     id: 343,
@@ -4097,7 +3521,6 @@ var data = [
     description: 'water_pipe_10',
     size: 1,
     image: '1343',
-    frames: 1,
   },
   {
     id: 344,
@@ -4105,7 +3528,6 @@ var data = [
     description: 'water_pipe_11',
     size: 1,
     image: '1344',
-    frames: 1,
   },
   {
     id: 345,
@@ -4113,7 +3535,6 @@ var data = [
     description: 'water_pipe_12',
     size: 1,
     image: '1345',
-    frames: 1,
   },
   {
     id: 346,
@@ -4121,7 +3542,6 @@ var data = [
     description: 'water_pipe_13',
     size: 1,
     image: '1346',
-    frames: 1,
   },
   {
     id: 347,
@@ -4129,7 +3549,6 @@ var data = [
     description: 'water_pipe_14',
     size: 1,
     image: '1347',
-    frames: 1,
   },
   {
     id: 348,
@@ -4137,7 +3556,6 @@ var data = [
     description: 'water_pipe_15',
     size: 1,
     image: '1348',
-    frames: 1,
   },
   {
     id: 349,
@@ -4146,7 +3564,6 @@ var data = [
     description: 'Subway (straight) with Pipe',
     size: 1,
     image: '1349',
-    frames: 1,
   },
   {
     id: 350,
@@ -4155,7 +3572,6 @@ var data = [
     description: 'Subway (straight) with Pipe',
     size: 1,
     image: '1350',
-    frames: 1,
   },
   {
     id: 351,
@@ -4163,7 +3579,6 @@ var data = [
     description: 'Building Pipes',
     size: 1,
     image: '1351',
-    frames: 1,
   },
   {
     id: 352,
@@ -4171,7 +3586,6 @@ var data = [
     description: 'grey_box_1',
     size: 1,
     image: '1352',
-    frames: 1,
   },
   {
     id: 353,
@@ -4179,7 +3593,6 @@ var data = [
     description: 'grey_box_2',
     size: 1,
     image: '1353',
-    frames: 1,
   },
   {
     id: 354,
@@ -4187,7 +3600,6 @@ var data = [
     description: 'green_outline',
     size: 1,
     image: '1354',
-    frames: 1,
   },
   {
     id: 355,
@@ -4195,7 +3607,6 @@ var data = [
     description: 'blue_outline',
     size: 1,
     image: '1355',
-    frames: 1,
   },
   {
     id: 356,
@@ -4203,7 +3614,6 @@ var data = [
     description: 'brown_outline',
     size: 1,
     image: '1356',
-    frames: 1,
   },
   {
     id: 357,
@@ -4211,7 +3621,6 @@ var data = [
     description: 'red_outline',
     size: 1,
     image: '1357',
-    frames: 1,
   },
   {
     id: 358,
@@ -4219,7 +3628,6 @@ var data = [
     description: 'grey_outline',
     size: 1,
     image: '1358',
-    frames: 1,
   },
   {
     id: 359,
@@ -4227,7 +3635,6 @@ var data = [
     description: 'airplane_1',
     size: 2,
     image: '1359',
-    frames: 1,
   },
   {
     id: 360,
@@ -4235,7 +3642,6 @@ var data = [
     description: 'airplane_2',
     size: 2,
     image: '1360',
-    frames: 1,
   },
   {
     id: 361,
@@ -4243,7 +3649,6 @@ var data = [
     description: 'airplane_3',
     size: 2,
     image: '1361',
-    frames: 1,
   },
   {
     id: 362,
@@ -4251,7 +3656,6 @@ var data = [
     description: 'airplane_4',
     size: 2,
     image: '1362',
-    frames: 1,
   },
   {
     id: 363,
@@ -4259,7 +3663,6 @@ var data = [
     description: 'airplane_5',
     size: 2,
     image: '1363',
-    frames: 1,
   },
   {
     id: 364,
@@ -4267,7 +3670,6 @@ var data = [
     description: 'sim_copter_1',
     size: 1,
     image: '1364',
-    frames: 24,
   },
   {
     id: 365,
@@ -4275,7 +3677,6 @@ var data = [
     description: 'sim_copter_2',
     size: 1,
     image: '1365',
-    frames: 24,
   },
   {
     id: 366,
@@ -4283,7 +3684,6 @@ var data = [
     description: 'sim_copter_3',
     size: 1,
     image: '1366',
-    frames: 24,
   },
   {
     id: 367,
@@ -4291,7 +3691,6 @@ var data = [
     description: 'sim_copter_4',
     size: 1,
     image: '1367',
-    frames: 24,
   },
   {
     id: 368,
@@ -4299,7 +3698,6 @@ var data = [
     description: 'sim_copter_5',
     size: 1,
     image: '1368',
-    frames: 24,
   },
   {
     id: 369,
@@ -4307,7 +3705,6 @@ var data = [
     description: 'cargo_ship_1',
     size: 2,
     image: '1369',
-    frames: 1,
   },
   {
     id: 370,
@@ -4315,7 +3712,6 @@ var data = [
     description: 'cargo_ship_2',
     size: 2,
     image: '1370',
-    frames: 1,
   },
   {
     id: 371,
@@ -4323,7 +3719,6 @@ var data = [
     description: 'cargo_ship_3',
     size: 2,
     image: '1371',
-    frames: 1,
   },
   {
     id: 372,
@@ -4331,7 +3726,6 @@ var data = [
     description: 'cargo_ship_4',
     size: 2,
     image: '1372',
-    frames: 1,
   },
   {
     id: 373,
@@ -4339,7 +3733,6 @@ var data = [
     description: 'cargo_ship_5',
     size: 2,
     image: '1373',
-    frames: 1,
   },
   {
     id: 374,
@@ -4347,7 +3740,6 @@ var data = [
     description: 'train_1',
     size: 1,
     image: '1374',
-    frames: 1,
   },
   {
     id: 375,
@@ -4355,7 +3747,6 @@ var data = [
     description: 'train_2',
     size: 1,
     image: '1375',
-    frames: 1,
   },
   {
     id: 376,
@@ -4363,7 +3754,6 @@ var data = [
     description: 'train_3',
     size: 1,
     image: '1376',
-    frames: 1,
   },
   {
     id: 377,
@@ -4371,7 +3761,6 @@ var data = [
     description: 'train_4',
     size: 1,
     image: '1377',
-    frames: 1,
   },
   {
     id: 378,
@@ -4379,7 +3768,6 @@ var data = [
     description: 'train_5',
     size: 1,
     image: '1378',
-    frames: 1,
   },
   {
     id: 379,
@@ -4387,7 +3775,6 @@ var data = [
     description: 'nessie',
     size: 1,
     image: '1379',
-    frames: 1,
   },
   {
     id: 380,
@@ -4395,7 +3782,6 @@ var data = [
     description: 'sail_boat_1',
     size: 1,
     image: '1380',
-    frames: 1,
   },
   {
     id: 381,
@@ -4403,7 +3789,6 @@ var data = [
     description: 'sail_boat_2',
     size: 1,
     image: '1381',
-    frames: 1,
   },
   {
     id: 382,
@@ -4411,7 +3796,6 @@ var data = [
     description: 'police_sign',
     size: 1,
     image: '1382',
-    frames: 13,
   },
   {
     id: 383,
@@ -4419,7 +3803,6 @@ var data = [
     description: 'fire_dept_sign',
     size: 1,
     image: '1383',
-    frames: 13,
   },
   {
     id: 384,
@@ -4427,7 +3810,6 @@ var data = [
     description: 'military_sign',
     size: 1,
     image: '1384',
-    frames: 13,
   },
   {
     id: 385,
@@ -4435,7 +3817,6 @@ var data = [
     description: 'space_ray',
     size: 1,
     image: '1385',
-    frames: 24,
   },
   {
     id: 386,
@@ -4443,7 +3824,6 @@ var data = [
     description: 'power_outage_lightning',
     size: 1,
     image: '1386',
-    frames: 18,
   },
   {
     id: 387,
@@ -4451,7 +3831,6 @@ var data = [
     description: 'explosion_1',
     size: 2,
     image: '1387',
-    frames: 1,
   },
   {
     id: 388,
@@ -4459,7 +3838,6 @@ var data = [
     description: 'explosion_2',
     size: 2,
     image: '1388',
-    frames: 1,
   },
   {
     id: 389,
@@ -4467,7 +3845,6 @@ var data = [
     description: 'explosion_3',
     size: 2,
     image: '1389',
-    frames: 1,
   },
   {
     id: 390,
@@ -4475,7 +3852,6 @@ var data = [
     description: 'bulldozer_1',
     size: 1,
     image: '1390',
-    frames: 1,
   },
   {
     id: 391,
@@ -4483,7 +3859,6 @@ var data = [
     description: 'bulldozer_2',
     size: 1,
     image: '1391',
-    frames: 18,
   },
   {
     id: 392,
@@ -4491,7 +3866,6 @@ var data = [
     description: 'dust_cloud_1',
     size: 1,
     image: '1392',
-    frames: 1,
   },
   {
     id: 393,
@@ -4499,7 +3873,6 @@ var data = [
     description: 'dust_cloud_2',
     size: 1,
     image: '1393',
-    frames: 1,
   },
   {
     id: 394,
@@ -4507,7 +3880,6 @@ var data = [
     description: 'dust_cloud_3',
     size: 1,
     image: '1394',
-    frames: 1,
   },
   {
     id: 395,
@@ -4515,7 +3887,6 @@ var data = [
     description: 'dust_cloud_4',
     size: 1,
     image: '1395',
-    frames: 1,
   },
   {
     id: 396,
@@ -4523,7 +3894,6 @@ var data = [
     description: 'fire_1',
     size: 1,
     image: '1396',
-    frames: 24,
   },
   {
     id: 397,
@@ -4531,7 +3901,6 @@ var data = [
     description: 'fire_2',
     size: 1,
     image: '1397',
-    frames: 24,
   },
   {
     id: 398,
@@ -4539,7 +3908,6 @@ var data = [
     description: 'fire_3',
     size: 1,
     image: '1398',
-    frames: 24,
   },
   {
     id: 399,
@@ -4547,7 +3915,6 @@ var data = [
     description: 'fire_4',
     size: 1,
     image: '1399',
-    frames: 24,
   },
   {
     id: 400,
@@ -4557,7 +3924,6 @@ var data = [
     description: 'Light Traffic (straight)',
     size: 1,
     image: '1400',
-    frames: 24,
     rotate: [400, 401, 400, 401],
     importOptions: {
       dropColor: [161, 177]
@@ -4571,7 +3937,6 @@ var data = [
     description: 'Light Traffic (straight)',
     size: 1,
     image: '1401',
-    frames: 24,
     rotate: [401, 400, 401, 400],
     importOptions: {
       dropColor: [161, 177]
@@ -4585,7 +3950,6 @@ var data = [
     description: 'Light Traffic (sloped)',
     size: 1,
     image: '1402',
-    frames: 24,
     rotate: [402, 403, 404, 405],
     importOptions: {
       dropColor: [161, 177]
@@ -4599,7 +3963,6 @@ var data = [
     description: 'Light Traffic (sloped)',
     size: 1,
     image: '1403',
-    frames: 24,
     rotate: [403, 404, 405, 402],
     importOptions: {
       dropColor: [161, 177]
@@ -4613,7 +3976,6 @@ var data = [
     description: 'Light Traffic (sloped)',
     size: 1,
     image: '1404',
-    frames: 24,
     rotate: [404, 405, 402, 403],
     importOptions: {
       dropColor: [161, 177]
@@ -4627,7 +3989,6 @@ var data = [
     description: 'Light Traffic (sloped)',
     size: 1,
     image: '1405',
-    frames: 24,
     rotate: [405, 402, 403, 404],
     importOptions: {
       dropColor: [161, 177]
@@ -4641,7 +4002,6 @@ var data = [
     description: 'Light Traffic (curve)',
     size: 1,
     image: '1406',
-    frames: 24,
     rotate: [406, 407, 408, 409],
     importOptions: {
       dropColor: [161, 177]
@@ -4655,7 +4015,6 @@ var data = [
     description: 'Light Traffic (curve)',
     size: 1,
     image: '1407',
-    frames: 24,
     rotate: [407, 408, 409, 406],
     importOptions: {
       dropColor: [161, 177]
@@ -4669,7 +4028,6 @@ var data = [
     description: 'Light Traffic (curve)',
     size: 1,
     image: '1408',
-    frames: 24,
     rotate: [408, 409, 406, 407],
     importOptions: {
       dropColor: [161, 177]
@@ -4683,7 +4041,6 @@ var data = [
     description: 'Light Traffic (curve)',
     size: 1,
     image: '1409',
-    frames: 24,
     rotate: [409, 406, 407, 408],
     importOptions: {
       dropColor: [161, 177]
@@ -4699,7 +4056,6 @@ var data = [
     size: 1,
     rotate: [410, 411, 410, 411],
     image: '1410',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4714,7 +4070,6 @@ var data = [
     size: 1,
     rotate: [411, 410, 411, 410],
     image: '1411',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4727,7 +4082,6 @@ var data = [
     description: 'traffic_13',
     size: 1,
     image: '1412',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4740,7 +4094,6 @@ var data = [
     description: 'traffic_14',
     size: 1,
     image: '1413',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4756,7 +4109,6 @@ var data = [
     flip: true,
     flipMode: 'alternateTile',
     image: '1414',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4772,7 +4124,6 @@ var data = [
     flip: true,
     flipMode: 'alternateTile',
     image: '1415',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4788,7 +4139,6 @@ var data = [
     flip: true,
     flipMode: 'alternateTile',
     image: '1416',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4804,7 +4154,6 @@ var data = [
     flip: true,
     flipMode: 'alternateTile',
     image: '1417',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4817,7 +4166,6 @@ var data = [
     size: 2,
     rotate: [418, 419, 420, 421],
     image: '1418',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4830,7 +4178,6 @@ var data = [
     size: 2,
     rotate: [419, 420, 421, 418],
     image: '1419',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4843,7 +4190,6 @@ var data = [
     size: 2,
     rotate: [420, 421, 418, 419],
     image: '1420',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4856,7 +4202,6 @@ var data = [
     size: 2,
     rotate: [421, 418, 419, 420],
     image: '1421',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4870,7 +4215,6 @@ var data = [
     size: 2,
     rotate: [422, 423, 424, 425],
     image: '1422',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4884,7 +4228,6 @@ var data = [
     size: 2,
     rotate: [423, 424, 425, 422],
     image: '1423',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4898,7 +4241,6 @@ var data = [
     size: 2,
     rotate: [424, 425, 422, 423],
     image: '1424',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4912,7 +4254,6 @@ var data = [
     size: 2,
     rotate: [425, 422, 423, 424],
     image: '1425',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4924,7 +4265,6 @@ var data = [
     description: 'Light Traffic (Highway Cloverleaf)',
     size: 2,
     image: '1426',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -4938,7 +4278,6 @@ var data = [
     flip: true,
     size: 1,
     image: '1427',
-    frames: 24,
     rotate: [427, 428, 427, 428],
     importOptions: {
       dropColor: [161, 177]
@@ -4953,7 +4292,6 @@ var data = [
     flip: true,
     size: 1,
     image: '1428',
-    frames: 24,
     rotate: [428, 427, 428, 427],
     importOptions: {
       dropColor: [161, 177]
@@ -4967,7 +4305,6 @@ var data = [
     description: 'Heavy Traffic (sloped)',
     size: 1,
     image: '1429',
-    frames: 24,
     rotate: [429, 430, 431, 432],
     importOptions: {
       dropColor: [161, 177]
@@ -4981,7 +4318,6 @@ var data = [
     description: 'Heavy Traffic (sloped)',
     size: 1,
     image: '1430',
-    frames: 24,
     rotate: [430, 431, 432, 429],
     importOptions: {
       dropColor: [161, 177]
@@ -4995,7 +4331,6 @@ var data = [
     description: 'Heavy Traffic (sloped)',
     size: 1,
     image: '1431',
-    frames: 24,
     rotate: [431, 432, 429, 430],
     importOptions: {
       dropColor: [161, 177]
@@ -5009,7 +4344,6 @@ var data = [
     description: 'Heavy Traffic (sloped)',
     size: 1,
     image: '1432',
-    frames: 24,
     rotate: [432, 429, 430, 431],
     importOptions: {
       dropColor: [161, 177]
@@ -5023,7 +4357,6 @@ var data = [
     description: 'Heavy Traffic (curve)',
     size: 1,
     image: '1433',
-    frames: 24,
     rotate: [433, 434, 435, 436],
     importOptions: {
       dropColor: [161, 177]
@@ -5037,7 +4370,6 @@ var data = [
     description: 'Heavy Traffic (curve)',
     size: 1,
     image: '1434',
-    frames: 24,
     rotate: [434, 435, 436, 433],
     importOptions: {
       dropColor: [161, 177]
@@ -5051,7 +4383,6 @@ var data = [
     description: 'Heavy Traffic (curve)',
     size: 1,
     image: '1435',
-    frames: 24,
     rotate: [435, 436, 433, 434],
     importOptions: {
       dropColor: [161, 177]
@@ -5065,7 +4396,6 @@ var data = [
     description: 'Heavy Traffic (curve)',
     size: 1,
     image: '1436',
-    frames: 24,
     rotate: [436, 433, 434, 435],
     importOptions: {
       dropColor: [161, 177]
@@ -5079,7 +4409,6 @@ var data = [
     description: 'Heavy Traffic (Highway Straight)',
     size: 1,
     image: '1437',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5092,7 +4421,6 @@ var data = [
     description: 'Heavy Traffic (Highway Straight)',
     size: 1,
     image: '1438',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5105,7 +4433,6 @@ var data = [
     description: 'traffic_40',
     size: 1,
     image: '1439',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5118,7 +4445,6 @@ var data = [
     description: 'traffic_41',
     size: 1,
     image: '1440',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5132,7 +4458,6 @@ var data = [
     size: 2,
     rotate: [441, 442, 443, 444],
     image: '1441',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5146,7 +4471,6 @@ var data = [
     size: 2,
     rotate: [442, 443, 444, 441],
     image: '1442',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5160,7 +4484,6 @@ var data = [
     size: 2,
     rotate: [443, 444, 441, 442],
     image: '1443',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5174,7 +4497,6 @@ var data = [
     size: 2,
     rotate: [444, 441, 442, 443],
     image: '1444',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5188,7 +4510,6 @@ var data = [
     size: 2,
     rotate: [445, 446, 447, 448],
     image: '1445',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5202,7 +4523,6 @@ var data = [
     size: 2,
     rotate: [446, 447, 448, 445],
     image: '1446',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5216,7 +4536,6 @@ var data = [
     size: 2,
     rotate: [447, 448, 445, 446],
     image: '1447',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5230,7 +4549,6 @@ var data = [
     size: 2,
     rotate: [448, 445, 446, 447],
     image: '1448',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5242,7 +4560,6 @@ var data = [
     description: 'Heavy Traffic (Highway Cloverleaf)',
     size: 2,
     image: '1449',
-    frames: 24,
     importOptions: {
       dropColor: [161, 177]
     }
@@ -5253,7 +4570,6 @@ var data = [
     description: 'water_pipes_on_1',
     size: 1,
     image: '1450',
-    frames: 24,
   },
   {
     id: 451,
@@ -5261,7 +4577,6 @@ var data = [
     description: 'water_pipes_on_2',
     size: 1,
     image: '1451',
-    frames: 24,
   },
   {
     id: 452,
@@ -5269,7 +4584,6 @@ var data = [
     description: 'water_pipes_on_3',
     size: 1,
     image: '1452',
-    frames: 24,
   },
   {
     id: 453,
@@ -5277,7 +4591,6 @@ var data = [
     description: 'water_pipes_on_4',
     size: 1,
     image: '1453',
-    frames: 24,
   },
   {
     id: 454,
@@ -5285,7 +4598,6 @@ var data = [
     description: 'water_pipes_on_5',
     size: 1,
     image: '1454',
-    frames: 24,
   },
   {
     id: 455,
@@ -5293,7 +4605,6 @@ var data = [
     description: 'water_pipes_on_6',
     size: 1,
     image: '1455',
-    frames: 24,
   },
   {
     id: 456,
@@ -5301,7 +4612,6 @@ var data = [
     description: 'water_pipes_on_7',
     size: 1,
     image: '1456',
-    frames: 24,
   },
   {
     id: 457,
@@ -5309,7 +4619,6 @@ var data = [
     description: 'water_pipes_on_8',
     size: 1,
     image: '1457',
-    frames: 24,
   },
   {
     id: 458,
@@ -5317,7 +4626,6 @@ var data = [
     description: 'water_pipes_on_9',
     size: 1,
     image: '1458',
-    frames: 24,
   },
   {
     id: 459,
@@ -5325,7 +4633,6 @@ var data = [
     description: 'water_pipes_on_10',
     size: 1,
     image: '1459',
-    frames: 24,
   },
   {
     id: 460,
@@ -5333,7 +4640,6 @@ var data = [
     description: 'water_pipes_on_11',
     size: 1,
     image: '1460',
-    frames: 24,
   },
   {
     id: 461,
@@ -5341,7 +4647,6 @@ var data = [
     description: 'water_pipes_on_12',
     size: 1,
     image: '1461',
-    frames: 24,
   },
   {
     id: 462,
@@ -5349,7 +4654,6 @@ var data = [
     description: 'water_pipes_on_13',
     size: 1,
     image: '1462',
-    frames: 24,
   },
   {
     id: 463,
@@ -5357,7 +4661,6 @@ var data = [
     description: 'water_pipes_on_14',
     size: 1,
     image: '1463',
-    frames: 24,
   },
   {
     id: 464,
@@ -5365,7 +4668,6 @@ var data = [
     description: 'water_pipes_on_15',
     size: 1,
     image: '1464',
-    frames: 24,
   },
   {
     id: 465,
@@ -5374,7 +4676,6 @@ var data = [
     description: 'subway_water_pipe_on_1',
     size: 1,
     image: '1465',
-    frames: 24,
   },
   {
     id: 466,
@@ -5383,7 +4684,6 @@ var data = [
     description: 'subway_water_pipe_on_2',
     size: 1,
     image: '1466',
-    frames: 24,
   },
   {
     id: 467,
@@ -5391,7 +4691,6 @@ var data = [
     description: 'building_pipes_on',
     size: 1,
     image: '1467',
-    frames: 24,
   },
   {
     id: 468,
@@ -5399,7 +4698,6 @@ var data = [
     description: 'density_view_1',
     size: 1,
     image: '1468',
-    frames: 1,
   },
   {
     id: 469,
@@ -5407,7 +4705,6 @@ var data = [
     description: 'density_view_2',
     size: 1,
     image: '1469',
-    frames: 1,
   },
   {
     id: 470,
@@ -5415,7 +4712,6 @@ var data = [
     description: 'density_view_3',
     size: 1,
     image: '1470',
-    frames: 1,
   },
   {
     id: 471,
@@ -5423,7 +4719,6 @@ var data = [
     description: 'density_view_4',
     size: 1,
     image: '1471',
-    frames: 1,
   },
   {
     id: 472,
@@ -5431,7 +4726,6 @@ var data = [
     description: 'density_view_5',
     size: 1,
     image: '1472',
-    frames: 1,
   },
   {
     id: 473,
@@ -5439,7 +4733,6 @@ var data = [
     description: 'density_view_6',
     size: 1,
     image: '1473',
-    frames: 1,
   },
   {
     id: 474,
@@ -5447,7 +4740,6 @@ var data = [
     description: 'density_view_7',
     size: 1,
     image: '1474',
-    frames: 1,
   },
   {
     id: 475,
@@ -5455,7 +4747,6 @@ var data = [
     description: 'density_view_8',
     size: 1,
     image: '1475',
-    frames: 1,
   },
   {
     id: 476,
@@ -5463,7 +4754,6 @@ var data = [
     description: 'green_plus_tile',
     size: 1,
     image: '1476',
-    frames: 1,
   },
   {
     id: 477,
@@ -5471,7 +4761,6 @@ var data = [
     description: 'red_negative_tile',
     size: 1,
     image: '1477',
-    frames: 1,
   },
   {
     id: 478,
@@ -5479,7 +4768,6 @@ var data = [
     description: 'monster_parts_1',
     size: 2,
     image: '1478',
-    frames: 1,
   },
   {
     id: 479,
@@ -5487,7 +4775,6 @@ var data = [
     description: 'monster_parts_2',
     size: 2,
     image: '1479',
-    frames: 1,
   },
   {
     id: 480,
@@ -5495,7 +4782,6 @@ var data = [
     description: 'monster_parts_3',
     size: 2,
     image: '1480',
-    frames: 1,
   },
   {
     id: 481,
@@ -5503,7 +4789,6 @@ var data = [
     description: 'monster_parts_4',
     size: 2,
     image: '1481',
-    frames: 1,
   },
   {
     id: 482,
@@ -5511,7 +4796,6 @@ var data = [
     description: 'monster_parts_5',
     size: 2,
     image: '1482',
-    frames: 1,
   },
   {
     id: 483,
@@ -5519,7 +4803,6 @@ var data = [
     description: 'monster_parts_6',
     size: 2,
     image: '1483',
-    frames: 1,
   },
   {
     id: 484,
@@ -5527,7 +4810,6 @@ var data = [
     description: 'monster_parts_7',
     size: 2,
     image: '1484',
-    frames: 1,
   },
   {
     id: 485,
@@ -5535,7 +4817,6 @@ var data = [
     description: 'monster_parts_8',
     size: 2,
     image: '1485',
-    frames: 1,
   },
   {
     id: 486,
@@ -5543,7 +4824,6 @@ var data = [
     description: 'monster_parts_9',
     size: 2,
     image: '1486',
-    frames: 1,
   },
   {
     id: 487,
@@ -5551,7 +4831,6 @@ var data = [
     description: 'monster_parts_10',
     size: 2,
     image: '1487',
-    frames: 1,
   },
   {
     id: 488,
@@ -5559,7 +4838,6 @@ var data = [
     description: 'monster_parts_11',
     size: 2,
     image: '1488',
-    frames: 1,
   },
   {
     id: 489,
@@ -5567,7 +4845,6 @@ var data = [
     description: 'monster_parts_12',
     size: 2,
     image: '1489',
-    frames: 1,
   },
   {
     id: 490,
@@ -5575,7 +4852,6 @@ var data = [
     description: 'monster_parts_13',
     size: 2,
     image: '1490',
-    frames: 1,
   },
   {
     id: 491,
@@ -5583,7 +4859,6 @@ var data = [
     description: 'monster_parts_14',
     size: 2,
     image: '1491',
-    frames: 1,
   },
   {
     id: 492,
@@ -5591,7 +4866,6 @@ var data = [
     description: 'flood_waters',
     size: 1,
     image: '1492',
-    frames: 24,
   },
   {
     id: 493,
@@ -5599,7 +4873,6 @@ var data = [
     description: 'rioters_1',
     size: 1,
     image: '1493',
-    frames: 1,
   },
   {
     id: 494,
@@ -5607,7 +4880,6 @@ var data = [
     description: 'rioters_2',
     size: 1,
     image: '1494',
-    frames: 1,
   },
   {
     id: 495,
@@ -5615,7 +4887,6 @@ var data = [
     description: 'maxis_man',
     size: 1,
     image: '1495',
-    frames: 1,
   },
   {
     id: 496,
@@ -5623,40 +4894,27 @@ var data = [
     description: 'cloud',
     size: 2,
     image: '1496',
-    frames: 1,
   },
   {
     id: 497,
     type: 'actor',
     description: 'tornado_1',
     size: 2,
-    image: '1497',
-    frames: 24,
-    importOptions: {
-      skip: true
-    }
+    image: '1497'
   },
   {
     id: 498,
     type: 'actor',
     description: 'tornado_2',
     size: 2,
-    image: '1498',
-    frames: 24,
-    importOptions: {
-      skip: true
-    }
+    image: '1498'
   },
   {
     id: 499,
     type: 'actor',
     description: 'tornado_3',
     size: 2,
-    image: '1499',
-    frames: 24,
-    importOptions: {
-      skip: true
-    }
+    image: '1499'
   }
 ];
 

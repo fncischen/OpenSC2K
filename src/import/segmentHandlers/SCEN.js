@@ -1,26 +1,37 @@
-export default (data, struct) => {
-  let view = new DataView(data.buffer, data.byteOffset, data.byteLength);
+export default (data, map) => {
+  let scen = {};
 
-  let scen = {
-    start: view.getUint32(0x00),
-    disasterType: view.getUint16(0x04),
-    disasterPositionX: view.getUint8(0x06),
-    disasterPositionY: view.getUint8(0x07),
-    timeLimitMonths: view.getUint16(0x08),
-    citySizeGoal: view.getUint32(0x0A),
-    residentialGoal: view.getUint32(0x0D),
-    commercialGoal: view.getUint32(0x10),
-    industrialGoal: view.getUint32(0x14),
-    cashGoal: view.getUint32(0x18),
-    landValueGoal: view.getUint32(0x1C),
-    pollutionLimit: view.getUint32(0x20),
-    crimeLimit: view.getUint32(0x24),
-    trafficLimit: view.getUint32(0x28),
-    //buildItem1: view.getUint8(0x2C),
-    //buildItem2: view.getUint8(0x2D),
-    //item1Tiles: view.getUint16(0x2E),
-    //item2Tiles: view.getUint16(0x30),
+  scen.disaster = {
+    disasterType: new DataView(data.slice(4, 6).buffer).getUint16(0),
+    disasterX:    new DataView(data.slice(6, 7).buffer).getUint8(0),
+    disasterY:    new DataView(data.slice(7, 8).buffer).getUint8(0),
   };
 
-  struct.SCEN = scen;
+  scen.timeLimitMonths = new DataView(data.slice(8, 10).buffer).getUint16(0);
+
+  scen.populationGoals = {
+    city:        new DataView(data.slice(10, 14).buffer).getUint32(0),
+    residential: new DataView(data.slice(14, 18).buffer).getUint32(0),
+    commercial:  new DataView(data.slice(18, 22).buffer).getUint32(0),
+    industrial:  new DataView(data.slice(22, 26).buffer).getUint32(0),
+  };
+
+  scen.fundGoal        = new DataView(data.slice(26, 30).buffer).getUint32(0);
+  scen.landValueGoal   = new DataView(data.slice(30, 34).buffer).getUint32(0);
+  scen.educationGoal   = new DataView(data.slice(34, 38).buffer).getUint32(0);
+  scen.pollutionLimit  = new DataView(data.slice(38, 42).buffer).getUint32(0);
+  scen.crimeLimit      = new DataView(data.slice(42, 46).buffer).getUint32(0);
+  scen.trafficLimit    = new DataView(data.slice(46, 50).buffer).getUint32(0);
+
+  scen.buildItem1      = new DataView(data.slice(50, 51).buffer).getUint8(0);
+  scen.buildItem2      = new DataView(data.slice(51, 52).buffer).getUint8(0);
+
+  if (data.byteLength > 52) {
+    scen.item1Tiles      = new DataView(data.slice(52, 54).buffer).getUint16(0);
+    scen.item2Tiles      = new DataView(data.slice(54, 56).buffer).getUint16(0);
+  }
+
+  scen.raw = data;
+
+  map._segmentData.SCEN = scen;
 };

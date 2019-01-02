@@ -1,4 +1,4 @@
-class query {
+export default class query {
   constructor (options) {
     this.scene = options.scene;
     this.common = options.scene.common;
@@ -41,5 +41,3 @@ class query {
     console.log('onPointerOut', pointer);
   }
 }
-
-export default query;

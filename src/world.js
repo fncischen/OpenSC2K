@@ -3,33 +3,23 @@ import city from './city/city';
 import viewport from './world/viewport';
 import events from './world/events';
 import debug from './debug/debug';
-//import ui from './ui/';
 
-class world extends Phaser.Scene {
+export default class world extends Phaser.Scene {
   constructor () {
-    super({
-      key: 'world',
-      map: {
-        cameras3d: 'cameras3d',
-        //data: 'data',
-        impact: 'impact',
-        //input: 'input',
-        lights: 'lights',
-        //load: 'load',
-        matter: 'matter',
-        physics: 'physics',
-        //time: 'time',
-        tweens: 'tweens',
-      }
-    });
-    this.initialized = false;
+    super({ key: 'world' });
   }
+  
 
   preload () {
+    // create references to game world
     this.sys.game.world = this;
-    this.common = this.sys.game.common;
+    this.globals        = this.sys.game.globals;
+    this.globals.world  = this;
+
+    // initialize city
     this.city = new city({ scene: this });
   }
+  
 
   create () {
     this.viewport = new viewport({ scene: this });
@@ -39,31 +29,28 @@ class world extends Phaser.Scene {
 
     //this.ui = new ui({ scene: this });
     this.debug = new debug({ scene: this });
-
-    this.initialized = true;
   }
+  
 
   reload () {
     this.city.shutdown();
   }
+  
 
   update (time, delta) {
-    if (!this.initialized)
-      return;
-
     this.viewport.update(delta);
     this.city.update();
   }
+  
 
   resize () {
     this.viewport.resize();
   }
+  
 
   shutdown () {
-    this.initialized = false;
-
-    if (this.debug)
-      this.debug.shutdown();
+    //if (this.debug)
+    //  this.debug.shutdown();
 
     if (this.city)
       this.city.shutdown();
@@ -71,5 +58,3 @@ class world extends Phaser.Scene {
     this.scene.destroy();
   }
 }
-
-export default world;

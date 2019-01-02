@@ -2,9 +2,8 @@ import tile from './tile';
 
 export default class building extends tile {
   constructor (options) {
+    options.type = 'building';
     super(options);
-
-    this.type = 'building';
     this.depth = 1;
   }
 
@@ -20,15 +19,15 @@ export default class building extends tile {
       194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,
       212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,
       230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,
-      248,249,250,251,252,253,254,255].includes(this.tileId))
+      248,249,250,251,252,253,254,255].includes(this.id))
       return false;
 
     return true;
   }
 
-  getTile (tileId) {
-    let tile = super.getTile(tileId);
-    tileId = tile.id;
+  getTile (id) {
+    let tile = super.getTile(id);
+    id = tile.id;
 
     if (tile.flip && !this.flip(tile))
       this.flipTile = true;
@@ -65,11 +64,11 @@ export default class building extends tile {
 
     this.flipTile = false;
 
-    if (this.tileId == 224)
+    if (this.id == 224)
       this.cell.properties.pierCrane = true;
 
     // check tiles in each direction to determine pier orientation
-    if (this.tileId == 223) {
+    if (this.id == 223) {
       // north
       for (let x = 1; x < 5; x++) {
         cellX = this.cell.x + x;

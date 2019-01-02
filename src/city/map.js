@@ -1,7 +1,8 @@
-import cell from '../cell/cell';
 import Phaser from 'phaser';
+import cell from '../cell/cell';
+import * as layers from './layers/';
 
-class map {
+export default class map {
   constructor (options) {
     this.scene        = options.scene;
     this.width        = options.width;
@@ -10,31 +11,85 @@ class map {
     this.cellsList    = [];
     this.selectedCell = { x: 0, y: 0 };
     this.sprites      = { all: [] };
+    this.layers       = {};
   }
 
   load () {
-    for (let i = 0; i < this.scene.common.data.cells.length; i++) {
-      let mapCell = new cell({
+    for (let i = 0; i < this.scene.globals.data.cells.length; i++) {
+      let c = new cell({
         scene: this.scene,
-        data: this.scene.common.data.cells[i],
+        data: this.scene.globals.data.cells[i],
       });
 
-      if (!this.cells[mapCell.x]) this.cells[mapCell.x] = [];
-      if (!this.cells[mapCell.x][mapCell.y]) this.cells[mapCell.x][mapCell.y] = [];
+      if (!this.cells[c.x])      this.cells[c.x]      = [];
+      if (!this.cells[c.x][c.y]) this.cells[c.x][c.y] = [];
       
-      this.cells[mapCell.x][mapCell.y] = mapCell;
-      this.cellsList.push(mapCell);
+      this.cells[c.x][c.y] = c;
+      this.cellsList.push(c);
     }
 
-    this.calculateCellDepthSorting();
+    //this.calculateCellDepthSorting();
   }
 
   create () {
+    // create map cells
     for (let x = 0; x < this.width; x++) {
       for (let y = 0; y < this.height; y++) {
         this.cells[x][y].create();
       }
     }
+
+    // create layers
+    this.layers.terrain   = new layers.terrain({ scene: this.scene });
+    this.layers.water     = new layers.water({ scene: this.scene });
+    this.layers.edge      = new layers.edge({ scene: this.scene });
+    this.layers.heightmap = new layers.heightmap({ scene: this.scene });
+    this.layers.zone      = new layers.zone({ scene: this.scene });
+    this.layers.building  = new layers.building({ scene: this.scene });
+    this.layers.road      = new layers.road({ scene: this.scene });
+    this.layers.rail      = new layers.rail({ scene: this.scene });
+    this.layers.power     = new layers.power({ scene: this.scene });
+    this.layers.highway   = new layers.highway({ scene: this.scene });
+    this.layers.subway    = new layers.subway({ scene: this.scene });
+    this.layers.pipe      = new layers.pipe({ scene: this.scene });
+  }
+
+  rotateCW () {
+    let cells = this.cells;
+    let tempCells = [];
+
+    for (let x = 0; x < this.width; x++) {
+      for (let y = 0; y < this.height; y++) {
+        if (!tempCells[x])    tempCells[x]    = [];
+        if (!tempCells[x][y]) tempCells[x][y] = [];
+
+        let newX = y;
+        let newY = this.width - x - 1;
+
+        tempCells[newX][newY] = cells[x][y];
+      }
+    }
+
+    this.cells = tempCells;
+  }
+
+  rotateCCW () {
+    let cells = this.cells;
+    let tempCells = [];
+
+    for (let x = 0; x < this.width; x++) {
+      for (let y = 0; y < this.height; y++) {
+        if (!tempCells[x])    tempCells[x]    = [];
+        if (!tempCells[x][y]) tempCells[x][y] = [];
+
+        let newX = this.width - y - 1;
+        let newY = x;
+
+        tempCells[newX][newY] = cells[x][y];
+      }
+    }
+
+    this.cells = tempCells;
   }
 
   update () {
@@ -62,9 +117,6 @@ class map {
   }
 
   getCell (x, y) {
-    if (!this.cells[x]) throw 'Invalid cell reference x: '+x+', y: '+y;
-    if (!this.cells[x][y]) throw 'Invalid cell reference x: '+x+', y: '+y;
-
     return this.cells[x][y];
   }
 
@@ -79,7 +131,7 @@ class map {
   }
 
   checkCellVisibility () {
-    let worldBounds = this.scene.common.viewport.worldBounds.rect;
+    let worldBounds = this.scene.globals.viewport.worldBounds.rect;
 
     for (let x = 0; x < this.width; x++) {
       for (let y = 0; y < this.height; y++) {
@@ -98,13 +150,10 @@ class map {
 
     for (let x = 0; x < this.width; x++) {
       for (let y = 0; y < this.height; y++) {
-        let mapCell = this.getCell(x, y);
-        mapCell.setDepth((x + y) * depth);
-        mapCell.updatePosition();
+        let cell = this.getCell(x, y);
+        cell.depth((x + y) * depth);
+        cell.updatePosition();
       }
     }
   }
-
 }
-
-export default map;

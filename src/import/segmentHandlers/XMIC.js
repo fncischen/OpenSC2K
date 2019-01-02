@@ -1,7 +1,7 @@
-export default (data, struct) => {
+export default (data, map) => {
   let view = new DataView(data.buffer, data.byteOffset, data.byteLength);
-
-  struct.XMIC = [];
+  
+  map._segmentData.XMIC = [];
 
   for (let i = 0; i < data.byteLength; i++) {
     let offset = i * 8;
@@ -18,6 +18,6 @@ export default (data, struct) => {
     xmic.data3 = xmic.building == 0 ? 0 : view.getUint16(offset + 4);
     xmic.data4 = xmic.building == 0 ? 0 : view.getUint16(offset + 6);
 
-    struct.XMIC.push(xmic);
+    map._segmentData.XMIC.push(xmic);
   }
 };

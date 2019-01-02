@@ -1,7 +1,7 @@
-export default (data, struct) => {
+export default (data, map) => {
   let view = new DataView(data.buffer, data.byteOffset, data.byteLength);
 
-  struct.XTHG = [];
+  map._segmentData.XTHG = [];
 
   for (let i = 0; i < data.byteLength; i++) {
     let offset = i * 12;
@@ -13,7 +13,7 @@ export default (data, struct) => {
 
     xthg.id = view.getUint8(offset + 0);
     xthg.type = types[xthg.id];
-    xthg.actor = map[xthg.id];
+    xthg.actor = actors[xthg.id];
 
     xthg.direction = xthg.type == 'actor' ? direction[view.getUint8(offset + 1)] : view.getUint8(offset + 1);
 
@@ -29,7 +29,7 @@ export default (data, struct) => {
     xthg.dataB = view.getUint8(offset + 10);
     xthg.dataC = view.getUint8(offset + 11);
 
-    struct.XTHG.push(xthg);
+    map._segmentData.XTHG.push(xthg);
   }
 };
 
@@ -65,7 +65,7 @@ let types = {
   0x10: 'actor',
 };
 
-let map = {
+let actors = {
   0x00: null,
   0x01: 'Airplane',
   0x02: 'Helicopter',

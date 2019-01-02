@@ -16,7 +16,8 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     contentBase: path.join(__dirname, './'),
-    port: 3000
+    port: 3000,
+    disableHostCheck: true
   },
   optimization: {
     runtimeChunk: false,
@@ -37,7 +38,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    }),
+    })
   ],
   resolve: {
     alias: {

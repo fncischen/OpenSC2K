@@ -1,4 +1,4 @@
-class center {
+export default class center {
   constructor (options) {
     this.scene = options.scene;
     this.common = options.scene.common;
@@ -41,5 +41,3 @@ class center {
     console.log('onPointerOut', pointer);
   }
 }
-
-export default center;

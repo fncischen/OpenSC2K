@@ -1,7 +1,10 @@
 import ALTM from './ALTM';
 import CNAM from './CNAM';
 import MISC from './MISC';
+import PICT from './PICT';
 import SCEN from './SCEN';
+import TEXT from './TEXT';
+import TMPL from './TMPL';
 import XBIT from './XBIT';
 import XBLD from './XBLD';
 import XCRM from './XCRM';
@@ -21,4 +24,4 @@ import XUND from './XUND';
 import XVAL from './XVAL';
 import XZON from './XZON';
 
-export { ALTM, CNAM, MISC, SCEN, XBIT, XBLD, XCRM, XFIR, XGRP, XLAB, XMIC, XPLC, XPLT, XPOP, XROG, XTER, XTHG, XTRF, XTXT, XUND, XVAL, XZON };
+export { ALTM, CNAM, MISC, PICT, SCEN, TEXT, TMPL, XBIT, XBLD, XCRM, XFIR, XGRP, XLAB, XMIC, XPLC, XPLT, XPOP, XROG, XTER, XTHG, XTRF, XTXT, XUND, XVAL, XZON };

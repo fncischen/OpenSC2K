@@ -1,6 +1,6 @@
 import * as tool from './tools/';
 
-class tools {
+export default class tools {
   constructor (options) {
     this.scene = options.scene;
     this.common = options.scene.common;
@@ -31,5 +31,3 @@ class tools {
   //   return null;
   // }
 }
-
-export default tools;

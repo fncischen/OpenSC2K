@@ -1,15 +1,20 @@
-export default (data, struct) => {
-  // labels (1 byte len + 24 byte string)
-  let view = new Uint8Array(data);
-  let labels = [];
+import { bytesToAscii } from './common';
+
+export default (data, map) => {
+  let xlab = [];
 
   for (let i = 0; i < 256; i++) {
-    let labelPos = i * 25;
-    let labelLength = Math.max(0, Math.min(view[labelPos], 24));
-    let labelData = view.subarray(labelPos + 1, labelPos + 1 + labelLength);
+    let offset = i * 25;
+    let length = data[offset];
+    let text = data.subarray(offset + 1, offset + 1 + length);
 
-    labels[i] = Array.prototype.map.call(labelData, x => String.fromCharCode(x)).join('');
+    xlab[i] = {
+      text: bytesToAscii(text),
+      offset: offset,
+      length: length,
+      raw: text,
+    };
   }
 
-  struct.XLAB = labels;
+  map._segmentData.XLAB = xlab;
 };

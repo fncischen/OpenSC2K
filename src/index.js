@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import load from './load';
 import world from './world';
+import globals from './globals';
 import './styles/global.css';
 
 var config = {
@@ -24,3 +25,5 @@ var config = {
 };
 
 window.game = new Phaser.Game(config);
+
+window.game.globals = globals;

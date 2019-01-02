@@ -1,6 +1,6 @@
 import tools from './tools';
 
-class events {
+export default class events {
   constructor(options) {
     this.scene = options.scene;
     this.register();
@@ -12,10 +12,10 @@ class events {
     };
 
     this.scene.input.on('pointerover', this.onPointerOver);
-    this.scene.input.on('pointerout', this.onPointerOut);
+    this.scene.input.on('pointerout',  this.onPointerOut);
     this.scene.input.on('pointermove', this.onPointerMove);
     this.scene.input.on('pointerdown', this.onPointerDown);
-    this.scene.input.on('pointerup', this.onPointerUp);
+    this.scene.input.on('pointerup',   this.onPointerUp);
   }
 
   onPointerUp (pointer) {
@@ -43,5 +43,3 @@ class events {
     this.scene.sys.game.world.resize();
   }
 }
-
-export default events;

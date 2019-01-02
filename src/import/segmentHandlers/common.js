@@ -16,4 +16,20 @@ function resize(data, sourceSize, destSize) {
   return resizedData;
 }
 
-export { resize };
+
+//
+// converts byte array to an ascii string
+//
+function bytesToAscii(bytes) {
+  return Array.prototype.map.call(bytes, x => String.fromCharCode(x)).join('');
+}
+
+
+//
+// converts numeric values to a base2 string of specified length
+//
+function bin2str(bin, length) {
+  return bin.toString(2).padStart(length, '0');
+}
+
+export { resize, bytesToAscii, bin2str };

@@ -1,3 +1,3 @@
-export default (data, struct) => {
-
+export default (data, map) => {
+  return;
 }

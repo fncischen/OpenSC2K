@@ -1,38 +1,20 @@
 import * as tile from './tiles/';
 
-class tiles {
+export default class tiles {
   constructor (options) {
     this.cell = options.cell;
+    this.list = options.list;
+    this.tiles = [];
+    this.sprites = [];
 
-    // loop through available tile types and initialize
-    Object.keys(tile).forEach(data => {
-      this[data] = null;
+    if (this.cell.x > this.cell.max || this.cell.y > this.cell.max)
+      return;
 
-      if (this.cell.data.tiles[data])
-        this.set(data, this.cell.data.tiles[data]);
-    });
-  }
-
-  list () {
-    let list = [];
-
-    Object.keys(tile).forEach(type => {
-      if (this[type])
-        list.push(this[type]);
-    });
-
-    return list;
-  }
-
-  get sprites () {
-    let sprites = [];
-
-    Object.keys(tile).forEach(type => {
-      if (this[type] && this[type].sprite)
-        sprites.push(this[type].sprite);
-    });
-
-    return sprites;
+    // initialize tiles
+    for (let i = 0; i < this.list.length; i++) {
+      this[this.list[i].type] = null;
+      this.set(this.list[i].type, this.list[i].id);
+    }
   }
 
   getId (type) {
@@ -48,9 +30,40 @@ class tiles {
 
     if (this[type])
       if (id)
-        return this[type].tileId;
+        return this[type].id;
       else
         return this[type];
+  }
+
+  addSprite (sprite, type) {
+    this.sprites.push(sprite);
+    this.cell.scene.city.map.addSprite(sprite, type);
+  }
+
+  topSprite () {
+    this.sprites.sort((a, b) => {
+      return a._depth - b._depth;
+    });
+
+    return this.sprites[this.sprites.length - 1];
+  }
+
+  addTile (tile) {
+    this.tiles.push(tile);
+  }
+
+  topTile () {
+    this.tiles.sort((a, b) => {
+      if (a.sprite && !a.sprite.visible)
+        return -1;
+
+      if (b.sprite && !b.sprite.visible)
+        return 1;
+
+      return a.depth - b.depth;
+    });
+
+    return this.tiles[this.tiles.length - 1];
   }
 
   has (type) {
@@ -60,19 +73,16 @@ class tiles {
     return false;
   }
 
-  set (type, tileId) {
+  set (type, id) {
     this[type] = new tile[type]({
       cell: this.cell,
-      tileId: tileId
+      id: id
     });
   }
 
   create () {
-    Object.keys(tile).forEach(data => {
-      if (this[data])
-        this[data].create();
-    });
+    for (let i = 0; i < this.list.length; i++)
+      if (this[this.list[i].type])
+        this[this.list[i].type].create();
   }
 }
-
-export default tiles;

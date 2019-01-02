@@ -2,9 +2,8 @@ import tile from './tile';
 
 export default class zone extends tile {
   constructor (options) {
+    options.type = 'zone';
     super(options);
-
-    this.type = 'zone';
     this.depth = -10;
   }
 

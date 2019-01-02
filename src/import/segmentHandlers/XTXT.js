@@ -1,22 +1,22 @@
-export default (data, struct) => {
+export default (data, map) => {
   let view = new Uint8Array(data);
 
   view.forEach((bits, i) => {
     let xtxt = {};
 
     xtxt.data = bits;
-    xtxt.type = map[bits].type;
-    xtxt.label = map[bits].label;
+    xtxt.type = types[bits].type;
+    xtxt.label = types[bits].label;
 
     if (xtxt.type == 'sign') {
-      xtxt.sign = struct.XLAB[bits];
+      xtxt.sign = map._segmentData.XLAB[bits];
     }
 
     if (xtxt.type == 'microsim') {
       xtxt.microsimId = bits - 51;
-      xtxt.microsimLabel = struct.XLAB[bits];
+      xtxt.microsimLabel = map._segmentData.XLAB[bits];
 
-      let xmic = struct.XMIC[xtxt.microsimId];
+      let xmic = map._segmentData.XMIC[xtxt.microsimId];
 
       if (xmic !== undefined) {
         xtxt.microsimBuilding = xmic.building;
@@ -31,11 +31,11 @@ export default (data, struct) => {
       xtxt.disaster = true;
     }
 
-    struct.tiles[i].XTXT = xtxt;
+    map.cells[i]._segmentData.XTXT = xtxt;
   });
 };
 
-let map = {
+let types = {
   0x00: { type: null, label: null, reference: null },
   0x01: { type: 'sign', label: 'Sign 0', reference: 'XLAB' },
   0x02: { type: 'sign', label: 'Sign 1', reference: 'XLAB' },

@@ -1,14 +1,12 @@
 import Phaser from 'phaser';
 
-class viewport {
+export default class viewport {
   constructor(options) {
-    this.scene = options.scene;
-    this.common = this.scene.sys.game.common;
+    this.scene        = options.scene;
+    this.camera       = this.scene.cameras.main;
+    this.camera.name  = 'viewport';
 
-    this.camera = this.scene.cameras.main;
-    this.camera.name = 'worldCamera';
-
-    this.camera.setBackgroundColor(new Phaser.Display.Color(55, 23, 0, 1));
+    //this.camera.setBackgroundColor(new Phaser.Display.Color(55, 23, 0, 1));
 
     this.worldPoint = {
       x: 0,
@@ -39,16 +37,16 @@ class viewport {
 
     this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
 
-    this.camera.scrollX = -211;
-    this.camera.scrollY = 2794;
-    this.camera.zoom = 1;
+    this.camera.scrollX = -499;
+    this.camera.scrollY = 653;
+    this.camera.zoom = 1.5;
   }
 
   onPointerMove (pointer) {
-    let point = this.camera.getWorldPoint(pointer.x, pointer.y);
+    let { x, y } = this.camera.getWorldPoint(pointer.x, pointer.y);
 
-    this.worldPoint.x = point.x;
-    this.worldPoint.y = point.y;
+    this.worldPoint.x = x;
+    this.worldPoint.y = y;
   }
 
   update (delta) {
@@ -56,8 +54,6 @@ class viewport {
   }
 
   resize () {
-    this.camera.setViewport(0, 0, document.documentElement.clientWidth, document.documentElement.clientHeight);
+    //this.camera.setViewport(0, 0, document.documentElement.clientWidth, document.documentElement.clientHeight);
   }
 }
-
-export default viewport;

@@ -1,109 +1,100 @@
-export default (data, struct) => {
-  let view = new Uint8Array(data);
+import { bin2str } from './common';
 
-  view.forEach((bits, i) => {
+export default (data, map) => {
+  data.forEach((bits, i) => {
     let xter = {};
 
-    xter.terrain = xterMap[bits].tile;
-    xter.waterLevel = xterMap[bits].waterLevel;
+    xter.terrain = xterMap[bits].terrain;
+    xter.water   = xterMap[bits].water;
+    xter.type    = xterMap[bits].type;
 
-    if (xter.waterLevel == 'dry')
-      xter.water = null;
-    else
-      xter.water = xter.terrain;
+    // raw binary values as strings for research/debug
+    xter.binaryText = {
+      bits: bin2str(bits, 8)
+    };
 
-    struct.tiles[i].XTER = xter;
+    map.cells[i]._segmentData.XTER = xter;
   });
 };
 
+
+// terrain tile id is set in all cases
+// so we know what type of terrain tile to
+// display when water is hidden or heightmap
+// is displayed
 let xterMap = {
   // land
-  0x00: { tile: 256, waterLevel: 'dry' }, // 0
-  0x01: { tile: 257, waterLevel: 'dry' },
-  0x02: { tile: 258, waterLevel: 'dry' },
-  0x03: { tile: 259, waterLevel: 'dry' },
-  0x04: { tile: 260, waterLevel: 'dry' },
-  0x05: { tile: 261, waterLevel: 'dry' },
-  0x06: { tile: 262, waterLevel: 'dry' },
-  0x07: { tile: 263, waterLevel: 'dry' },
-  0x08: { tile: 264, waterLevel: 'dry' },
-  0x09: { tile: 265, waterLevel: 'dry' },
-  0x0A: { tile: 266, waterLevel: 'dry' },
-  0x0B: { tile: 267, waterLevel: 'dry' },
-  0x0C: { tile: 268, waterLevel: 'dry' },
-  0x0D: { tile: 269, waterLevel: 'dry' }, // 13
-
-  // not used
-  0x0E: { tile: null, waterLevel: null },
-  0x0F: { tile: null, waterLevel: null },
+  0x00: { terrain: 256, water: null, type: 'dry' },
+  0x01: { terrain: 257, water: null, type: 'dry' },
+  0x02: { terrain: 258, water: null, type: 'dry' },
+  0x03: { terrain: 259, water: null, type: 'dry' },
+  0x04: { terrain: 260, water: null, type: 'dry' },
+  0x05: { terrain: 261, water: null, type: 'dry' },
+  0x06: { terrain: 262, water: null, type: 'dry' },
+  0x07: { terrain: 263, water: null, type: 'dry' },
+  0x08: { terrain: 264, water: null, type: 'dry' },
+  0x09: { terrain: 265, water: null, type: 'dry' },
+  0x0A: { terrain: 266, water: null, type: 'dry' },
+  0x0B: { terrain: 267, water: null, type: 'dry' },
+  0x0C: { terrain: 268, water: null, type: 'dry' },
+  0x0D: { terrain: 269, water: null, type: 'dry' },
 
   // underwater
-  0x10: { tile: 270, waterLevel: 'submerged' }, // 16
-  0x11: { tile: 270, waterLevel: 'submerged' },
-  0x12: { tile: 270, waterLevel: 'submerged' },
-  0x13: { tile: 270, waterLevel: 'submerged' },
-  0x14: { tile: 270, waterLevel: 'submerged' },
-  0x15: { tile: 270, waterLevel: 'submerged' },
-  0x16: { tile: 270, waterLevel: 'submerged' },
-  0x17: { tile: 270, waterLevel: 'submerged' },
-  0x18: { tile: 270, waterLevel: 'submerged' },
-  0x19: { tile: 270, waterLevel: 'submerged' },
-  0x1A: { tile: 270, waterLevel: 'submerged' },
-  0x1B: { tile: 270, waterLevel: 'submerged' },
-  0x1C: { tile: 270, waterLevel: 'submerged' },
-  0x1D: { tile: 270, waterLevel: 'submerged' }, // 29
-
-  // not used
-  0x1E: { tile: null, waterLevel: null },
-  0x1F: { tile: null, waterLevel: null },
+  0x10: { terrain: 256, water: 270, type: 'submerged' },
+  0x11: { terrain: 257, water: 270, type: 'submerged' },
+  0x12: { terrain: 258, water: 270, type: 'submerged' },
+  0x13: { terrain: 259, water: 270, type: 'submerged' },
+  0x14: { terrain: 260, water: 270, type: 'submerged' },
+  0x15: { terrain: 261, water: 270, type: 'submerged' },
+  0x16: { terrain: 262, water: 270, type: 'submerged' },
+  0x17: { terrain: 263, water: 270, type: 'submerged' },
+  0x18: { terrain: 264, water: 270, type: 'submerged' },
+  0x19: { terrain: 265, water: 270, type: 'submerged' },
+  0x1A: { terrain: 266, water: 270, type: 'submerged' },
+  0x1B: { terrain: 267, water: 270, type: 'submerged' },
+  0x1C: { terrain: 268, water: 270, type: 'submerged' },
+  0x1D: { terrain: 269, water: 270, type: 'submerged' },
 
   // shoreline
-  0x20: { tile: 270, waterLevel: 'shore' }, // 32
-  0x21: { tile: 271, waterLevel: 'shore' },
-  0x22: { tile: 272, waterLevel: 'shore' },
-  0x23: { tile: 273, waterLevel: 'shore' },
-  0x24: { tile: 274, waterLevel: 'shore' },
-  0x25: { tile: 275, waterLevel: 'shore' },
-  0x26: { tile: 276, waterLevel: 'shore' },
-  0x27: { tile: 277, waterLevel: 'shore' },
-  0x28: { tile: 278, waterLevel: 'shore' },
-  0x29: { tile: 279, waterLevel: 'shore' },
-  0x2A: { tile: 280, waterLevel: 'shore' },
-  0x2B: { tile: 281, waterLevel: 'shore' },
-  0x2C: { tile: 282, waterLevel: 'shore' },
-  0x2D: { tile: 283, waterLevel: 'shore' }, // 45
-
-  // not used
-  0x2E: { tile: null, waterLevel: null },
-  0x2F: { tile: null, waterLevel: null },
+  0x20: { terrain: 256, water: 270, type: 'shore' },
+  0x21: { terrain: 257, water: 271, type: 'shore' },
+  0x22: { terrain: 258, water: 272, type: 'shore' },
+  0x23: { terrain: 259, water: 273, type: 'shore' },
+  0x24: { terrain: 260, water: 274, type: 'shore' },
+  0x25: { terrain: 261, water: 275, type: 'shore' },
+  0x26: { terrain: 262, water: 276, type: 'shore' },
+  0x27: { terrain: 263, water: 277, type: 'shore' },
+  0x28: { terrain: 264, water: 278, type: 'shore' },
+  0x29: { terrain: 265, water: 279, type: 'shore' },
+  0x2A: { terrain: 266, water: 280, type: 'shore' },
+  0x2B: { terrain: 267, water: 281, type: 'shore' },
+  0x2C: { terrain: 268, water: 282, type: 'shore' },
+  0x2D: { terrain: 269, water: 283, type: 'shore' },
 
   // surface water
-  0x30: { tile: 270, waterLevel: 'surface' }, // 48
-  0x31: { tile: 271, waterLevel: 'surface' },
-  0x32: { tile: 272, waterLevel: 'surface' },
-  0x33: { tile: 273, waterLevel: 'surface' },
-  0x34: { tile: 274, waterLevel: 'surface' },
-  0x35: { tile: 275, waterLevel: 'surface' },
-  0x36: { tile: 276, waterLevel: 'surface' },
-  0x37: { tile: 277, waterLevel: 'surface' },
-  0x38: { tile: 278, waterLevel: 'surface' },
-  0x39: { tile: 279, waterLevel: 'surface' },
-  0x3A: { tile: 280, waterLevel: 'surface' },
-  0x3B: { tile: 281, waterLevel: 'surface' },
-  0x3C: { tile: 282, waterLevel: 'surface' },
-  0x3D: { tile: 283, waterLevel: 'surface' }, // 61
+  0x30: { terrain: 256, water: 270, type: 'surface' },
+  0x31: { terrain: 257, water: 271, type: 'surface' },
+  0x32: { terrain: 258, water: 272, type: 'surface' },
+  0x33: { terrain: 259, water: 273, type: 'surface' },
+  0x34: { terrain: 260, water: 274, type: 'surface' },
+  0x35: { terrain: 261, water: 275, type: 'surface' },
+  0x36: { terrain: 262, water: 276, type: 'surface' },
+  0x37: { terrain: 263, water: 277, type: 'surface' },
+  0x38: { terrain: 264, water: 278, type: 'surface' },
+  0x39: { terrain: 265, water: 279, type: 'surface' },
+  0x3A: { terrain: 266, water: 280, type: 'surface' },
+  0x3B: { terrain: 267, water: 281, type: 'surface' },
+  0x3C: { terrain: 268, water: 282, type: 'surface' },
+  0x3D: { terrain: 269, water: 283, type: 'surface' },
 
   // waterfall
-  0x3E: { tile: 284, waterLevel: 'waterfall' }, // 62
-
-  // not used
-  0x3F: { tile: null, waterLevel: null },
+  0x3E: { terrain: 269, water: 284, type: 'waterfall' },
 
   // streams
-  0x40: { tile: 285, waterLevel: 'surface' }, // 64
-  0x41: { tile: 286, waterLevel: 'surface' },
-  0x42: { tile: 287, waterLevel: 'surface' },
-  0x43: { tile: 288, waterLevel: 'surface' },
-  0x44: { tile: 289, waterLevel: 'surface' },
-  0x45: { tile: 290, waterLevel: 'surface' }, // 69
+  0x40: { terrain: 256, water: 285, type: 'surface' },
+  0x41: { terrain: 256, water: 286, type: 'surface' },
+  0x42: { terrain: 256, water: 287, type: 'surface' },
+  0x43: { terrain: 256, water: 288, type: 'surface' },
+  0x44: { terrain: 256, water: 289, type: 'surface' },
+  0x45: { terrain: 256, water: 290, type: 'surface' },
 };
