@@ -5,7 +5,6 @@ export default class edge extends tile {
     options.type = 'edge';
     super(options);
     this.depth = -64;
-    this.submergedOffset = 0;
   }
 
   checkTile () {
@@ -15,82 +14,76 @@ export default class edge extends tile {
     if (this.cell.x != 127 && this.cell.y != 127)
       return false;
 
-    if (!this.cell.edge)
-      return false;
-
     return true;
   }
 
-  // calculatePosition () {
-  //   if ((this.cell.water.type == 'submerged' || this.cell.water.type == 'shore') && this.cell.z < this.cell.scene.city.waterLevel)
-  //     this.submergedOffset = ((this.cell.scene.city.waterLevel - this.cell.z) * this.cell.scene.globals.layerOffset);
+  hide (type) {
+    if (this.sprite.length > 0) {
+      this.sprite.forEach((sprite) => {
+        if (!sprite.visible || (type && sprite.subtype != type)) return;
 
-  //   if (this.id == 256)
-  //     this.offset = 24;
+        sprite.setVisible(false);
+      });
+    }
+  }
 
-  //   if (this.id == 260 || this.id == 266 || this.id == 268)
-  //     this.offset = 16;
+  show (type) {
+    if (this.sprite.length > 0) {
+      this.sprite.forEach((sprite) => {
+        if (sprite.visible || (type && sprite.subtype != type)) return;
 
-  //   this.x = this.cell.position.topLeft.x - (this.tile.width / 2) << 0;
-  //   this.y = this.cell.position.topLeft.y - (this.tile.height) - this.offset << 0;
-  // }
+        sprite.setVisible(true);
+      });
+    }
+  }
+
+  calculatePosition () {
+    this.x = this.cell.position.topLeft.x;
+    this.y = this.cell.position.topLeft.y;
+
+    if ((this.cell.water.type == 'submerged' || this.cell.water.type == 'shore') && this.cell.z < this.cell.scene.city.waterLevel)
+      this.y -= this.cell.position.offsets.seaLevel;
+  }
 
   create () {
-    if (!this.cell.edge)
-      return;
-
     this.calculatePosition();
 
     let sprites = [];
+    let waterDepth = this.cell.scene.city.waterLevel - this.cell.z;
 
-    // submerged tiles
-    let tile = this.getTile(284);
-
+    // water
     if (this.cell.water.type != 'dry') {
-      let waterDepth = this.cell.scene.city.waterLevel - this.cell.z;
-
-      for (let i = waterDepth; i > 0; i--) {
-        let sprite = null;
-        let offset = (this.cell.scene.globals.layerOffset * i) - this.submergedOffset;
-
-        if (tile.frames > 1)
-          sprite = this.cell.scene.add.sprite(this.x, this.y + offset, this.cell.scene.globals.tilemap).play(tile.image);
-        else
-          sprite = this.cell.scene.add.sprite(this.x, this.y + offset, this.cell.scene.globals.tilemap, tile.textures[0]);
-
+      for (let i = 0; i < waterDepth; i++) {
+        let offset = Math.abs((this.cell.scene.globals.layerOffset * i) - this.cell.position.offsets.seaLevel);
+        let sprite = this.cell.scene.add.sprite(this.x, this.y + offset, this.cell.scene.globals.tilemap).play(this.getTile(284).image);
         sprite.type = this.type;
+        sprite.subtype = 'water';
         sprite.cell = this.cell;
         sprite.setScale(this.cell.scene.globals.scale);
         sprite.setOrigin(this.cell.scene.globals.originX, this.cell.scene.globals.originY);
-        sprite.setDepth(this.cell.depth + this.depth - (i * 2) + 32);
+        sprite.setDepth(this.cell.depth + this.depth + (i * 2) + 32);
 
-        this.cell.addSprite(sprite, this.type);
-
+        this.cell.tiles.addSprite(sprite, this.type);
         sprites.push(sprite);
       }
     }
 
-
     // bedrock
-    tile = this.getTile(269);
+    for (let i = 0; i < this.cell.z; i++) {
+      let offset = this.cell.scene.globals.layerOffset * (i + 1);
 
-    for (let i = this.cell.z; i > 0; i--) {
-      let sprite = null;
-      let offset = this.cell.scene.globals.layerOffset * i;
+      if (this.cell.water.type != 'dry')
+        offset = this.cell.scene.globals.layerOffset * (i + waterDepth + 1);
 
-      if (tile.frames > 1)
-        sprite = this.cell.scene.add.sprite(this.x, this.y + offset, this.cell.scene.globals.tilemap).play(tile.image);
-      else
-        sprite = this.cell.scene.add.sprite(this.x, this.y + offset, this.cell.scene.globals.tilemap, tile.textures[0]);
-
+      let sprite = this.cell.scene.add.sprite(this.x, this.y + offset, this.cell.scene.globals.tilemap, this.getTile(269).textures[0]);
       sprite.type = this.type;
+      sprite.subtype = 'bedrock';
       sprite.cell = this.cell;
       sprite.setScale(this.cell.scene.globals.scale);
       sprite.setOrigin(this.cell.scene.globals.originX, this.cell.scene.globals.originY);
-      sprite.setDepth(this.cell.depth + this.depth - (i * 2));
+      sprite.setDepth(this.cell.depth + this.depth + (this.cell.z - i * 2));
 
-      this.cell.addSprite(sprite, this.type);
-
+      this.cell.tiles.addSprite(sprite, this.type);
       sprites.push(sprite);
     }
 

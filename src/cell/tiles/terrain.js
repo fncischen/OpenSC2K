@@ -9,11 +9,9 @@ export default class terrain extends tile {
 
 
   checkTile () {
-    if (!super.checkTile())
-      return false;
+    if (!super.checkTile()) return false;
 
-    if (![256,257,258,259,260,261,262,263,264,265,266,267,268,269].includes(this.id))
-      return false;
+    if (![256,257,258,259,260,261,262,263,264,265,266,267,268,269].includes(this.id)) return false;
 
     return true;
   }
@@ -34,7 +32,7 @@ export default class terrain extends tile {
 
     super.create();
 
-    // if (this.cell.water.type != 'dry')
-    //   this.sprite.setVisible(false);
+    if (this.cell.water.type != 'dry')
+      this.sprite.setVisible(false);
   }
 }

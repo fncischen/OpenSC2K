@@ -19,24 +19,31 @@ export default class layer {
     this.events.on('mapLayerShow', this.onShow, this);
   }
 
-  hide () {
+  toggle () {
+    if (this.visible)
+      this.hide();
+    else
+      this.show();
+  }
+
+  hide (emitEvents = true) {
     this.visible = false;
 
     this.list.forEach((tile) => {
       tile.hide();
     });
 
-    this.events.emit('mapLayerHide', this.type);
+    if (emitEvents) this.events.emit('mapLayerHide', this.type);
   }
 
-  show () {
+  show (emitEvents = true) {
     this.visible = true;
 
     this.list.forEach((tile) => {
       tile.show();
     });
 
-    this.events.emit('mapLayerShow', this.type);
+    if (emitEvents) this.events.emit('mapLayerShow', this.type);
   }
 
   refresh () {

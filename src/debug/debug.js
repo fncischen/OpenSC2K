@@ -32,8 +32,8 @@ export default class debug {
     //g3.add(this.scene.city.load, 'open', 'Open City');
     //g3.add(this.city.save, 'saveCity', 'Save City');
     g3.add(this.toggleLayer, 'terrain', 'Toggle Terrain');
-    g3.add(this.toggleLayer, 'heightmap', 'Toggle Height Map');
     g3.add(this.toggleLayer, 'water', 'Toggle Water');
+    g3.add(this.toggleLayer, 'heightmap', 'Toggle Height Map');
     //g3.add(this.toggleLayer, 'road', 'Toggle Road');
     //g3.add(this.toggleLayer, 'power', 'Toggle Power');
     //g3.add(this.toggleLayer, 'building', 'Toggle Building');
@@ -42,43 +42,43 @@ export default class debug {
     //g3.add(this.toggleLayer, 'highway', 'Toggle Highway');
     //g3.add(this.toggleLayer, 'subway', 'Toggle Subway');
     //g3.add(this.toggleLayer, 'pipes', 'Toggle Pipes');
-    //g3.open();
+    g3.open();
   }
 
   toggleLayerInit () {
     return {
       terrain: () => {
-        this.globals.world.city.map.toggleLayerVisibility('terrain');
+        this.scene.city.map.layers.terrain.toggle();
       },
       heightmap: () => {
-        this.globals.world.city.map.toggleLayerVisibility('heightmap');
+        this.scene.city.map.layers.heightmap.toggle();
       },
       water: () => {
-        this.globals.world.city.map.toggleLayerVisibility('water');
+        this.scene.city.map.layers.water.toggle();
       },
       road: () => {
-        this.globals.world.city.map.toggleLayerVisibility('road');
+        this.scene.city.map.layers.road.toggle();
       },
       power: () => {
-        this.globals.world.city.map.toggleLayerVisibility('power');
+        this.scene.city.map.layers.power.toggle();
       },
       building: () => {
-        this.globals.world.city.map.toggleLayerVisibility('building');
+        this.scene.city.map.layers.building.toggle();
       },
       zone: () => {
-        this.globals.world.city.map.toggleLayerVisibility('zone');
+        this.scene.city.map.layers.zone.toggle();
       },
       rail: () => {
-        this.globals.world.city.map.toggleLayerVisibility('rail');
+        this.scene.city.map.layers.rail.toggle();
       },
       highway: () => {
-        this.globals.world.city.map.toggleLayerVisibility('highway');
+        this.scene.city.map.layers.highway.toggle();
       },
       subway: () => {
-        this.globals.world.city.map.toggleLayerVisibility('subway');
+        this.scene.city.map.layers.subway.toggle();
       },
       pipes: () => {
-        this.globals.world.city.map.toggleLayerVisibility('pipes');
+        this.scene.city.map.layers.pipes.toggle();
       },
     };
   }

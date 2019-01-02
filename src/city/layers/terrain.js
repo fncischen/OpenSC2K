@@ -9,6 +9,8 @@ export default class terrain extends layer {
 
 
   onHide (type) {
+    if (type == 'heightmap') this.show(false);
+
     if (type == 'water') {
       this.showUnderwater = true;
       this.show();
@@ -17,9 +19,11 @@ export default class terrain extends layer {
 
 
   onShow (type) {
+    if (type == 'heightmap') this.hide(false);
+
     if (type == 'water') {
       this.showUnderwater = false;
-      this.hide();
+      this.show();
     }
   }
 }

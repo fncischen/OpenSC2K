@@ -61,10 +61,14 @@ export default class sc2 {
 
       cell.tiles = { _list: [] };
 
-      //if (data.XTER.terrain)  cell.tiles._list.push({ id: data.XTER.terrain,  type: 'terrain' });
+      if (data.XTER.terrain)  cell.tiles._list.push({ id: data.XTER.terrain,  type: 'terrain' });
       if (data.XTER.water)    cell.tiles._list.push({ id: data.XTER.water,    type: 'water' });
-      //if (data.XTER.terrain)  cell.tiles._list.push({ id: data.XTER.terrain,  type: 'edge' });
-      //if (data.XTER.terrain)  cell.tiles._list.push({ id: data.XTER.terrain,  type: 'heightmap' });
+
+      if (cell.x == 0 || cell.x == 127 || cell.y == 0 || cell.y == 127)
+        if (data.XTER.terrain)  cell.tiles._list.push({ id: data.XTER.terrain,  type: 'edge' });
+
+      if (data.XTER.terrain)  cell.tiles._list.push({ id: data.XTER.terrain,  type: 'heightmap' });
+      
       //if (data.XZON.zone)     cell.tiles._list.push({ id: data.XZON.zone,     type: 'zone' });
       //if (data.XBLD.building) cell.tiles._list.push({ id: data.XBLD.building, type: 'building' });
       //if (data.XBLD.road)     cell.tiles._list.push({ id: data.XBLD.road,     type: 'road' });

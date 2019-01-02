@@ -2843,7 +2843,7 @@ var data = [
     heightmap: {
       reference: 256
     },
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 271,
@@ -2858,7 +2858,7 @@ var data = [
       reference: 257
     },
     rotate: [271, 272, 273, 274],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 272,
@@ -2873,7 +2873,7 @@ var data = [
       reference: 258
     },
     rotate: [272, 273, 274, 271],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 273,
@@ -2888,7 +2888,7 @@ var data = [
       reference: 259
     },
     rotate: [273, 274, 271, 272],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 274,
@@ -2903,7 +2903,7 @@ var data = [
       reference: 260
     },
     rotate: [274, 271, 272, 273],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 275,
@@ -2918,7 +2918,7 @@ var data = [
       reference: 261
     },
     rotate: [275, 276, 277, 278],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 276,
@@ -2933,7 +2933,7 @@ var data = [
       reference: 262
     },
     rotate: [276, 277, 278, 275],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 277,
@@ -2948,7 +2948,7 @@ var data = [
       reference: 263
     },
     rotate: [277, 278, 275, 276],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 278,
@@ -2963,7 +2963,7 @@ var data = [
       reference: 264
     },
     rotate: [278, 275, 276, 277],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 279,
@@ -2978,7 +2978,7 @@ var data = [
       reference: 265
     },
     rotate: [279, 280, 281, 282],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 280,
@@ -2993,7 +2993,7 @@ var data = [
       reference: 266
     },
     rotate: [280, 281, 282, 279],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 281,
@@ -3008,7 +3008,7 @@ var data = [
       reference: 267
     },
     rotate: [281, 282, 279, 280],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 282,
@@ -3023,7 +3023,7 @@ var data = [
       reference: 268
     },
     rotate: [282, 279, 280, 281],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 283,
@@ -3037,7 +3037,7 @@ var data = [
     heightmap: {
       reference: 269
     },
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 284,
@@ -3051,7 +3051,7 @@ var data = [
     heightmap: {
       reference: 269
     },
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 285,
@@ -3066,7 +3066,7 @@ var data = [
       reference: 256
     },
     rotate: [285, 286, 285, 286],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 286,
@@ -3081,7 +3081,7 @@ var data = [
       reference: 256
     },
     rotate: [286, 285, 286, 285],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 287,
@@ -3096,7 +3096,7 @@ var data = [
       reference: 256
     },
     rotate: [287, 288, 289, 290],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 288,
@@ -3111,7 +3111,7 @@ var data = [
       reference: 256
     },
     rotate: [288, 289, 290, 287],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 289,
@@ -3126,7 +3126,7 @@ var data = [
       reference: 256
     },
     rotate: [289, 290, 287, 288],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 290,
@@ -3141,7 +3141,7 @@ var data = [
       reference: 256
     },
     rotate: [290, 287, 288, 289],
-    animationDelay: .25,
+    frames: 2,
   },
   {
     id: 291,

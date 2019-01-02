@@ -66,6 +66,18 @@ export default class tiles {
     return this.tiles[this.tiles.length - 1];
   }
 
+  hide () {
+    for (let i = 0; i < this.list.length; i++)
+      if (this[this.list[i].type])
+        this[this.list[i].type].hide();
+  }
+
+  show () {
+    for (let i = 0; i < this.list.length; i++)
+      if (this[this.list[i].type])
+        this[this.list[i].type].show();
+  }
+
   has (type) {
     if (this[type] && this[type].draw)
       return true;

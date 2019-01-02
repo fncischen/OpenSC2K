@@ -61,7 +61,7 @@ export default class artwork {
 
       tile.loaded   = false;
       tile.animated = this.isAnimatedImage(tile.data.block);
-      tile.frames   = this.getFrameCount(tile.data);
+      tile.frames   = tile.frames || this.getFrameCount(tile.data);
       tile.width    = tile.data.width * this.scene.game.globals.scale;
       tile.height   = tile.data.height * this.scene.game.globals.scale;
       tile.rotate   = tile.rotate || [tile.id, tile.id, tile.id, tile.id];

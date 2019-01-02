@@ -16,7 +16,7 @@ export default class cell {
       power: options.data.power
     };
 
-    this.max = 63;
+    this.max = 127;
     if (this.x > this.max || this.y > this.max)
       return;
 
@@ -69,6 +69,14 @@ export default class cell {
       return;
 
     this.tiles.create();
+  }
+
+  hide () {
+    this.tiles.hide();
+  }
+
+  show () {
+    this.tiles.show();
   }
 
 
@@ -153,10 +161,10 @@ export default class cell {
     this.y = location.y;
     this.z = location.z;
 
-    let offsetX  = (pos.location.x - pos.location.y) * (width / 2);
-    let offsetY  = (pos.location.y + pos.location.x) * (height / 2);
-    let offsetZ  = (pos.location.z > 1 ? (layers * pos.location.z) + layers : 0);
-    let seaLevel = ((this.scene.city.waterLevel - pos.location.z) * layers);
+    let offsetX   = (pos.location.x - pos.location.y) * (width / 2);
+    let offsetY   = (pos.location.y + pos.location.x) * (height / 2);
+    let offsetZ   = (layers * pos.location.z) + layers;
+    let seaLevel  = ((this.scene.city.waterLevel - pos.location.z) * layers);
 
     if (seaLevel < 0)
       seaLevel = 0;
@@ -175,7 +183,7 @@ export default class cell {
       x: offsetX,
       y: offsetY,
       z: offsetZ,
-      seaLevel: seaLevel
+      seaLevel: seaLevel,
     };
 
     pos.top = {

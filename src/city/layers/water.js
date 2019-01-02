@@ -5,4 +5,14 @@ export default class water extends layer {
     options.type = 'water';
     super(options);
   }
+
+
+  onHide (type) {
+    if (type == 'heightmap') this.show(false);
+  }
+
+
+  onShow (type) {
+    if (type == 'heightmap') this.hide(false);
+  }
 }

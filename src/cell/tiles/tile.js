@@ -49,19 +49,13 @@ export default class tile {
   }
 
   hide () {
-    if (!this.draw)
-      return;
-
-    if (this.sprite && this.sprite.visible) {
+    if (this.sprite) {
       this.sprite.setVisible(false);
     }
   }
 
   show () {
-    if (!this.draw)
-      return;
-
-    if (this.sprite && !this.sprite.visible) {
+    if (this.sprite) {
       this.sprite.setVisible(true);
     }
   }
@@ -86,8 +80,8 @@ export default class tile {
   }
 
   calculatePosition () {
-    this.x = this.cell.position.topLeft.x - (this.tile.width / 2);
-    this.y = this.cell.position.topLeft.y - (this.tile.height);
+    this.x = this.cell.position.topLeft.x;
+    this.y = this.cell.position.topLeft.y;
   }
 
   create () {
@@ -132,7 +126,7 @@ export default class tile {
 
     this.events();
     //this.debugBox();
-    this.debugHitbox();
+    //this.debugHitbox();
   }
 
   events () {
@@ -157,10 +151,10 @@ export default class tile {
     let bounds = this.sprite.getBounds();
     let center = this.sprite.getCenter();
 
-    this.debug.box = this.cell.scene.add.rectangle(bounds.x, bounds.y, bounds.width, bounds.height, 0x00ffff, 0.10);
+    this.debug.box = this.cell.scene.add.rectangle(bounds.x, bounds.y, bounds.width, bounds.height, 0x00ffff, 0);
     this.debug.box.setOrigin(this.cell.scene.globals.originX, this.cell.scene.globals.originY);
     this.debug.box.setDepth(this.depth + 2);
-    this.debug.box.setStrokeStyle(1, 0x00ffff, 0.75);
+    this.debug.box.setStrokeStyle(1, 0x00ffff, 0.5);
 
     this.debug.center = this.cell.scene.add.circle(center.x, center.y, 1, 0x00ffff, 0.75);
     this.debug.center.setOrigin(this.cell.scene.globals.originX, this.cell.scene.globals.originY);
@@ -168,10 +162,10 @@ export default class tile {
   }
 
   debugHitbox () {
-    this.debug.hitbox = this.cell.scene.add.polygon(this.x, this.y, this.hitbox.points, 0xff00ff, 0.15);
-    this.debug.hitbox.setDepth(this.depth + 10);
+    this.debug.hitbox = this.cell.scene.add.polygon(this.x, this.y, this.hitbox.points, 0xff00ff, 0);
+    this.debug.hitbox.setDepth(this.depth + 16);
     this.debug.hitbox.setScale(this.cell.scene.globals.scale);
     this.debug.hitbox.setOrigin(this.cell.scene.globals.originX, this.cell.scene.globals.originY);
-    this.debug.hitbox.setStrokeStyle(1, 0xff00ff, 0.60);
+    this.debug.hitbox.setStrokeStyle(1, 0xff00ff, 0.5);
   }
 }

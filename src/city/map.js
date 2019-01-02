@@ -93,7 +93,7 @@ export default class map {
   }
 
   update () {
-    //this.checkCellVisibility();
+    this.checkCellVisibility();
   }
 
   shutdown () {
@@ -120,29 +120,15 @@ export default class map {
     return this.cells[x][y];
   }
 
-  toggleLayerVisibility (type) {
-    if (this.sprites[type].length == 0)
-      return;
-
-    this.sprites[type].forEach((sprite) => {
-      let visible = this.sprites[type][0].visible ? false : true;
-      sprite.setVisible(visible);
-    });
-  }
-
   checkCellVisibility () {
-    let worldBounds = this.scene.globals.viewport.worldBounds.rect;
+    let worldView = this.scene.viewport.camera.worldView;
 
-    for (let x = 0; x < this.width; x++) {
-      for (let y = 0; y < this.height; y++) {
-        let contains = Phaser.Geom.Rectangle.Contains(worldBounds, this.cells[x][y].position.center.x, this.cells[x][y].position.center.y);
-
-        if (contains)
-          this.cells[x][y].wake();
+    for (let x = 0; x < this.width; x++)
+      for (let y = 0; y < this.height; y++)
+        if (Phaser.Geom.Rectangle.Contains(worldView, this.cells[x][y].position.center.x, this.cells[x][y].position.center.y))
+          this.cells[x][y].show();
         else
-          this.cells[x][y].sleep();
-      }
-    }
+          this.cells[x][y].hide();
   }
 
   calculateCellDepthSorting () {
