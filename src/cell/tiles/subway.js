@@ -2,13 +2,13 @@ import tile from './tile';
 
 export default class subway extends tile {
   constructor (options) {
-    options.type = 'subway';
+    options.type = CONST.T_SUBWAY;
+    options.layerDepth = CONST.DEPTH_SUBWAY;
     super(options);
-    this.depth = -40;
   }
 
-  checkTile () {
-    if (!super.checkTile())
+  check () {
+    if (!super.check())
       return false;
 
     if (![319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,349,350,352,353].includes(this.id))
@@ -17,13 +17,9 @@ export default class subway extends tile {
     return true;
   }
 
-  calculatePosition () {
-    if (!this.cell && !this.tile) throw 'Cannot set position for cell '+this.x+', '+this.y+'; references to cell and tile are not defined';
-
+  position () {
     this.x = this.cell.position.topLeft.x - (this.tile.width / 2) << 0;
     this.y = this.cell.position.topLeft.y - (this.tile.height) - this.offset << 0;
-
-    this.depth = this.cell.depth || 0;
   }
   
   create () {

@@ -622,42 +622,26 @@ var data = [
   },
   {
     id: 67,
-    type: 'road',
-    subtype: 'power',
+    type: 'power',
+    subtype: 'road',
     description: 'Road / power lines',
     size: 1,
     image: '1067',
     rotate: [67, 68, 67, 68],
-    simulation: 'traffic',
-    traffic: {
-      light: 400,
-      heavy: 427
-    },
-    depthAdjustment: 4,
-    layers: {
-      base: 29
-    },
+    baseLayer: 29,
     importOptions: {
       dropColor: [124, 155, 161]
     }
   },
   {
     id: 68,
-    type: 'road',
-    subtype: 'power',
+    type: 'power',
+    subtype: 'road',
     description: 'Road / power lines',
     size: 1,
     image: '1068',
     rotate: [68, 67, 68, 67],
-    simulation: 'traffic',
-    traffic: {
-      light: 401,
-      heavy: 428
-    },
-    depthAdjustment: 4,
-    layers: {
-      base: 30
-    },
+    baseLayer: 30,
     importOptions: {
       dropColor: [124, 155, 161]
     }

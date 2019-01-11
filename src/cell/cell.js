@@ -1,4 +1,5 @@
 import tiles from './tiles';
+import * as CONST from '../constants';
 
 export default class cell {
   constructor (options) {
@@ -16,9 +17,8 @@ export default class cell {
       power: options.data.power
     };
 
-    this.max = 127;
-    if (this.x > this.max || this.y > this.max)
-      return;
+    this._max = 127;
+    if (this.x > this._max || this.y > this._max) return;
 
     this.sprites = [];
 
@@ -39,18 +39,18 @@ export default class cell {
     let bounds = {
       x: this.position.topLeft.x,
       y: this.position.topLeft.y,
-      width: this.position.right.x - this.position.left.x,
-      height: this.position.top.y - this.position.bottom.y,
+      w: this.position.right.x - this.position.left.x,
+      h: this.position.top.y - this.position.bottom.y,
     };
 
-    this.debug.box = this.scene.add.rectangle(bounds.x, bounds.y, bounds.width, bounds.height, 0x00ff00, 0.10);
-    this.debug.box.setOrigin(this.scene.globals.originX, this.scene.globals.originY);
-    this.debug.box.setDepth(this.depth + 50);
+    this.debug.box = this.scene.add.rectangle(bounds.x, bounds.y, bounds.w, bounds.h, 0x00ff00, 0.10);
+    this.debug.box.setOrigin(CONST.ORIGIN_X, CONST.ORIGIN_Y);
+    this.debug.box.setDepth(this.depth + 128);
     this.debug.box.setStrokeStyle(1, 0x00ff00, 0.60);
 
     this.debug.center = this.scene.add.circle(center.x, center.y, 1, 0x00ff00, 0.75);
-    this.debug.center.setOrigin(this.scene.globals.originX, this.scene.globals.originY);
-    this.debug.center.setDepth(this.depth + 50);
+    this.debug.center.setOrigin(CONST.ORIGIN_X, CONST.ORIGIN_Y);
+    this.debug.center.setDepth(this.depth + 128);
   }
 
 
@@ -59,14 +59,13 @@ export default class cell {
   //
   debugLabels () {
     this.debug.label = this.scene.add.text(this.position.center.x, this.position.center.y, this.x+','+this.y+','+this.z, { fontFamily: 'Verdana', fontSize: 8, color: '#ffffff' });
-    this.debug.label.setDepth(this.depth + 1000);
+    this.debug.label.setDepth(this.depth + 128);
     this.debug.label.setOrigin(0.5, 0.5);
   }
 
 
   create () {
-    if (this.x > this.max || this.y > this.max)
-      return;
+    if (this.x > this._max || this.y > this._max) return;
 
     this.tiles.create();
   }
@@ -109,13 +108,11 @@ export default class cell {
   }
 
   get depth () {
-    return this._position.depth.base + this._position.depth.adjust;
+    return this._position.depth;
   }
 
   set depth(depth) {
-    // add constant of 1024 to depth values to prevent negative values
-    this._position.depth.base = (depth.base + 1024) || 1024;
-    this._position.depth.adjust = depth.adjust || 0;
+    this._position.depth = depth;
   }
 
   get rotate () {
@@ -132,11 +129,11 @@ export default class cell {
 
   set corners (corners) {
     this._position.corners = {
-      topLeft:     corners.topLeft,
-      topRight:    corners.topRight,
-      bottomLeft:  corners.bottomLeft,
-      bottomRight: corners.bottomRight,
-      noCorners:   corners.noCorners,
+      top:    corners.top,
+      right:  corners.right,
+      bottom: corners.bottom,
+      left:   corners.left,
+      none:   corners.none,
     };
   }
 
@@ -146,9 +143,6 @@ export default class cell {
 
   set position (location) {
     let pos = this._position || {};
-    let width  = this.scene.globals.tileWidth;
-    let height = this.scene.globals.tileHeight;
-    let layers = this.scene.globals.layerOffset;
 
     pos.location = {
       x: location.x,
@@ -161,23 +155,20 @@ export default class cell {
     this.y = location.y;
     this.z = location.z;
 
-    let offsetX   = (pos.location.x - pos.location.y) * (width / 2);
-    let offsetY   = (pos.location.y + pos.location.x) * (height / 2);
-    let offsetZ   = (layers * pos.location.z) + layers;
-    let seaLevel  = ((this.scene.city.waterLevel - pos.location.z) * layers);
+    let offsetX   = (pos.location.x - pos.location.y) * (CONST.TILE_WIDTH / 2);
+    let offsetY   = (pos.location.y + pos.location.x) * (CONST.TILE_HEIGHT / 2);
+    let offsetZ   = (CONST.LAYER_OFFSET * pos.location.z) + CONST.LAYER_OFFSET;
+    let seaLevel  = ((this.scene.city.waterLevel - pos.location.z) * CONST.LAYER_OFFSET);
 
     if (seaLevel < 0)
       seaLevel = 0;
 
-    if ((this.water.type == 'submerged' || this.water.type == 'shore') && pos.location.z < this.scene.city.waterLevel)
+    if ((this.water.type == CONST.TERRAIN_SUBMERGED || this.water.type == CONST.TERRAIN_SHORE) && pos.location.z < this.scene.city.waterLevel)
       pos.underwater = true;
     else
       pos.underwater = false;
 
-    pos.depth = {
-      base: ((pos.location.x + pos.location.y) * 64) + 1024,
-      adjust: 0,
-    };
+    pos.depth = (pos.location.x + pos.location.y) * 64;
 
     pos.offsets = {
       x: offsetX,
@@ -187,28 +178,28 @@ export default class cell {
     };
 
     pos.top = {
-      x: offsetX + (width / 2),
+      x: offsetX + (CONST.TILE_WIDTH / 2),
       y: offsetY - offsetZ
     };
     
     pos.right = {
-      x: offsetX + width,
-      y: (offsetY - offsetZ) + height - (height / 2)
+      x: offsetX + CONST.TILE_WIDTH,
+      y: (offsetY - offsetZ) + CONST.TILE_HEIGHT - (CONST.TILE_HEIGHT / 2)
     };
 
     pos.bottom = {
-      x: offsetX + (width / 2),
-      y: (offsetY - offsetZ) + height
+      x: offsetX + (CONST.TILE_WIDTH / 2),
+      y: (offsetY - offsetZ) + CONST.TILE_HEIGHT
     };
 
     pos.left = {
       x: offsetX,
-      y: (offsetY - offsetZ) + height - (height / 2)
+      y: (offsetY - offsetZ) + CONST.TILE_HEIGHT - (CONST.TILE_HEIGHT / 2)
     };
 
     pos.center = {
-      x: offsetX + (width / 2),
-      y: (offsetY - offsetZ) - (height / 2) + height
+      x: offsetX + (CONST.TILE_WIDTH / 2),
+      y: (offsetY - offsetZ) - (CONST.TILE_HEIGHT / 2) + CONST.TILE_HEIGHT
     };
 
     pos.bottomLeft = {
@@ -241,7 +232,7 @@ export default class cell {
 
 
   onPointerDown (pointer, camera) {
-    console.log(this);
+    //console.log(this);
   }
 
 

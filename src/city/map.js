@@ -1,5 +1,5 @@
-import Phaser from 'phaser';
 import cell from '../cell/cell';
+import * as CONST from '../constants';
 import * as layers from './layers/';
 
 export default class map {
@@ -14,30 +14,24 @@ export default class map {
     this.layers       = {};
   }
 
-  load () {
-    for (let i = 0; i < this.scene.globals.data.cells.length; i++) {
+  create () {
+    for (let i = 0; i < this.scene.importedData.cells.length; i++) {
       let c = new cell({
         scene: this.scene,
-        data: this.scene.globals.data.cells[i],
+        data: this.scene.importedData.cells[i],
       });
 
       if (!this.cells[c.x])      this.cells[c.x]      = [];
       if (!this.cells[c.x][c.y]) this.cells[c.x][c.y] = [];
       
       this.cells[c.x][c.y] = c;
-      this.cellsList.push(c);
+      this.cellsList.push(this.cells[c.x][c.y]);
     }
 
-    //this.calculateCellDepthSorting();
-  }
-
-  create () {
     // create map cells
-    for (let x = 0; x < this.width; x++) {
-      for (let y = 0; y < this.height; y++) {
+    for (let x = 0; x < CONST.MAP_SIZE; x++)
+      for (let y = 0; y < CONST.MAP_SIZE; y++)
         this.cells[x][y].create();
-      }
-    }
 
     // create layers
     this.layers.terrain   = new layers.terrain({ scene: this.scene });
@@ -58,13 +52,13 @@ export default class map {
     let cells = this.cells;
     let tempCells = [];
 
-    for (let x = 0; x < this.width; x++) {
-      for (let y = 0; y < this.height; y++) {
+    for (let x = 0; x < CONST.MAP_SIZE; x++) {
+      for (let y = 0; y < CONST.MAP_SIZE; y++) {
         if (!tempCells[x])    tempCells[x]    = [];
         if (!tempCells[x][y]) tempCells[x][y] = [];
 
         let newX = y;
-        let newY = this.width - x - 1;
+        let newY = CONST.MAP_SIZE - x - 1;
 
         tempCells[newX][newY] = cells[x][y];
       }
@@ -77,12 +71,12 @@ export default class map {
     let cells = this.cells;
     let tempCells = [];
 
-    for (let x = 0; x < this.width; x++) {
-      for (let y = 0; y < this.height; y++) {
+    for (let x = 0; x < CONST.MAP_SIZE; x++) {
+      for (let y = 0; y < CONST.MAP_SIZE; y++) {
         if (!tempCells[x])    tempCells[x]    = [];
         if (!tempCells[x][y]) tempCells[x][y] = [];
 
-        let newX = this.width - y - 1;
+        let newX = CONST.MAP_SIZE - y - 1;
         let newY = x;
 
         tempCells[newX][newY] = cells[x][y];
@@ -93,7 +87,7 @@ export default class map {
   }
 
   update () {
-    this.checkCellVisibility();
+
   }
 
   shutdown () {
@@ -120,22 +114,11 @@ export default class map {
     return this.cells[x][y];
   }
 
-  checkCellVisibility () {
-    let worldView = this.scene.viewport.camera.worldView;
-
-    for (let x = 0; x < this.width; x++)
-      for (let y = 0; y < this.height; y++)
-        if (Phaser.Geom.Rectangle.Contains(worldView, this.cells[x][y].position.center.x, this.cells[x][y].position.center.y))
-          this.cells[x][y].show();
-        else
-          this.cells[x][y].hide();
-  }
-
   calculateCellDepthSorting () {
     let depth = 64;
 
-    for (let x = 0; x < this.width; x++) {
-      for (let y = 0; y < this.height; y++) {
+    for (let x = 0; x < CONST.MAP_SIZE; x++) {
+      for (let y = 0; y < CONST.MAP_SIZE; y++) {
         let cell = this.getCell(x, y);
         cell.depth((x + y) * depth);
         cell.updatePosition();

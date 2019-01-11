@@ -1,29 +1,29 @@
 import tile from './tile';
 import Phaser from 'phaser';
+import * as CONST from '../../constants';
 
 export default class heightmap extends tile {
   constructor (options) {
-    //if (!options.id) options.id = options.cell.water.id;
-    options.type = 'heightmap';
+    options.type = CONST.T_HEIGHTMAP;
+    options.layerDepth = CONST.DEPTH_HEIGHTMAP;
     super(options);
     
-    this.depth = 64;
     this.polygon = [];
   }
 
-  getTile (id) {
-    let tile = super.getTile(id);
+  get (id) {
+    let tile = super.get(id);
 
     if (tile.heightmap && tile.heightmap.reference) {
-      tile = super.getTile(tile.heightmap.reference);
+      tile = super.get(tile.heightmap.reference);
       this.id = tile.id;
     }
 
     return tile;
   }
 
-  checkTile () {
-    if (!super.checkTile())
+  check () {
+    if (!super.check())
       return false;
 
     if (![256,257,258,259,260,261,262,263,264,265,266,267,268,269].includes(this.id)) return false;
@@ -31,9 +31,9 @@ export default class heightmap extends tile {
     return true;
   }
 
-  calculatePosition () {
+  position () {
     this.x = this.cell.position.bottom.x - (this.tile.width / 2);
-    this.y = this.cell.position.bottom.y - (this.tile.height) - this.cell.scene.globals.tileHeight;
+    this.y = this.cell.position.bottom.y - (this.tile.height) - CONST.TILE_HEIGHT;
   }
 
   hide () {
@@ -49,11 +49,11 @@ export default class heightmap extends tile {
   }
 
   create () {
-    if (!this.draw || !this.cell.scene.globals.tiles[this.id].heightmap) return;
+    if (!this.draw || !this.cell.scene.tiles[this.id].heightmap) return;
 
-    let heightmap = this.cell.scene.globals.tiles[this.id].heightmap;
+    let heightmap = this.cell.scene.tiles[this.id].heightmap;
     
-    this.calculatePosition();
+    this.position();
 
     // colors
     let baseColor      = Phaser.Display.Color.ObjectToColor(this.color(this.cell.z));
@@ -96,7 +96,7 @@ export default class heightmap extends tile {
     // polygon attributes
     this.polygon.forEach((face) => {
       face.setStrokeStyle(1, strokeColor, alpha);
-      face.setScale(this.cell.scene.globals.scale);
+      face.setScale(CONST.SCALE);
       face.setOrigin(0,0);
       face.setDepth(this.depth);
       face.setVisible(false);

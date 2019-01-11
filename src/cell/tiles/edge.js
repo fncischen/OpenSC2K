@@ -1,18 +1,17 @@
 import tile from './tile';
+import * as CONST from '../../constants';
 
 export default class edge extends tile {
   constructor (options) {
-    options.type = 'edge';
+    options.type = CONST.T_EDGE;
+    options.layerDepth = CONST.DEPTH_EDGE;
     super(options);
-    this.depth = -64;
   }
 
-  checkTile () {
-    if (!super.checkTile())
-      return false;
+  check () {
+    if (!super.check()) return false;
 
-    if (this.cell.x != 127 && this.cell.y != 127)
-      return false;
+    if (this.cell.x != 127 && this.cell.y != 127) return false;
 
     return true;
   }
@@ -41,7 +40,7 @@ export default class edge extends tile {
     this.x = this.cell.position.topLeft.x;
     this.y = this.cell.position.topLeft.y;
 
-    if ((this.cell.water.type == 'submerged' || this.cell.water.type == 'shore') && this.cell.z < this.cell.scene.city.waterLevel)
+    if ((this.cell.water.type == CONST.TERRAIN_SUBMERGED || this.cell.water.type == CONST.TERRAIN_SHORE) && this.cell.z < this.cell.scene.city.waterLevel)
       this.y -= this.cell.position.offsets.seaLevel;
   }
 
@@ -52,15 +51,15 @@ export default class edge extends tile {
     let waterDepth = this.cell.scene.city.waterLevel - this.cell.z;
 
     // water
-    if (this.cell.water.type != 'dry') {
+    if (this.cell.water.type != CONST.TERRAIN_DRY) {
       for (let i = 0; i < waterDepth; i++) {
-        let offset = Math.abs((this.cell.scene.globals.layerOffset * i) - this.cell.position.offsets.seaLevel);
-        let sprite = this.cell.scene.add.sprite(this.x, this.y + offset, this.cell.scene.globals.tilemap).play(this.getTile(284).image);
+        let offset = Math.abs((CONST.LAYER_OFFSET * i) - this.cell.position.offsets.seaLevel);
+        let sprite = this.cell.scene.add.sprite(this.x, this.y + offset, CONST.TILE_ATLAS).play(this.get(284).image);
         sprite.type = this.type;
-        sprite.subtype = 'water';
+        sprite.subtype = CONST.TERRAIN_WATER;
         sprite.cell = this.cell;
-        sprite.setScale(this.cell.scene.globals.scale);
-        sprite.setOrigin(this.cell.scene.globals.originX, this.cell.scene.globals.originY);
+        sprite.setScale(CONST.SCALE);
+        sprite.setOrigin(CONST.ORIGIN_X, CONST.ORIGIN_Y);
         sprite.setDepth(this.cell.depth + this.depth + (i * 2) + 32);
 
         this.cell.tiles.addSprite(sprite, this.type);
@@ -70,17 +69,17 @@ export default class edge extends tile {
 
     // bedrock
     for (let i = 0; i < this.cell.z; i++) {
-      let offset = this.cell.scene.globals.layerOffset * (i + 1);
+      let offset = CONST.LAYER_OFFSET * (i + 1);
 
-      if (this.cell.water.type != 'dry')
-        offset = this.cell.scene.globals.layerOffset * (i + waterDepth + 1);
+      if (this.cell.water.type != CONST.TERRAIN_DRY)
+        offset = CONST.LAYER_OFFSET * (i + waterDepth + 1);
 
-      let sprite = this.cell.scene.add.sprite(this.x, this.y + offset, this.cell.scene.globals.tilemap, this.getTile(269).textures[0]);
+      let sprite = this.cell.scene.add.sprite(this.x, this.y + offset, CONST.TILE_ATLAS, this.get(269).textures[0]);
       sprite.type = this.type;
-      sprite.subtype = 'bedrock';
+      sprite.subtype = CONST.TERRAIN_BEDROCK;
       sprite.cell = this.cell;
-      sprite.setScale(this.cell.scene.globals.scale);
-      sprite.setOrigin(this.cell.scene.globals.originX, this.cell.scene.globals.originY);
+      sprite.setScale(CONST.SCALE);
+      sprite.setOrigin(CONST.ORIGIN_X, CONST.ORIGIN_Y);
       sprite.setDepth(this.cell.depth + this.depth + (this.cell.z - i * 2));
 
       this.cell.tiles.addSprite(sprite, this.type);

@@ -1,7 +1,5 @@
 import Phaser from 'phaser';
-import load from './load';
 import world from './world';
-import globals from './globals';
 import './styles/global.css';
 
 var config = {
@@ -11,19 +9,21 @@ var config = {
   parent: 'content',
   width: window.innerWidth,
   height: window.innerHeight,
-  resolution: window.devicePixelRatio,
-  disableContextMenu: false,
+  resolution: 1,
+  autoResize: true,
+  disableContextMenu: true,
+  banner: false,
+  audio: {
+    noAudio: true,
+  },
   render: {
-    autoResize: true,
     antialias: false,
     pixelArt: true,
+    batchSize: 10000
   },
   scene: [
-    load,
     world
   ]
 };
 
 window.game = new Phaser.Game(config);
-
-window.game.globals = globals;

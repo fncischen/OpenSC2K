@@ -1,43 +1,26 @@
 export default class center {
   constructor (options) {
     this.scene = options.scene;
-    this.common = options.scene.common;
-
-    this.enabled = false;
+    this.globals = options.scene.globals;
   }
 
   onPointerUp (pointer) {
-    if (!this.enabled)
-      return;
-
-    console.log('onPointerUp', pointer);
+    //console.log('center onPointerUp', pointer);
   }
 
   onPointerDown (pointer, camera) {
-    if (!this.enabled)
-      return;
-
-    console.log('onPointerDown', pointer);
+    pointer.camera.pan(pointer.worldX, pointer.worldY, 150, 'Quart.easeInOut', false, pointer.camera.cullObjects);
   }
 
   onPointerMove (pointer, localX, localY) {
-    if (!this.enabled)
-      return;
-
-    console.log('onPointerMove', pointer);
+    //console.log('center onPointerMove', pointer, localX, localY);
   }
 
   onPointerOver (pointer, localX, localY) {
-    if (!this.enabled)
-      return;
-
-    console.log('onPointerOver', pointer);
+    //console.log('center onPointerOver', pointer, localX, localY);
   }
 
   onPointerOut (pointer) {
-    if (!this.enabled)
-      return;
-
-    console.log('onPointerOut', pointer);
+    //console.log('center onPointerOut', pointer);
   }
 }

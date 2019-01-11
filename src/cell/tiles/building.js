@@ -1,15 +1,15 @@
 import tile from './tile';
+import * as CONST from '../../constants';
 
 export default class building extends tile {
   constructor (options) {
-    options.type = 'building';
+    options.type = CONST.T_BUILDING;
+    options.layerDepth = CONST.DEPTH_BUILDING;
     super(options);
-    this.depth = 1;
   }
 
   checkTile () {
-    if (!super.checkTile())
-      return false;
+    if (!super.checkTile()) return false;
 
     if (![1,2,3,4,5,6,7,8,9,10,11,12,13,112,113,114,115,116,117,118,119,120,121,
       122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,
@@ -27,45 +27,39 @@ export default class building extends tile {
 
   getTile (id) {
     let tile = super.getTile(id);
-    id = tile.id;
 
-    if (tile.flip && !this.flip(tile))
-      this.flipTile = true;
+    if (tile.flip && !this.flip(tile)) this._flip = true;
 
     return tile;
   }
 
   create () {
-    if (!this.checkKeyTile() || !this.draw)
-      return;
+    if (!this.keyTile() || !this.draw) return;
 
-    if (this.tile.size == 2) this.depth--;
-    if (this.tile.size == 3) this.depth -= 31;
-    if (this.tile.size == 4) this.depth -= 31;
+    if (this.tile.size == 2) this.depth.additional = -1;
+    if (this.tile.size == 3) this.depth.additional = -32;
+    if (this.tile.size == 4) this.depth.additional = -32;
 
     super.create();
 
-    if (this.flipTile)
-      this.sprite.setFlipX(true);
+    if (this._flip) this.sprite.setFlipX(true);
   }
 
   tileLogic () {
-    if (!this.tile.logic)
-      return;
+    if (!this.tile.logic) return;
 
-    if (this.tile.logic.create)
-      this[this.tile.logic.create]();
+    if (this.tile.logic.create) this[this.tile.logic.create]();
   }
 
   // rotate pier sections to match orientation with the crane onshore
   pier () {
     let cellX = 0;
     let cellY = 0;
+    let pierDirection;
+    let pierCrane = false;
+    this._flip = false;
 
-    this.flipTile = false;
-
-    if (this.id == 224)
-      this.cell.properties.pierCrane = true;
+    if (this.id == 224) pierCrane = true;
 
     // check tiles in each direction to determine pier orientation
     if (this.id == 223) {
@@ -74,8 +68,8 @@ export default class building extends tile {
         cellX = this.cell.x + x;
         cellY = this.cell.y;
 
-        if (this.map.cells[cellX][cellY].tiles.getId('building') == 224) {
-          this.cell.properties.pierDirection = 'n';
+        if (this.map.cells[cellX][cellY].tiles.getId(CONST.T_BUILDING) == 224) {
+          pierDirection = CONST.D_NORTH;
           continue;
         }
       }
@@ -85,8 +79,8 @@ export default class building extends tile {
         cellX = this.cell.x;
         cellY = this.cell.y + y;
 
-        if (this.map.cells[cellX][cellY].tiles.getId('building') == 224) {
-          this.cell.properties.pierDirection = 'w';
+        if (this.map.cells[cellX][cellY].tiles.getId(CONST.T_BUILDING) == 224) {
+          pierDirection = CONST.D_WEST;
           continue;
         }
       }
@@ -96,8 +90,8 @@ export default class building extends tile {
         cellX = this.cell.x + x;
         cellY = this.cell.y;
 
-        if (this.map.cells[cellX][cellY].tiles.getId('building') == 224) {
-          this.cell.properties.pierDirection = 's';
+        if (this.map.cells[cellX][cellY].tiles.getId(CONST.T_BUILDING) == 224) {
+          pierDirection = CONST.D_SOUTH;
           continue;
         }
       }
@@ -107,8 +101,8 @@ export default class building extends tile {
         cellX = this.cell.x;
         cellY = this.cell.y + y;
 
-        if (this.map.cells[cellX][cellY].tiles.getId('building') == 224) {
-          this.cell.properties.pierDirection = 'e';
+        if (this.map.cells[cellX][cellY].tiles.getId(CONST.T_BUILDING) == 224) {
+          pierDirection = CONST.D_EAST;
           continue;
         }
       }
@@ -116,10 +110,10 @@ export default class building extends tile {
 
 
     // rotate tile
-    if ((this.cell.properties.pierDirection == 'e' || this.cell.properties.pierDirection == 'w') && [1,3].includes(this.city.cameraRotation))
-      this.flipTile = true;
+    if ((pierDirection == CONST.D_EAST || pierDirection == CONST.D_WEST) && [1,3].includes(this.city.cameraRotation))
+      this._flip = true;
 
-    if ((this.cell.properties.pierDirection == 'n' || this.cell.properties.pierDirection == 's') && [0,2].includes(this.city.cameraRotation))
-      this.flipTile = true;
+    if ((pierDirection == CONST.D_NORTH || pierDirection == CONST.D_SOUTH) && [0,2].includes(this.city.cameraRotation))
+      this._flip = true;
   }
 }

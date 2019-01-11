@@ -1,43 +1,27 @@
 export default class query {
   constructor (options) {
     this.scene = options.scene;
-    this.common = options.scene.common;
-
-    this.enabled = false;
+    this.globals = options.scene.globals;
   }
 
   onPointerUp (pointer) {
-    if (!this.enabled)
-      return;
-
-    console.log('onPointerUp', pointer);
+    //console.log('query onPointerUp', pointer);
   }
 
-  onPointerDown (pointer, camera) {
-    if (!this.enabled)
-      return;
-
-    console.log('onPointerDown', pointer);
+  onPointerDown (pointer, gameObject) {
+    if (gameObject[0])
+      console.log(gameObject[0].cell);
   }
 
   onPointerMove (pointer, localX, localY) {
-    if (!this.enabled)
-      return;
-
-    console.log('onPointerMove', pointer);
+    //console.log('query onPointerMove', pointer, localX, localY);
   }
 
   onPointerOver (pointer, localX, localY) {
-    if (!this.enabled)
-      return;
-
-    console.log('onPointerOver', pointer);
+    //console.log('query onPointerOver', pointer, localX, localY);
   }
 
   onPointerOut (pointer) {
-    if (!this.enabled)
-      return;
-
-    console.log('onPointerOut', pointer);
+    //console.log('query onPointerOut', pointer);
   }
 }

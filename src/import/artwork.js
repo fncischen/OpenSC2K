@@ -1,12 +1,13 @@
 import Phaser from 'phaser';
 import math from 'mathjs';
 import data from './tiles';
+import * as CONST from '../constants';
 import { polygonUnion } from '../utils';
 
 export default class artwork {
   constructor (options) {
     this.scene       = options.scene;
-    this.data        = this.scene.cache.binary.get('LARGE_DAT');
+    this.data        = this.scene.cache.binary.get(CONST.LARGE_DAT);
     this.palette     = this.scene.palette;
     this.tiles       = data;
     this.textureSize = 4096;
@@ -62,8 +63,8 @@ export default class artwork {
       tile.loaded   = false;
       tile.animated = this.isAnimatedImage(tile.data.block);
       tile.frames   = tile.frames || this.getFrameCount(tile.data);
-      tile.width    = tile.data.width * this.scene.game.globals.scale;
-      tile.height   = tile.data.height * this.scene.game.globals.scale;
+      tile.width    = tile.data.width * CONST.SCALE;
+      tile.height   = tile.data.height * CONST.SCALE;
       tile.rotate   = tile.rotate || [tile.id, tile.id, tile.id, tile.id];
       tile.hitbox   = this.shape(tile.hitbox || tile.heightmap || this.tiles[256].heightmap);
 
@@ -260,12 +261,10 @@ export default class artwork {
         let tile = this.tiles[i];
 
         // skip tiles that were already flagged as loaded
-        if (tile.loaded)
-          continue;
+        if (tile.loaded) continue;
 
         // skip anything that exceeds the current maximum
-        if (tile.data.width > maxWidth || tile.data.height > maxHeight)
-          continue;
+        if (tile.data.width > maxWidth || tile.data.height > maxHeight) continue;
 
         // loop on every frame
         for (let f = 0; f < tile.frames; f++) {
@@ -341,7 +340,7 @@ export default class artwork {
 
 
     // load texture atlas
-    this.scene.textures.addAtlas('tiles', this.canvas, this.json);
+    this.scene.textures.addAtlas(CONST.TILE_ATLAS, this.canvas, this.json);
 
 
     // remove temp canvas
@@ -356,7 +355,7 @@ export default class artwork {
       if (tile.frames > 1) {
         this.scene.anims.create({
           key: tile.data.imageName,
-          frames: this.scene.anims.generateFrameNames('tiles', {
+          frames: this.scene.anims.generateFrameNames(CONST.TILE_ATLAS, {
             prefix: tile.data.imageName + '_',
             start: (tile.reverseAnimation ? tile.frames : 0),
             end: (tile.reverseAnimation ? 0 : tile.frames)
@@ -368,7 +367,7 @@ export default class artwork {
 
         this.scene.anims.create({
           key: tile.data.imageName+'_R',
-          frames: this.scene.anims.generateFrameNames('tiles', {
+          frames: this.scene.anims.generateFrameNames(CONST.TILE_ATLAS, {
             prefix: tile.data.imageName + '_',
             start: (tile.reverseAnimation ? 0 : tile.frames),
             end: (tile.reverseAnimation ? tile.frames : 0)

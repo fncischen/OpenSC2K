@@ -1,4 +1,5 @@
 import * as tile from './tiles/';
+import * as CONST from '../constants';
 
 export default class tiles {
   constructor (options) {
@@ -7,11 +8,26 @@ export default class tiles {
     this.tiles = [];
     this.sprites = [];
 
-    if (this.cell.x > this.cell.max || this.cell.y > this.cell.max)
-      return;
+    if (this.cell.x > this.cell.max || this.cell.y > this.cell.max) return;
 
     // initialize tiles
     for (let i = 0; i < this.list.length; i++) {
+      if (this.list[i].id == 0) continue;
+
+      if (this.list[i].type == CONST.T_SUBWAY)      continue;
+      if (this.list[i].type == CONST.T_PIPE)        continue;
+      if (this.list[i].type == CONST.T_UNDERGROUND) continue;
+      if (this.list[i].type == CONST.T_EDGE)        continue;
+      if (this.list[i].type == CONST.T_HEIGHTMAP)   continue;
+      //if (this.list[i].type == CONST.T_TERRAIN)     continue;
+      //if (this.list[i].type == CONST.T_WATER)       continue;
+      //if (this.list[i].type == CONST.T_ROAD)        continue;
+      //if (this.list[i].type == CONST.T_RAIL)        continue;
+      //if (this.list[i].type == CONST.T_POWER)       continue;
+      if (this.list[i].type == CONST.T_HIGHWAY)     continue;
+      if (this.list[i].type == CONST.T_ZONE)        continue;
+      //if (this.list[i].type == CONST.T_BUILDING)    continue;
+
       this[this.list[i].type] = null;
       this.set(this.list[i].type, this.list[i].id);
     }
@@ -54,11 +70,8 @@ export default class tiles {
 
   topTile () {
     this.tiles.sort((a, b) => {
-      if (a.sprite && !a.sprite.visible)
-        return -1;
-
-      if (b.sprite && !b.sprite.visible)
-        return 1;
+      if (a.sprite && !a.sprite.visible) return -1;
+      if (b.sprite && !b.sprite.visible) return 1;
 
       return a.depth - b.depth;
     });
@@ -79,8 +92,7 @@ export default class tiles {
   }
 
   has (type) {
-    if (this[type] && this[type].draw)
-      return true;
+    if (this[type] && this[type].draw) return true;
 
     return false;
   }

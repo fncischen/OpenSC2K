@@ -1,12 +1,14 @@
 import Phaser from 'phaser';
+import * as CONST from '../constants';
 
 export default class viewport {
   constructor(options) {
     this.scene        = options.scene;
     this.camera       = this.scene.cameras.main;
-    this.camera.name  = 'viewport';
+    this.camera.name  = CONST.CAMERA_NAME;
+    this.worldView    = this.camera.worldView;
 
-    //this.camera.setBackgroundColor(new Phaser.Display.Color(55, 23, 0, 1));
+    this.viewportPaddingMultiplier = 1.5;
 
     this.worldPoint = {
       x: 0,
@@ -37,10 +39,11 @@ export default class viewport {
 
     this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
 
-    this.camera.scrollX = -691;
-    this.camera.scrollY = -486;
-    this.camera.zoom = 1.5;
+    this.camera.scrollX = -1797;
+    this.camera.scrollY = 1370;
+    this.camera.zoom = 1;
   }
+
 
   onPointerMove (pointer) {
     let { x, y } = this.camera.getWorldPoint(pointer.x, pointer.y);
@@ -49,11 +52,32 @@ export default class viewport {
     this.worldPoint.y = y;
   }
 
+
   update (delta) {
     this.controls.update(delta);
+
+    if (this.controls._speedX !== 0 || this.controls._speedY !== 0 || this.controls._zoom !== 0)
+      this.cullObjects();
   }
 
-  resize () {
-    //this.camera.setViewport(0, 0, document.documentElement.clientWidth, document.documentElement.clientHeight);
+
+  cullObjects () {
+    let map   = this.scene.city.map;
+    let cells = this.scene.city.map.cells;
+
+    let view  = Phaser.Geom.Rectangle.Clone(this.worldView);
+
+    let cx = view.centerX;
+    let cy = view.centerY;
+
+    Phaser.Geom.Rectangle.Scale(view, this.viewportPaddingMultiplier);
+    Phaser.Geom.Rectangle.CenterOn(view, cx, cy);
+
+    for (let x = 0; x < map.width; x++)
+      for (let y = 0; y < map.height; y++)
+        if (Phaser.Geom.Rectangle.Contains(view, cells[x][y].position.center.x, cells[x][y].position.center.y))
+          cells[x][y].show();
+        else
+          cells[x][y].hide();
   }
 }

@@ -1,14 +1,12 @@
 //import jszip from 'jszip';
+import * as CONST from '../constants';
 import sc2 from '../import/sc2';
 
 export default class load {
   constructor (options) {
-    this.scene = options.scene;
-    this.globals = this.scene.sys.game.globals;
-    this.sc2 = new sc2();
-
-    this.path = '/assets/cities/';
-    this.file = 'Default.sc2';
+    this.scene   = options.scene;
+    this.sc2     = new sc2();
+    this.file    = 'Default.sc2';
   }
 
 
@@ -62,12 +60,12 @@ export default class load {
       //this.file = 'test/rotation/CQ3R.SC2';
       //this.file = 'test/rotation/CQ4R.SC2';
 
-      this.scene.load.binary('CITY', this.path+this.file);
+      this.scene.load.binary(CONST.CITY, CONST.CITIES_PATH+ this.file);
       this.scene.load.start();
 
-      this.scene.load.once('loadcomplete', () => {
+      this.scene.load.once(CONST.E_LOAD_COMPLETE, () => {
         this.parseCity().then((data) => {
-          this.globals.data = data;
+          this.scene.importedData = data;
           resolve();
         });
       });
@@ -78,8 +76,8 @@ export default class load {
 
 
   async parseCity () {
-    return new Promise((resolve,reject) => {
-      let data = Buffer.from(this.scene.cache.binary.get('CITY'));
+    return new Promise((resolve, reject) => {
+      let data = Buffer.from(this.scene.cache.binary.get(CONST.CITY));
 
       // sc2 file, first four bytes are ascii "FORM"
       if (data.readUInt32BE(0x00) == 0x464F524D)

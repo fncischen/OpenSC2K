@@ -5,8 +5,9 @@ export default class debug {
     this.scene = options.scene;
     this.globals = this.scene.globals;
     this.toggleLayer = this.toggleLayerInit();
+
     this.gui = new dat.GUI();
-    this.gui.closed = false;
+    this.gui.closed = true;
 
     let f1 = this.gui.addFolder('Performance');
     f1.add(this.scene.sys.game.loop, 'actualFps', 'FPS').listen();
@@ -42,7 +43,7 @@ export default class debug {
     //g3.add(this.toggleLayer, 'highway', 'Toggle Highway');
     //g3.add(this.toggleLayer, 'subway', 'Toggle Subway');
     //g3.add(this.toggleLayer, 'pipes', 'Toggle Pipes');
-    g3.open();
+    //g3.open();
   }
 
   toggleLayerInit () {

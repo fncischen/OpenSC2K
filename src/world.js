@@ -3,6 +3,9 @@ import city from './city/city';
 import viewport from './world/viewport';
 import events from './world/events';
 import debug from './debug/debug';
+import palette from './import/palette';
+import artwork from './import/artwork';
+import * as CONST from './constants';
 
 export default class world extends Phaser.Scene {
   constructor () {
@@ -11,29 +14,39 @@ export default class world extends Phaser.Scene {
   
 
   preload () {
-    // create references to game world
     this.sys.game.world = this;
-    this.globals        = this.sys.game.globals;
-    this.globals.world  = this;
 
-    // initialize city
-    this.city = new city({ scene: this });
+    // load binary game assets from original SC2K
+    this.load.binary(CONST.PAL_MSTR_BMP, CONST.ASSETS_PATH + CONST.FILE_PAL_MSTR_BMP);
+    this.load.binary(CONST.LARGE_DAT,    CONST.ASSETS_PATH + CONST.FILE_LARGE_DAT);
+
+    // start import once files are loaded
+    this.load.once(CONST.E_LOAD_COMPLETE, () => {
+      this.palette = new palette({ scene: this });
+      this.artwork = new artwork({ scene: this });
+      this.tiles = this.artwork.tiles;
+
+      // initialize city
+      this.city = new city({ scene: this });
+    });
   }
   
 
   create () {
-    this.viewport = new viewport({ scene: this });
-    this.worldEvents = new events({ scene: this });
-
-    this.city.create();
+    // load default city
+    this.city.load.loadDefaultCity().then(() => {
+      this.start();
+    });
 
     //this.ui = new ui({ scene: this });
+    this.viewport = new viewport({ scene: this });
+    this._events = new events({ scene: this });
     this.debug = new debug({ scene: this });
   }
-  
 
-  reload () {
-    this.city.shutdown();
+
+  start () {
+    this.city.create();
   }
   
 
@@ -43,18 +56,7 @@ export default class world extends Phaser.Scene {
   }
   
 
-  resize () {
-    this.viewport.resize();
-  }
-  
-
   shutdown () {
-    //if (this.debug)
-    //  this.debug.shutdown();
-
-    if (this.city)
-      this.city.shutdown();
-
     this.scene.destroy();
   }
 }

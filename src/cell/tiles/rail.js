@@ -1,45 +1,40 @@
 import tile from './tile';
+import * as CONST from '../../constants';
 
 export default class rail extends tile {
   constructor (options) {
-    options.type = 'rail';
+    options.type = CONST.T_RAIL;
+    options.layerDepth = CONST.DEPTH_RAIL;
     super(options);
-    this.depth = 0;
   }
 
-  checkTile () {
-    if (!super.checkTile())
-      return false;
+  check () {
+    if (!super.check()) return false;
 
-    if (![44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,71,72,90,91,108,109,110,111].includes(this.id))
-      return false;
+    if (![44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,71,72,90,91,108,109,110,111].includes(this.id)) return false;
 
     return true;
   }
 
-  getTile (id) {
-    let tile = super.getTile(id);
-    id = tile.id;
+  get (id) {
+    let tile = super.get(id);
 
-    if (this.flip(tile))
-      this.flipTile = true;
+    if (this.flip(tile)) this._flip = true;
 
     return tile;
   }
 
   create () {
-    if (!this.draw)
-      return;
+    if (!this.draw) return;
 
-    if (this.cell.z < this.scene.city.waterLevel)
-      this.offset = (0 - (this.scene.city.waterLevel - this.cell.z) * this.globals.layerOffset);
+    if (this.cell.position.underwater)
+      this.offsetY -= this.cell.position.offsets.seaLevel;
 
-    if (this.cell.tiles.getId('terrain') == 269)
-      this.offset += this.globals.layerOffset;
+    if (this.cell.tiles.has(CONST.T_TERRAIN) && this.cell.tiles.getId(CONST.T_TERRAIN) == 269)
+      this.offsetY -= CONST.LAYER_OFFSET;
 
     super.create();
 
-    if (this.flipTile)
-      this.sprite.setFlipX(true);
+    if (this._flip) this.sprite.setFlipX(true);
   }
 }

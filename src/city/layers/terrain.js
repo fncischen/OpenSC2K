@@ -1,17 +1,18 @@
+import * as CONST from '../../constants';
 import layer from './layer';
 
 export default class terrain extends layer {
   constructor (options) {
-    options.type = 'terrain';
+    options.type = CONST.T_TERRAIN;
     super(options);
     this.showUnderwater = false;
   }
 
 
   onHide (type) {
-    if (type == 'heightmap') this.show(false);
+    if (type == CONST.T_HEIGHTMAP) this.show(false);
 
-    if (type == 'water') {
+    if (type == CONST.T_WATER) {
       this.showUnderwater = true;
       this.show();
     }
@@ -19,9 +20,9 @@ export default class terrain extends layer {
 
 
   onShow (type) {
-    if (type == 'heightmap') this.hide(false);
+    if (type == CONST.T_HEIGHTMAP) this.hide(false);
 
-    if (type == 'water') {
+    if (type == CONST.T_WATER) {
       this.showUnderwater = false;
       this.show();
     }

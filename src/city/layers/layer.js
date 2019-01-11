@@ -1,3 +1,5 @@
+import * as CONST from '../../constants';
+
 export default class layer {
   constructor (options) {
     this.scene   = options.scene;
@@ -15,8 +17,8 @@ export default class layer {
         this.list.push(cell.tiles[this.type]);
     });
 
-    this.events.on('mapLayerHide', this.onHide, this);
-    this.events.on('mapLayerShow', this.onShow, this);
+    this.events.on(CONST.E_MAP_LAYER_HIDE, this.onHide, this);
+    this.events.on(CONST.E_MAP_LAYER_SHOW, this.onShow, this);
   }
 
   toggle () {
@@ -33,7 +35,7 @@ export default class layer {
       tile.hide();
     });
 
-    if (emitEvents) this.events.emit('mapLayerHide', this.type);
+    if (emitEvents) this.events.emit(CONST.E_MAP_LAYER_HIDE, this.type);
   }
 
   show (emitEvents = true) {
@@ -43,7 +45,7 @@ export default class layer {
       tile.show();
     });
 
-    if (emitEvents) this.events.emit('mapLayerShow', this.type);
+    if (emitEvents) this.events.emit(CONST.E_MAP_LAYER_SHOW, this.type);
   }
 
   refresh () {

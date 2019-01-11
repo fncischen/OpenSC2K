@@ -1,9 +1,10 @@
+import * as CONST from '../constants';
 import * as segmentHandlers from './segmentHandlers/';
 import { bytesToAscii } from './segmentHandlers/common';
 
 export default class sc2 {
   import (buffer) {
-    let size = 128;
+    let size = CONST.MAP_SIZE;
     let x = 0;
     let y = 0;
     let map = {
@@ -61,29 +62,27 @@ export default class sc2 {
 
       cell.tiles = { _list: [] };
 
-      if (data.XTER.terrain)  cell.tiles._list.push({ id: data.XTER.terrain,  type: 'terrain' });
-      if (data.XTER.water)    cell.tiles._list.push({ id: data.XTER.water,    type: 'water' });
+      if (data.XTER.terrain)  cell.tiles._list.push({ id: data.XTER.terrain,  type: CONST.T_TERRAIN });
+      if (data.XTER.water)    cell.tiles._list.push({ id: data.XTER.water,    type: CONST.T_WATER });
 
       if (cell.x == 0 || cell.x == 127 || cell.y == 0 || cell.y == 127)
-        if (data.XTER.terrain)  cell.tiles._list.push({ id: data.XTER.terrain,  type: 'edge' });
+        if (data.XTER.terrain)  cell.tiles._list.push({ id: data.XTER.terrain,  type: CONST.T_EDGE });
 
-      if (data.XTER.terrain)  cell.tiles._list.push({ id: data.XTER.terrain,  type: 'heightmap' });
+      //if (data.XTER.terrain)  cell.tiles._list.push({ id: data.XTER.terrain,  type: CONST.T_HEIGHTMAP });
       
-      //if (data.XZON.zone)     cell.tiles._list.push({ id: data.XZON.zone,     type: 'zone' });
-      //if (data.XBLD.building) cell.tiles._list.push({ id: data.XBLD.building, type: 'building' });
-      //if (data.XBLD.road)     cell.tiles._list.push({ id: data.XBLD.road,     type: 'road' });
-      //if (data.XBLD.rail)     cell.tiles._list.push({ id: data.XBLD.rail,     type: 'rail' });
-      //if (data.XBLD.power)    cell.tiles._list.push({ id: data.XBLD.power,    type: 'power' });
-      //if (data.XBLD.highway)  cell.tiles._list.push({ id: data.XBLD.highway,  type: 'highway' });
-      //if (data.XUND.subway)   cell.tiles._list.push({ id: data.XUND.subway,   type: 'subway' });
-      //if (data.XUND.pipes)    cell.tiles._list.push({ id: data.XUND.pipes,    type: 'pipes' });
+      //if (data.XZON.zone)     cell.tiles._list.push({ id: data.XZON.zone,     type: CONST.T_ZONE });
+
+      if (data.XBLD) cell.tiles._list.push(data.XBLD);
+
+      //if (data.XUND.subway)   cell.tiles._list.push({ id: data.XUND.subway,   type: CONST.T_SUBWAY });
+      //if (data.XUND.pipes)    cell.tiles._list.push({ id: data.XUND.pipes,    type: CONST.T_PIPES });
 
       cell.corners = {
-        topLeft:      data.XZON.topLeft,
-        topRight:     data.XZON.topRight,
-        bottomLeft:   data.XZON.bottomLeft,
-        bottomRight:  data.XZON.bottomRight,
-        noCorners:    data.XZON.noCorners,
+        left:   data.XZON.left,
+        top:    data.XZON.top,
+        bottom: data.XZON.bottom,
+        right:  data.XZON.right,
+        none:   data.XZON.none,
       };
 
       cell.zone = {

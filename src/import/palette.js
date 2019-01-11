@@ -1,3 +1,4 @@
+import * as CONST from '../constants';
 import bmp from 'bmp-js';
 
 export default class palette {
@@ -6,7 +7,7 @@ export default class palette {
     this.palettes        = [];
     this.primaryPalette  = [];
     this.animatedIndexes = [];
-    this.buffer          = Buffer.from(this.scene.cache.binary.get('PAL_MSTR_BMP'));
+    this.buffer          = Buffer.from(this.scene.cache.binary.get(CONST.PAL_MSTR_BMP));
 
     this.parse();
     this.createPalettes();

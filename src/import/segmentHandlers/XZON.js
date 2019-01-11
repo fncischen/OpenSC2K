@@ -8,13 +8,13 @@ export default (data, map) => {
 
     // indicates the tile is a key / corner tile
     // for a building larger than 1x1 tile
-    xzon.topRight    = (bits & 0b00010000) !== 0;
-    xzon.bottomRight = (bits & 0b00100000) !== 0;
-    xzon.bottomLeft  = (bits & 0b01000000) !== 0;
-    xzon.topLeft     = (bits & 0b10000000) !== 0;
+    xzon.top    = (bits & 0b00010000) !== 0;
+    xzon.right  = (bits & 0b00100000) !== 0;
+    xzon.bottom = (bits & 0b01000000) !== 0;
+    xzon.left   = (bits & 0b10000000) !== 0;
 
     // indicates the tile has no key / corners set
-    xzon.noCorners   = (bits & 0b11110000) === 0;
+    xzon.none   = (bits & 0b11110000) === 0;
 
     // tile zone id and type
     xzon.zone        = xzonMap[bits & 0b00001111].id;

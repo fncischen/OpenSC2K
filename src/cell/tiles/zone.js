@@ -1,23 +1,22 @@
 import tile from './tile';
+import * as CONST from '../../constants';
 
 export default class zone extends tile {
   constructor (options) {
-    options.type = 'zone';
+    options.type = CONST.T_ZONE;
+    options.layerDepth = CONST.DEPTH_ZONE;
     super(options);
-    this.depth = -10;
   }
 
-  checkTile () {
-    if (!super.checkTile())
-      return false;
+  check () {
+    if (!super.check()) return false;
 
     return true;
   }
 
   create () {
-    if (this.cell.tiles.has('building'))
-      return false;
-      
     super.create();
+    
+    if (this.cell.tiles.has(CONST.T_BUILDING)) this.sprite.setVisible(false);
   }
 }
