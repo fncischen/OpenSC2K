@@ -20,10 +20,11 @@ export default class road extends tile {
   get (id) {
     let tile = super.get(id);
 
-    if (this.flip(tile)) this._flip = true;
+    if (this.cell.position.rotate && tile?.flip)
+      this.props.flip = true;
 
-    if (this._flip && tile.flipMode && tile.flipMode == CONST.ALTERNATE_TILE)
-      tile = this.cell.scene.tiles[this.cell.scene.tiles[tile.id].rotate[this.cell.scene.city.cameraRotation]];
+    if (this.props.flip && tile?.flipMode == CONST.ALTERNATE_TILE)
+      tile = super.get(tile.rotate[this.rotation]);
 
     return tile;
   }
@@ -42,7 +43,8 @@ export default class road extends tile {
 
     super.create();
 
-    if (this.props.flip) this.sprite.setFlipX(true);
+    if (this.props.flip)
+      this.sprite.setFlipX(true);
   }
 
   simulation () {

@@ -9,6 +9,7 @@ export default class tile {
   map;
   tile;
   depth;
+  rotation;
   sprite;
   type;
   x;
@@ -26,13 +27,13 @@ export default class tile {
   constructor (options) {
     this.cell      = options.cell;
     this.map       = options.cell.scene.city.map;
-
-    this.id         = options.id;
-    this.type       = options.type;
-    this.tile       = this.get(options.id);
+    this.rotation  = options.cell.scene.city.rotation;
+    this.id        = options.id;
+    this.type      = options.type;
+    this.tile      = this.get(options.id);
     this.x         = options.x || 0;
     this.y         = options.y || 0;
-    this.depth      = {
+    this.depth     = {
       cell:       options.cell.depth,
       layer:      options.layerDepth || 0,
       tile:       options.tileDepth || 0,
@@ -44,46 +45,37 @@ export default class tile {
     this.props.draw = true;
   }
 
-  get (id) {
-    if (!this.cell.scene.tiles[id]) return false;
 
-    id = this.cell.scene.tiles[id].rotate[this.cell.scene.city.cameraRotation];
+  get (id) {
+    id = this.cell?.scene?.tiles?.[id]?.rotate[this.rotation];
+
+    if (!id) return false;
 
     return this.cell.scene.tiles[id];
   }
 
+
   check () {
     if (!this.cell) return false;
+    if (!this.tile) return false;
 
     return true;
   }
 
-  keyTile () {
-    //if (this.tile.size == 1 || this.cell.corners.none) return true;
-
-    return this.cell.corners[this.cell.scene.city.corner];
-  }
 
   hide () {
     if (this.sprite) this.sprite.setVisible(false);
   }
 
+
   show () {
     if (this.sprite) this.sprite.setVisible(true);
   }
 
+
   refresh () {
     this.hide();
     this.show();
-  }
-
-  flip (tile = this.tile) {
-    if (!tile.flip) return false;
-    
-    if (this.cell.scene.city.cameraRotation == 1 || this.cell.scene.city.cameraRotation == 3)
-      return this.cell.rotate ? false : true;
-    else
-      return this.cell.rotate;
   }
 
 

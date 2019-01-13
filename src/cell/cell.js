@@ -16,12 +16,14 @@ export default class cell {
   tiles;
   related;
   parent;
+  index;
 
   constructor (options) {
     this.#data       = options.data;
     this.scene       = options.scene;
     this.city        = options.scene.city;
     this.water       = options.data.water;
+    this.index       = options.index;
     this.position    = new position({ cell: this, data: this.#data });
     this.tiles       = new tiles({ cell: this, list: options.data.tiles._list });
     this.surrounding = new surrounding({ cell: this });

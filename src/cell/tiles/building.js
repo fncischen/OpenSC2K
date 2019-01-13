@@ -30,7 +30,7 @@ export default class building extends tile {
   get (id) {
     let tile = super.get(id);
 
-    if (!this.flip(tile)) this.props.flip = true;
+    //if (!this.flip(tile)) this.props.flip = true;
 
     return tile;
   }

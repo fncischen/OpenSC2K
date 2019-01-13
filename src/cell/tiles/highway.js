@@ -21,7 +21,7 @@ export default class highway extends tile {
     let tile = super.getTile(id);
     id = tile.id;
 
-    if (this.flip(tile)) this.props.flip = true;
+    //if (this.flip(tile)) this.props.flip = true;
 
     if (this.props.flip && tile.flipMode && tile.flipMode == CONST.ALTERNATE_TILE) {
       id = this.tiles[id].rotate[this.scene.city.cameraRotation];

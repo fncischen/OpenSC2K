@@ -3,22 +3,25 @@ import * as CONST from '../constants';
 import * as layers from './layers/';
 
 export default class map {
+  #scene;
+
+  cells = [];
+  cellsList = [];
+  selectedCell = { x: 0, y: 0 };
+  sprites = { all: [] };
+  layers = [];
+
   constructor (options) {
-    this.scene        = options.scene;
-    this.width        = options.width;
-    this.height       = options.height;
-    this.cells        = [];
-    this.cellsList    = [];
-    this.selectedCell = { x: 0, y: 0 };
-    this.sprites      = { all: [] };
-    this.layers       = {};
+    this.#scene        = options.scene;
   }
 
+
   create () {
-    for (let i = 0; i < this.scene.importedData.cells.length; i++) {
+    for (let i = 0; i < this.#scene.importedData.cells.length; i++) {
       let c = new cell({
-        scene: this.scene,
-        data: this.scene.importedData.cells[i],
+        scene: this.#scene,
+        data: this.#scene.importedData.cells[i],
+        index: i
       });
 
       if (!this.cells[c.x])      this.cells[c.x]      = [];
@@ -34,18 +37,18 @@ export default class map {
         this.cells[x][y].create();
 
     // create layers
-    this.layers.terrain   = new layers.terrain({ scene: this.scene });
-    this.layers.water     = new layers.water({ scene: this.scene });
-    this.layers.edge      = new layers.edge({ scene: this.scene });
-    this.layers.heightmap = new layers.heightmap({ scene: this.scene });
-    this.layers.zone      = new layers.zone({ scene: this.scene });
-    this.layers.building  = new layers.building({ scene: this.scene });
-    this.layers.road      = new layers.road({ scene: this.scene });
-    this.layers.rail      = new layers.rail({ scene: this.scene });
-    this.layers.power     = new layers.power({ scene: this.scene });
-    this.layers.highway   = new layers.highway({ scene: this.scene });
-    this.layers.subway    = new layers.subway({ scene: this.scene });
-    this.layers.pipe      = new layers.pipe({ scene: this.scene });
+    this.layers.terrain   = new layers.terrain({ scene: this.#scene });
+    this.layers.water     = new layers.water({ scene: this.#scene });
+    this.layers.edge      = new layers.edge({ scene: this.#scene });
+    this.layers.heightmap = new layers.heightmap({ scene: this.#scene });
+    this.layers.zone      = new layers.zone({ scene: this.#scene });
+    this.layers.building  = new layers.building({ scene: this.#scene });
+    this.layers.road      = new layers.road({ scene: this.#scene });
+    this.layers.rail      = new layers.rail({ scene: this.#scene });
+    this.layers.power     = new layers.power({ scene: this.#scene });
+    this.layers.highway   = new layers.highway({ scene: this.#scene });
+    this.layers.subway    = new layers.subway({ scene: this.#scene });
+    this.layers.pipe      = new layers.pipe({ scene: this.#scene });
 
     // update sprite depth
     // fix for sprite depth incorrect despite having a correct value
@@ -58,6 +61,7 @@ export default class map {
       }, 50 * i);
     }
   }
+
 
   rotateCW () {
     let cells = this.cells;
@@ -78,6 +82,7 @@ export default class map {
     this.cells = tempCells;
   }
 
+
   rotateCCW () {
     let cells = this.cells;
     let tempCells = [];
@@ -97,9 +102,11 @@ export default class map {
     this.cells = tempCells;
   }
 
+
   update () {
 
   }
+
 
   shutdown () {
     if (this.cellsList.length > 0)
@@ -112,6 +119,7 @@ export default class map {
         sprite.destroy();
       });
   }
+
 
   addSprite (sprite, type) {
     if (!this.sprites[type])

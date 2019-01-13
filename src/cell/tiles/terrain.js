@@ -32,7 +32,7 @@ export default class terrain extends tile {
 
     super.create();
 
-    if (this.cell.water.type != CONST.TERRAIN_DRY)
+    if (this.sprite && this.cell.water.type != CONST.TERRAIN_DRY)
       this.sprite.setVisible(false);
   }
 }

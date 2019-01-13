@@ -28,13 +28,13 @@ export default class related {
     // create a reference to self
     this.#related.push(this.#cell);
 
-    if (this.#tile.size == 2) {
+    if (this.#tile?.size == 2) {
       this.#related.push(this.#map.cells[x][y-1]);
       this.#related.push(this.#map.cells[x-1][y]);
       this.#related.push(this.#map.cells[x-1][y-1]);
     }
 
-    if (this.#tile.size == 3){
+    if (this.#tile?.size == 3){
       this.#related.push(this.#map.cells[x][y-1]);
       this.#related.push(this.#map.cells[x-1][y]);
       this.#related.push(this.#map.cells[x-1][y-1]);
@@ -45,7 +45,7 @@ export default class related {
       this.#related.push(this.#map.cells[x-2][y-2]);
     }
 
-    if (this.#tile.size == 4){
+    if (this.#tile?.size == 4){
       this.#related.push(this.#map.cells[x][y-1]);
       this.#related.push(this.#map.cells[x-1][y]);
       this.#related.push(this.#map.cells[x-1][y-1]);

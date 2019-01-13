@@ -23,8 +23,6 @@ export default class city {
     if (this.rotation == 2) this.corner = CONST.CORNER_TOP;
     if (this.rotation == 3) this.corner = CONST.CORNER_RIGHT;
 
-    this.cameraRotation = 0;
-
     this.map.create();
     //this.simulator = new simulator({ scene: this.scene });
 
