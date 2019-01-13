@@ -38,7 +38,7 @@ export default class building extends tile {
 
   position () {
     this.x = this.cell.position.center.x + this.props.offsetX;
-    this.y = this.cell.position.top.y + this.props.offsetY;
+    this.y = this.cell.position.top.y - this.cell.position.seaLevel;
   }
 
 

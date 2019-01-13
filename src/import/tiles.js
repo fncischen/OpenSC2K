@@ -591,7 +591,7 @@ var data = [
     size: 1,
     image: '1063',
     rotate: [63, 64, 65, 66],
-    depthAdjustment: -10,
+    depthAdjustment: -1,
   },
   {
     id: 64,
@@ -600,7 +600,7 @@ var data = [
     size: 1,
     image: '1064',
     rotate: [64, 65, 66, 63],
-    depthAdjustment: -10,
+    depthAdjustment: -1,
   },
   {
     id: 65,
@@ -609,7 +609,7 @@ var data = [
     size: 1,
     image: '1065',
     rotate: [65, 66, 63, 64],
-    depthAdjustment: -10,
+    depthAdjustment: -1,
   },
   {
     id: 66,
@@ -618,7 +618,7 @@ var data = [
     size: 1,
     image: '1066',
     rotate: [66, 63, 64, 65],
-    depthAdjustment: -10,
+    depthAdjustment: -1,
   },
   {
     id: 67,

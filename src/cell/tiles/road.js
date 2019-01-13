@@ -39,7 +39,7 @@ export default class road extends tile {
       this.props.offsetY -= CONST.LAYER_OFFSET;
 
     if (this.tile.depthAdjustment)
-      this.depth = this.depth + this.tile.depthAdjustment;
+      this.depth.additional = this.tile.depthAdjustment;
 
     super.create();
 
