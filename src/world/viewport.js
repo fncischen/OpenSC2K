@@ -41,9 +41,9 @@ export default class viewport {
 
     this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
 
-    this.camera.scrollX = -2920;
-    this.camera.scrollY = 1018;
-    this.camera.zoom = 0.5;
+    this.camera.scrollX = -2668;
+    this.camera.scrollY = 856;
+    this.camera.zoom = 1;
   }
 
 

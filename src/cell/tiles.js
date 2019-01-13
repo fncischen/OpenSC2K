@@ -24,7 +24,7 @@ export default class tiles {
       //if (this.list[i].type == CONST.T_ROAD)        continue;
       //if (this.list[i].type == CONST.T_RAIL)        continue;
       //if (this.list[i].type == CONST.T_POWER)       continue;
-      if (this.list[i].type == CONST.T_HIGHWAY)     continue;
+      //if (this.list[i].type == CONST.T_HIGHWAY)     continue;
       if (this.list[i].type == CONST.T_ZONE)        continue;
       //if (this.list[i].type == CONST.T_BUILDING)    continue;
 
