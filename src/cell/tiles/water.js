@@ -20,7 +20,7 @@ export default class water extends tile {
 
   position () {
     this.x = this.cell.position.topLeft.x;
-    this.y = this.cell.position.topLeft.y - this.cell.position.offsets.seaLevel;
+    this.y = this.cell.position.topLeft.y - this.cell.position.seaLevel;
   }
 
   create () {

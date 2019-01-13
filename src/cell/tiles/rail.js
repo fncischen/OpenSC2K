@@ -19,22 +19,22 @@ export default class rail extends tile {
   get (id) {
     let tile = super.get(id);
 
-    if (this.flip(tile)) this._flip = true;
+    if (this.flip(tile)) this.props.flip = true;
 
     return tile;
   }
 
   create () {
-    if (!this.draw) return;
+    if (!this.props.draw) return;
 
     if (this.cell.position.underwater)
-      this.offsetY -= this.cell.position.offsets.seaLevel;
+      this.props.offsetY -= this.cell.position.seaLevel;
 
     if (this.cell.tiles.has(CONST.T_TERRAIN) && this.cell.tiles.getId(CONST.T_TERRAIN) == 269)
-      this.offsetY -= CONST.LAYER_OFFSET;
+      this.props.offsetY -= CONST.LAYER_OFFSET;
 
     super.create();
 
-    if (this._flip) this.sprite.setFlipX(true);
+    if (this.props.flip) this.sprite.setFlipX(true);
   }
 }

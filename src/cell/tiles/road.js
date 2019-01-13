@@ -29,20 +29,20 @@ export default class road extends tile {
   }
 
   create () {
-    if (!this.draw || !this.check()) return;
+    if (!this.props.draw || !this.check()) return;
 
     if (this.cell.position.underwater)
-      this.offsetY -= this.cell.position.offsets.seaLevel;
+      this.props.offsetY -= this.cell.position.seaLevel;
 
     if (this.cell.tiles.has(CONST.T_TERRAIN) && this.cell.tiles.getId(CONST.T_TERRAIN) == 269)
-      this.offsetY -= CONST.LAYER_OFFSET;
+      this.props.offsetY -= CONST.LAYER_OFFSET;
 
     if (this.tile.depthAdjustment)
       this.depth = this.depth + this.tile.depthAdjustment;
 
     super.create();
 
-    if (this._flip) this.sprite.setFlipX(true);
+    if (this.props.flip) this.sprite.setFlipX(true);
   }
 
   simulation () {
@@ -67,7 +67,7 @@ export default class road extends tile {
     this.traffic.setOrigin(CONST.ORIGIN_X, CONST.ORIGIN_Y);
     this.traffic.setDepth(this.cell.depth + this.depth + 1);
 
-    if (this._flip) this.traffic.setFlipX(true);
+    if (this.props.flip) this.traffic.setFlipX(true);
 
     this.cell.addSprite(this.traffic, CONST.T_ROAD_TRAFFIC);
     this.cell.microSims.simulators.traffic.addSprite(this.traffic);

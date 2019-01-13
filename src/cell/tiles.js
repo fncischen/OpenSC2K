@@ -2,13 +2,13 @@ import * as tile from './tiles/';
 import * as CONST from '../constants';
 
 export default class tiles {
+  #cell;
+  
   constructor (options) {
-    this.cell = options.cell;
+    this.#cell = options.cell;
     this.list = options.list;
     this.tiles = [];
     this.sprites = [];
-
-    if (this.cell.x > this.cell.max || this.cell.y > this.cell.max) return;
 
     // initialize tiles
     for (let i = 0; i < this.list.length; i++) {
@@ -53,7 +53,7 @@ export default class tiles {
 
   addSprite (sprite, type) {
     this.sprites.push(sprite);
-    this.cell.scene.city.map.addSprite(sprite, type);
+    this.#cell.scene.city.map.addSprite(sprite, type);
   }
 
   topSprite () {
@@ -66,6 +66,10 @@ export default class tiles {
 
   addTile (tile) {
     this.tiles.push(tile);
+  }
+
+  get top () {
+    return this.topTile();
   }
 
   topTile () {
@@ -92,16 +96,13 @@ export default class tiles {
   }
 
   has (type) {
-    if (this[type] && this[type].draw) return true;
+    if (this[type] && this[type].props.draw) return true;
 
     return false;
   }
 
   set (type, id) {
-    this[type] = new tile[type]({
-      cell: this.cell,
-      id: id
-    });
+    this[type] = new tile[type]({ cell: this.#cell, id: id });
   }
 
   create () {

@@ -2,23 +2,36 @@ import Phaser from 'phaser';
 import * as CONST from '../../constants';
 
 export default class tile {
+  #debug = {};
+
+  id;
+  cell;
+  map;
+  tile;
+  depth;
+  sprite;
+  type;
+  x;
+  y;
+
+  props = {
+    draw: false,
+    flip: false,
+    offsetX: 0,
+    offsetY: 0,
+    hitbox: null
+  };
+
+
   constructor (options) {
+    this.cell      = options.cell;
+    this.map       = options.cell.scene.city.map;
+
     this.id         = options.id;
-    this.cell       = options.cell;
-    this.map        = options.cell.scene.city.map;
     this.type       = options.type;
     this.tile       = this.get(options.id);
-    
-    this._flip      = false;
-    this.sprite     = null;
-    this.debug      = {};
-
-    this.x          = options.x || this.cell.position.topLeft.x || 0;
-    this.y          = options.y || this.cell.position.topLeft.y || 0;
-
-    this.offsetY    = 0;
-    this.offsetX    = 0;
-
+    this.x         = options.x || 0;
+    this.y         = options.y || 0;
     this.depth      = {
       cell:       options.cell.depth,
       layer:      options.layerDepth || 0,
@@ -28,7 +41,7 @@ export default class tile {
 
     if (!this.check()) return;
 
-    this.draw = true;
+    this.props.draw = true;
   }
 
   get (id) {
@@ -46,7 +59,7 @@ export default class tile {
   }
 
   keyTile () {
-    if (this.tile.size == 1 || this.cell.corners.none) return true;
+    //if (this.tile.size == 1 || this.cell.corners.none) return true;
 
     return this.cell.corners[this.cell.scene.city.corner];
   }
@@ -73,13 +86,15 @@ export default class tile {
       return this.cell.rotate;
   }
 
+
   position () {
-    this.x     = this.cell.position.topLeft.x + this.offsetX;
-    this.y     = this.cell.position.topLeft.y + this.offsetY;
+    this.x = this.cell.position.topLeft.x + this.props.offsetX;
+    this.y = this.cell.position.topLeft.y + this.props.offsetY;
   }
 
+
   create () {
-    if (!this.draw) return;
+    if (!this.props.draw) return;
 
     this.logic();
     this.position();
@@ -113,9 +128,9 @@ export default class tile {
   events () {
     if (!this.sprite) return;
 
-    this.hitbox = this.tile.hitbox;
+    this.props.hitbox = this.tile.hitbox;
 
-    this.sprite.setInteractive(this.hitbox, Phaser.Geom.Polygon.Contains);
+    this.sprite.setInteractive(this.props.hitbox, Phaser.Geom.Polygon.Contains);
     this.sprite.on(CONST.E_POINTER_OVER, this.cell.onPointerOver, this.cell);
     this.sprite.on(CONST.E_POINTER_OUT,  this.cell.onPointerOut,  this.cell);
     this.sprite.on(CONST.E_POINTER_MOVE, this.cell.onPointerMove, this.cell);
@@ -135,21 +150,21 @@ export default class tile {
     let bounds = this.sprite.getBounds();
     let center = this.sprite.getCenter();
 
-    this.debug.box = this.cell.scene.add.rectangle(bounds.x, bounds.y, bounds.width, bounds.height, 0x00ffff, 0);
-    this.debug.box.setOrigin(CONST.ORIGIN_X, CONST.ORIGIN_Y);
-    this.debug.box.setDepth(this.depth + 2);
-    this.debug.box.setStrokeStyle(1, 0x00ffff, 0.5);
+    this.#debug.box = this.cell.scene.add.rectangle(bounds.x, bounds.y, bounds.width, bounds.height, 0x00ffff, 0);
+    this.#debug.box.setOrigin(CONST.ORIGIN_X, CONST.ORIGIN_Y);
+    this.#debug.box.setDepth(this.depth + 2);
+    this.#debug.box.setStrokeStyle(1, 0x00ffff, 0.5);
 
-    this.debug.center = this.cell.scene.add.circle(center.x, center.y, 1, 0x00ffff, 0.75);
-    this.debug.center.setOrigin(CONST.ORIGIN_X, CONST.ORIGIN_Y);
-    this.debug.center.setDepth(this.sprite.depth + 2);
+    this.#debug.center = this.cell.scene.add.circle(center.x, center.y, 1, 0x00ffff, 0.75);
+    this.#debug.center.setOrigin(CONST.ORIGIN_X, CONST.ORIGIN_Y);
+    this.#debug.center.setDepth(this.sprite.depth + 2);
   }
 
   debugHitbox () {
-    this.debug.hitbox = this.cell.scene.add.polygon(this.x, this.y, this.hitbox.points, 0xff00ff, 0);
-    this.debug.hitbox.setDepth(this.sprite.depth + 16);
-    this.debug.hitbox.setScale(CONST.SCALE);
-    this.debug.hitbox.setOrigin(CONST.ORIGIN_X, CONST.ORIGIN_Y);
-    this.debug.hitbox.setStrokeStyle(1, 0xff00ff, 0.5);
+    this.#debug.hitbox = this.cell.scene.add.polygon(this.x, this.y, this.props.hitbox.points, 0xff00ff, 0);
+    this.#debug.hitbox.setDepth(this.sprite.depth + 16);
+    this.#debug.hitbox.setScale(CONST.SCALE);
+    this.#debug.hitbox.setOrigin(CONST.ORIGIN_X, CONST.ORIGIN_Y);
+    this.#debug.hitbox.setStrokeStyle(1, 0xff00ff, 0.5);
   }
 }

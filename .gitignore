@@ -1,5 +1,6 @@
 assets/cities/*
 !assets/cities/NEWCITY.SC2
+!assets/cities/TESTCITY.SC2
 assets/images/*
 assets/import/*
 assets/tiles/*

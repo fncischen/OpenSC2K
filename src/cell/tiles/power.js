@@ -11,8 +11,7 @@ export default class power extends tile {
   check () {
     if (!super.check()) return false;
 
-    if (![14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,67,68,92].includes(this.id))
-      return false;
+    if (![14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,67,68,92].includes(this.id)) return false;
 
     return true;
   }
@@ -20,22 +19,22 @@ export default class power extends tile {
   get (id) {
     let tile = super.get(id);
 
-    if (this.flip(tile)) this._flip = true;
+    if (this.flip(tile)) this.props.flip = true;
 
-    if (this._flip && tile.flipMode && tile.flipMode == CONST.ALTERNATE_TILE)
+    if (this.props.flip && tile.flipMode && tile.flipMode == CONST.ALTERNATE_TILE)
       tile = this.cell.scene.tiles[this.cell.scene.tiles[tile.id].rotate[this.cell.scene.city.cameraRotation]];
 
     return tile;
   }
 
   create () {
-    if (!this.draw || !this.check()) return;
+    if (!this.props.draw || !this.check()) return;
 
     if (this.cell.position.underwater)
-      this.offsetY -= this.cell.position.offsets.seaLevel;
+      this.props.offsetY -= this.cell.position.seaLevel;
 
     if (this.cell.tiles.has(CONST.T_TERRAIN) && this.cell.tiles.getId(CONST.T_TERRAIN) == 269)
-      this.offsetY -= CONST.LAYER_OFFSET;
+      this.props.offsetY -= CONST.LAYER_OFFSET;
 
     super.create();
 

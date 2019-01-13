@@ -19,8 +19,7 @@ export default class terrain extends tile {
 
 
   show () {
-    if (!this.sprite && this.sprite.visible)
-      return;
+    if (this.sprite?.visible) return;
 
     if (this.cell.water.type == CONST.TERRAIN_DRY || this.map.layers[this.type].showUnderwater)
       this.sprite.setVisible(true);
@@ -28,7 +27,7 @@ export default class terrain extends tile {
 
 
   create () {
-    //if (this.cell.hasdwBuilding() && !this.cell.building.tile.requiresTerrain)
+    //if (this.cell.tiles.hasBuilding() && !this.cell.building.tile.requiresTerrain)
     //  return false;
 
     super.create();

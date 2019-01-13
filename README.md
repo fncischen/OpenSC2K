@@ -6,9 +6,11 @@ Currently a lot remains to be implemented but the basic framework is there for i
 
 Along with implementing the original functionality and features, I plan to add additional capabilities beyond the original such as larger city/map sizes, additional network types, adding buildings beyond the initial tileset limitations, action/history tracking along with replays and more.
 
-I've only tested using Chrome 64 on macOS, but it should run fairly well on any modern browser/platform that supports WebGL. Performance should be acceptable but there is still a LOT of room for optimizations and improvements.
+I've only tested using Chrome / Firefox on macOS, but it should run fairly well on any modern browser/platform that supports WebGL. Performance should be acceptable but there is still a LOT of room for optimizations and improvements.
 
-**Update:** Due to a takedown request from Electronic Arts, I've had to remove the game assets (tilesets primarily) included with this repository. I've got a mostly working asset extraction process, but it's been a few months since I last worked on it. It's only been tested with SimCity 2000 Special Edition for Windows.
+Due to copyrights, the original graphics and assets from SimCity 2000 cannot be provided here. I've developed and tested using the assets from SimCity 2000 Special Edition for Windows 95. Once I've got the basic engine stabilized I plan to add support for multiple versions of SimCity 2000 in the future.
+
+**Update:** I've been working on refactoring considerable portions of the code for clarity and performance. Due to the changes a lot of existing functionality is now completely broken and will be fixed in upcoming commits.
 
 ![Screenshot](/screenshots/1.png)
 
@@ -19,20 +21,12 @@ You can use yarn (recommended) or npm to install and run. Once installed and sta
 1. `git clone https://github.com/rage8885/OpenSC2K` or download this repository
 1. `cd OpenSC2K`
 1. `yarn install` downloads and installs the dependancies
-1. `yarn start` to run
-
-### Windows (not tested)
-1. `git clone https://github.com/rage8885/OpenSC2K` or download this repository
-1. `cd OpenSC2K`
-1. `npm install --global --production windows-build-tools` (as admin) installs Windows specific prerequisites
-1. `npm config set msvs_version 2015 --global` changes config to use correct version of msvs
-1. Close all shell/cmd windows and open a new one (non-admin) to reload npm config with correct version
-1. Navigate to the OpenSC2K directory
-1. `yarn install` downloads and installs the dependencies
-1. `yarn start` to run
+1. `yarn dev` to run
 
 ## Usage
-By default, a city included in the /assets/cities/ folder will load. Open the debug controls (top right) and select City -> Open City to select a valid SimCity 2000 .sc2 save file to import. The City -> Save City option will export the currently active city as a compressed JSON data file. The ability to re-import these files has yet to be implemented.
+By default, a test city included in the /assets/cities/ folder will load. Currently you must modify the `/src/city/load.js` file to load different cities.
+
+Requires two files from the Windows 95 Special Edition version of SimCity 2000: `LARGE.DAT` and `PAL_MSTR.BMP`. These must be placed in the `/assets/import/` directory prior to starting the game. The files will be automatically parsed and used for all in game graphics.
 
 ### Controls
  - `WASD` to move the camera viewport
@@ -43,20 +37,25 @@ By default, a city included in the /assets/cities/ folder will load. Open the de
 ![Screenshot](/screenshots/4.png)
 
 ## Acknowledgements
-Using sc2kparser created by Objelisks distributed under the terms of the ISC license.
-<https://github.com/Objelisks/sc2kparser>
-
 Based on the work of Dale Floer
  - SimCity 2000 specifications (*.sc2)
  - MIF / LARGE.DAT graphics extraction
+<https://github.com/dfloer/SC2k-docs>
 
 Based on the work of David Moews
- - SimCity 2000 for MS-DOS file format; unofficial partial information <http://djm.cc/dmoews.html>
+ - SimCity 2000 for MS-DOS file format; unofficial partial information
+<http://djm.cc/dmoews.html>
+
+Portions of the SC2 import logic are based on sc2kparser created by Objelisks and distributed under the terms of the ISC license.
+<https://github.com/Objelisks/sc2kparser>
+
+Includes work adapted from the Graham Scan polygon union JavaScript implementation by Lovasoa and distributed under the terms of the MIT license
+<https://github.com/lovasoa/graham-fast>
 
 ## License
 OpenSC2K - An Open Source SimCity 2000 remake
 
-Copyright (C) 2018 Nicholas Ochoa
+Copyright (C) 2019 Nicholas Ochoa
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

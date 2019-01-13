@@ -21,9 +21,9 @@ export default class highway extends tile {
     let tile = super.getTile(id);
     id = tile.id;
 
-    if (this.flip(tile)) this._flip = true;
+    if (this.flip(tile)) this.props.flip = true;
 
-    if (this._flip && tile.flipMode && tile.flipMode == CONST.ALTERNATE_TILE) {
+    if (this.props.flip && tile.flipMode && tile.flipMode == CONST.ALTERNATE_TILE) {
       id = this.tiles[id].rotate[this.scene.city.cameraRotation];
       tile = this.tiles[id];
     }
@@ -35,7 +35,7 @@ export default class highway extends tile {
   }
 
   create () {
-    if ((!this.checkKeyTile() && ![93,94,95,96].includes(this.id)) || !this.draw || !this.checkTile()) return;
+    if ((!this.checkKeyTile() && ![93,94,95,96].includes(this.id)) || !this.props.draw || !this.checkTile()) return;
 
     if (this.tile.size == 2) this.depth.additional = -1;
     
@@ -44,7 +44,7 @@ export default class highway extends tile {
 
     super.create();
 
-    if (this._flip) this.sprite.setFlipX(true);
+    if (this.props.flip) this.sprite.setFlipX(true);
   }
 
   simulation () {
@@ -84,7 +84,7 @@ export default class highway extends tile {
     this.highwayTraffic.setDepth(this.sprite.depth + 1);
 
     if (this.tile.traffic.flip) this.highwayTraffic.setFlipX(true);
-    if (this._flip)             this.highwayTraffic.setFlipX(true);
+    if (this.props.flip)             this.highwayTraffic.setFlipX(true);
 
     this.cell.addSprite(this.highwayTraffic, CONST.T_HIGHWAY_TRAFFIC);
     this.cell.microSims.simulators.highwayTraffic.addSprite(this.highwayTraffic);

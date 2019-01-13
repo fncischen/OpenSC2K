@@ -49,7 +49,7 @@ export default class heightmap extends tile {
   }
 
   create () {
-    if (!this.draw || !this.cell.scene.tiles[this.id].heightmap) return;
+    if (!this.props.draw || !this.cell.scene.tiles[this.id].heightmap) return;
 
     let heightmap = this.cell.scene.tiles[this.id].heightmap;
     

@@ -46,6 +46,17 @@ export default class map {
     this.layers.highway   = new layers.highway({ scene: this.scene });
     this.layers.subway    = new layers.subway({ scene: this.scene });
     this.layers.pipe      = new layers.pipe({ scene: this.scene });
+
+    // update sprite depth
+    // fix for sprite depth incorrect despite having a correct value
+    // not sure if engine bug?
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => {
+        this.sprites.all.forEach((sprite) => {
+          sprite.setDepth(sprite.depth);
+        });
+      }, 50 * i);
+    }
   }
 
   rotateCW () {
@@ -108,21 +119,5 @@ export default class map {
 
     this.sprites[type].push(sprite);
     this.sprites.all.push(sprite);
-  }
-
-  getCell (x, y) {
-    return this.cells[x][y];
-  }
-
-  calculateCellDepthSorting () {
-    let depth = 64;
-
-    for (let x = 0; x < CONST.MAP_SIZE; x++) {
-      for (let y = 0; y < CONST.MAP_SIZE; y++) {
-        let cell = this.getCell(x, y);
-        cell.depth((x + y) * depth);
-        cell.updatePosition();
-      }
-    }
   }
 }
