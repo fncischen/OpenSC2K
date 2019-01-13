@@ -17,7 +17,7 @@ export default class tiles {
       if (this.list[i].type == CONST.T_SUBWAY)      continue;
       if (this.list[i].type == CONST.T_PIPE)        continue;
       if (this.list[i].type == CONST.T_UNDERGROUND) continue;
-      if (this.list[i].type == CONST.T_EDGE)        continue;
+      //if (this.list[i].type == CONST.T_EDGE)        continue;
       if (this.list[i].type == CONST.T_HEIGHTMAP)   continue;
       //if (this.list[i].type == CONST.T_TERRAIN)     continue;
       //if (this.list[i].type == CONST.T_WATER)       continue;

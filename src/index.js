@@ -19,7 +19,7 @@ var config = {
   render: {
     antialias: false,
     pixelArt: true,
-    batchSize: 10000
+    batchSize: 32767
   },
   scene: [
     world

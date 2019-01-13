@@ -8,6 +8,8 @@ export default class viewport {
     this.camera.name  = CONST.CAMERA_NAME;
     this.worldView    = this.camera.worldView;
 
+    this.objectsRendered = 0;
+
     this.viewportPaddingMultiplier = 1.5;
 
     this.worldPoint = {
@@ -39,9 +41,9 @@ export default class viewport {
 
     this.controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
 
-    this.camera.scrollX = -512;
-    this.camera.scrollY = 412;
-    this.camera.zoom = 1;
+    this.camera.scrollX = -2920;
+    this.camera.scrollY = 1018;
+    this.camera.zoom = 0.5;
   }
 
 
@@ -62,22 +64,26 @@ export default class viewport {
 
 
   cullObjects () {
-    let map   = this.scene.city.map;
     let cells = this.scene.city.map.cells;
-
     let view  = Phaser.Geom.Rectangle.Clone(this.worldView);
-
     let cx = view.centerX;
     let cy = view.centerY;
 
     Phaser.Geom.Rectangle.Scale(view, this.viewportPaddingMultiplier);
     Phaser.Geom.Rectangle.CenterOn(view, cx, cy);
 
-    for (let x = 0; x < map.width; x++)
-      for (let y = 0; y < map.height; y++)
+    for (let x = 0; x < CONST.MAP_SIZE; x++)
+      for (let y = 0; y < CONST.MAP_SIZE; y++)
         if (Phaser.Geom.Rectangle.Contains(view, cells[x][y].position.center.x, cells[x][y].position.center.y))
           cells[x][y].show();
         else
           cells[x][y].hide();
+
+
+    this.objectsRendered = 0;
+
+    this.scene.children.list.forEach((gameObject) => {
+      if (gameObject.visible) this.objectsRendered++;
+    });
   }
 }

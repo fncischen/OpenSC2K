@@ -4,7 +4,7 @@ import * as CONST from '../constants';
 export default class events {
   constructor(options) {
     this.scene = options.scene;
-    this.selectedTool = CONST.TOOL_QUERY;
+    this.selectedTool = CONST.TOOL_CENTER;//CONST.TOOL_QUERY;
     this.register();
 
     this.tools = {};

@@ -6,7 +6,7 @@ export default class map {
   #scene;
 
   cells = [];
-  cellsList = [];
+  list = [];
   selectedCell = { x: 0, y: 0 };
   sprites = { all: [] };
   layers = [];
@@ -28,7 +28,7 @@ export default class map {
       if (!this.cells[c.x][c.y]) this.cells[c.x][c.y] = [];
       
       this.cells[c.x][c.y] = c;
-      this.cellsList.push(this.cells[c.x][c.y]);
+      this.list.push(this.cells[c.x][c.y]);
     }
 
     // create map cells
@@ -50,16 +50,8 @@ export default class map {
     this.layers.subway    = new layers.subway({ scene: this.#scene });
     this.layers.pipe      = new layers.pipe({ scene: this.#scene });
 
-    // update sprite depth
-    // fix for sprite depth incorrect despite having a correct value
-    // not sure if engine bug?
-    for (let i = 0; i < 5; i++) {
-      setTimeout(() => {
-        this.sprites.all.forEach((sprite) => {
-          sprite.setDepth(sprite.depth);
-        });
-      }, 50 * i);
-    }
+    // do an initial object cull after rendering map
+    this.#scene.viewport.cullObjects();
   }
 
 
@@ -109,8 +101,8 @@ export default class map {
 
 
   shutdown () {
-    if (this.cellsList.length > 0)
-      this.cellsList.forEach((cell) => {
+    if (this.list.length > 0)
+      this.list.forEach((cell) => {
         cell.shutdown();
       });
 

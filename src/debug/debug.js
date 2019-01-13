@@ -7,10 +7,11 @@ export default class debug {
     this.toggleLayer = this.toggleLayerInit();
 
     this.gui = new dat.GUI();
-    this.gui.closed = true;
+    this.gui.closed = false;
 
     let f1 = this.gui.addFolder('Performance');
     f1.add(this.scene.sys.game.loop, 'actualFps', 'FPS').listen();
+    f1.add(this.scene.viewport, 'objectsRendered', 'Objects Rendered').listen();
     f1.open();
 
     let g1 = this.gui.addFolder('Cursor');

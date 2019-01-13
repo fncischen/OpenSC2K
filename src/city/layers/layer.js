@@ -9,7 +9,7 @@ export default class layer {
     this.visible = options.visible || true;
     this.list    = [];
 
-    this.map.cellsList.forEach((cell) => {
+    this.map.list.forEach((cell) => {
       if (!cell || !cell.tiles)
         return;
 

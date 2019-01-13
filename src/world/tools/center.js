@@ -8,8 +8,10 @@ export default class center {
     //console.log('center onPointerUp', pointer);
   }
 
-  onPointerDown (pointer, camera) {
-    pointer.camera.pan(pointer.worldX, pointer.worldY, 150, 'Quart.easeInOut', false, pointer.camera.cullObjects);
+  onPointerDown (pointer, gameObject) {
+    pointer.camera.pan(pointer.worldX, pointer.worldY, 150, 'Quart.easeInOut', false, () => {
+      this.scene.viewport.cullObjects();
+    });
   }
 
   onPointerMove (pointer, localX, localY) {
