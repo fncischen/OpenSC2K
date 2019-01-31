@@ -72,7 +72,7 @@ export default class sc2 {
       
       //if (data.XZON.zone)     cell.tiles._list.push({ id: data.XZON.zone,     type: CONST.T_ZONE });
 
-      if (data.XBLD) cell.tiles._list.push(data.XBLD);
+      if (data.XBLD.id != 0) cell.tiles._list.push(data.XBLD);
 
       //if (data.XUND.subway)   cell.tiles._list.push({ id: data.XUND.subway,   type: CONST.T_SUBWAY });
       //if (data.XUND.pipes)    cell.tiles._list.push({ id: data.XUND.pipes,    type: CONST.T_PIPES });

@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import math from 'mathjs';
 import data from './tiles';
 import * as CONST from '../constants';
 import { polygonUnion } from '../utils';
@@ -132,7 +131,7 @@ export default class artwork {
     if (frames.length <= 1)
       return 1;
     else
-      return math.lcm.apply(null, frames);
+      return this.lcm.apply(null, frames);
   }
 
 
@@ -380,5 +379,33 @@ export default class artwork {
 
       this.tiles[i] = tile;
     }
+  }
+
+
+  lcm (min, max) {
+    function range (min, max) {
+      let out = [];
+  
+      for (let i = min; i <= max; i++)
+        out.push(i);
+
+      return out;
+    }
+
+    function gcd (a, b) {
+      return !b ? a : gcd(b, a % b);
+    }
+
+    function lcm (a, b) {
+      return (a * b) / gcd(a, b);
+    }
+
+    let multiple = min;
+
+    range(min, max).forEach(function(n) {
+      multiple = lcm(multiple, n);
+    });
+
+    return multiple;
   }
 }

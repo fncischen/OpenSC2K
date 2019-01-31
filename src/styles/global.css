@@ -16,3 +16,14 @@ body {
 #fileOpen {
   visibility: hidden;
 }
+
+.ui-container {
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.toolbar {
+  top: 50px;
+  left: 50px;
+}

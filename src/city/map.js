@@ -5,6 +5,7 @@ import * as layers from './layers/';
 export default class map {
   #scene;
 
+  grid = [];
   cells = [];
   list = [];
   selectedCell = { x: 0, y: 0 };
@@ -26,7 +27,7 @@ export default class map {
 
       if (!this.cells[c.x])      this.cells[c.x]      = [];
       if (!this.cells[c.x][c.y]) this.cells[c.x][c.y] = [];
-      
+
       this.cells[c.x][c.y] = c;
       this.list.push(this.cells[c.x][c.y]);
     }

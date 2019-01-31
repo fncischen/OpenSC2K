@@ -38,24 +38,23 @@ export default class cell {
   }
 
 
-  onPointerUp (pointer) {
+  onPointerUp () {
 
   }
 
 
-  onPointerDown (pointer, camera) {
-    //console.log(this);
+  onPointerDown () {
+    console.log(this);
   }
 
 
-  onPointerMove (pointer, localX, localY) {
-    // todo: change this reference to "this"
+  onPointerMove () {
     this.scene.city.map.selectedCell.x = this.x;
     this.scene.city.map.selectedCell.y = this.y;
   }
 
 
-  onPointerOver (pointer, localX, localY) {
+  onPointerOver () {
     this.scene.city.map.selectedCell.x = this.x;
     this.scene.city.map.selectedCell.y = this.y;
 
@@ -80,7 +79,7 @@ export default class cell {
   }
 
 
-  onPointerOut (pointer) {
+  onPointerOut () {
     this.tiles.sprites.forEach((sprite) => {
       if (sprite.visible) sprite.clearTint();
     });
@@ -99,6 +98,20 @@ export default class cell {
         this.tiles.heightmap.polygon.slope.fillAlpha = 1;
       }
     }
+  }
+
+
+  highlight (color = 0x00aa00) {
+    this.tiles.sprites.forEach((sprite) => {
+      if (sprite.visible) sprite.setTint(color);
+    });
+  }
+
+
+  clearHighlight () {
+    this.tiles.sprites.forEach((sprite) => {
+      if (sprite.visible) sprite.clearTint();
+    });
   }
 
 

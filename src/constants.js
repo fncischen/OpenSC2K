@@ -1,3 +1,5 @@
+// todo: split these out into separate constant files per section of code
+
 // engine config
 export const SCALE          = 2;
 export const ORIGIN_X       = 0;
@@ -22,7 +24,7 @@ export const E_POINTER_MOVE   = 'pointermove';
 export const E_POINTER_DOWN   = 'pointerdown';
 export const E_POINTER_UP     = 'pointerup';
 export const E_RESIZE         = 'resize';
-export const E_LOAD_COMPLETE  = 'loadcomplete';
+export const E_LOAD_COMPLETE  = 'postprocess';
 export const E_MAP_LAYER_HIDE = 'mapLayerHide';
 export const E_MAP_LAYER_SHOW = 'mapLayerShow';
 
@@ -41,6 +43,17 @@ export const T_POWER        = 'power';
 export const T_HIGHWAY      = 'highway';
 export const T_ZONE         = 'zone';
 export const T_BUILDING     = 'building';
+
+
+// visible tile type id
+export const T_TERRAIN_ID   = 0;
+export const T_WATER_ID     = 1;
+export const T_ROAD_ID      = 2;
+export const T_RAIL_ID      = 3;
+export const T_POWER_ID     = 4;
+export const T_HIGHWAY_ID   = 5;
+export const T_ZONE_ID      = 6;
+export const T_BUILDING_ID  = 7;
 
 
 // additional types
@@ -95,6 +108,7 @@ export const ALTERNATE_TILE     = 'alternateTile';
 // tools
 export const TOOL_QUERY         = 'query';
 export const TOOL_CENTER        = 'center';
+export const TOOL_ROADS         = 'roads';
 
 
 // file identifiers

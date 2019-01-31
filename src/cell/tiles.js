@@ -33,9 +33,11 @@ export default class tiles {
     }
   }
 
+
   getId (type) {
     return this.get(type, true);
   }
+
   
   get (type, id = false) {
     if (!this[type])
@@ -51,10 +53,12 @@ export default class tiles {
         return this[type];
   }
 
+
   addSprite (sprite, type) {
     this.sprites.push(sprite);
     this.#cell.scene.city.map.addSprite(sprite, type);
   }
+
 
   topSprite () {
     this.sprites.sort((a, b) => {
@@ -64,13 +68,16 @@ export default class tiles {
     return this.sprites[this.sprites.length - 1];
   }
 
+
   addTile (tile) {
     this.tiles.push(tile);
   }
 
+
   get top () {
     return this.topTile();
   }
+
 
   topTile () {
     this.tiles.sort((a, b) => {
@@ -83,11 +90,13 @@ export default class tiles {
     return this.tiles[this.tiles.length - 1];
   }
 
+
   hide () {
     for (let i = 0; i < this.list.length; i++)
       if (this[this.list[i].type])
         this[this.list[i].type].hide();
   }
+
 
   show () {
     for (let i = 0; i < this.list.length; i++)
@@ -95,19 +104,31 @@ export default class tiles {
         this[this.list[i].type].show();
   }
 
+
   has (type) {
     if (this[type] && this[type].props.draw) return true;
 
     return false;
   }
 
+
   set (type, id) {
+    if (id == 0) return;
+    
+    if (this?.[type]?.sprite) this[type].sprite.destroy();
+
+    for (let i = 0; i < this.list.length; i++)
+      if (this.list[i].type == type)
+        this.list[i].id = id;
+
     this[type] = new tile[type]({ cell: this.#cell, id: id });
   }
+
 
   create () {
     for (let i = 0; i < this.list.length; i++)
       if (this[this.list[i].type])
         this[this.list[i].type].create();
   }
+
 }

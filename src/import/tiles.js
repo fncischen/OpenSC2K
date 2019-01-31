@@ -3035,7 +3035,7 @@ var data = [
     heightmap: {
       reference: 269
     },
-    frames: 2,
+    frames: 3,
   },
   {
     id: 285,
